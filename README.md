@@ -12,6 +12,11 @@ A 100-app, primary-document benchmark of the credential, API, policy and MCP gat
 
 The app set was researcher-selected after the referenced employer list was not visible. It is balanced across five categories and was approved by the candidate. It is not presented as an employer-supplied list. No production credentials or private account information are included.
 
+## Two ways to use this repository
+
+- **Core checkout (this git tree):** code, tests, the 100-app source data in `data/full`, docs, and the small outputs. It does not contain the large generated files (`output/final/dataset.json`, `output/report.html`, `index.html`, `output/source-verification/source-checks.json`) or the 760 source snapshots. The Quick start commands below regenerate the dataset and the report from `data/full`, so the findings can be rebuilt from this tree alone.
+- **Full archive:** the exact final package (a9e8e79f) with every generated file and the 760 snapshots is attached to the [v1.0.0 release](https://github.com/Pirategrand/composio-integration-audit/releases/tag/v1.0.0) as `composio-integration-audit-final-a9e8e79f.zip` (SHA-256 292b38dd096342091f4aec6d4d78bc233675c96019f8c0266ccbb46c81b6dcdc). Use it for offline citation replay and for the shipped `source-checks.json`. The hosted report is at https://files.instinct.com/omkorwol4w3y-which-apps-are-ready-for-agents .
+
 ## Quick start
 
 Python 3.11+, standard library only. No API key is needed for the included utilities.
