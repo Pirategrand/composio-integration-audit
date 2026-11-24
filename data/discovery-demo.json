@@ -1,0 +1,17 @@
+{
+  "provenance": {
+    "status": "demonstration",
+    "note": "Discovery smoke fixture only, not the official input."
+  },
+  "apps": [
+    {
+      "id": "github-demo",
+      "name": "GitHub",
+      "official_domains": [
+        "github.com"
+      ],
+      "category": "Developer platform",
+      "description": "Smoke fixture."
+    }
+  ]
+}
