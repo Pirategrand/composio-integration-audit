@@ -1,0 +1,25 @@
+{
+  "method": "Category-stratified and risk-prioritized, seed23; not a random population-accuracy estimate.",
+  "sample_ids": [
+    "ecwid",
+    "jira",
+    "expensify",
+    "linkedin-marketing-api",
+    "coda",
+    "firebase",
+    "miro",
+    "zendesk",
+    "gorgias",
+    "intercom",
+    "help-scout",
+    "freshdesk",
+    "stripe",
+    "microsoft-teams",
+    "pipedrive",
+    "freshbooks",
+    "squarespace",
+    "pagerduty",
+    "front",
+    "quickbooks-online"
+  ]
+}
