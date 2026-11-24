@@ -1,0 +1,32 @@
+{
+  "fixture_type": "recorded_public_search_results",
+  "app": "github",
+  "note": "Recorded search-provider response for replay testing. Not an official assignment input or a live execution of the default RSS provider.",
+  "results": [
+    {
+      "title": "Authenticating to the REST API",
+      "url": "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+      "snippet": "# Authenticating to the REST API\n\nYou can authenticate to the REST API to access more endpoints and have a higher rate limit.\n\n## About authentication\n\nMany REST API endpoints require authentication or return additional information if you are authenticated. Additionally, you can make more requests per hour when you are authenticated.\n\nTo authenticate your request, you will need to provide an authentication token with the required scopes or permissions. There are a few different ways to get a token: You can create a personal access token, generate a token with a GitHub App, or use the built-in `GITHUB_TOKEN` in a GitHub Actions workflow.\n\nAfter creating a token, you can authenticate your request by sending the token in the `Authorization` header of your request. For example, in the following request, replace `YOUR-TOKEN` with a reference to your token:\n\n```shell\ncurl --request GET \\\n--url \"https://api.github.com/octocat\" \\\n--header \"Authorization: Bearer YOUR-TOKEN\" \\\n--header \"X-GitHub-Api-Version: 2026-03-10\"\n\n```\n\n> [!NOTE]\n> In most cases, you can use `Authorization: Bearer` or `Authorization: token` to pass a token. However, if you are passing a JSON web token (JWT), you must u"
+    },
+    {
+      "title": "Authenticating to the REST API",
+      "url": "https://docs.github.com/en/rest/authentication",
+      "snippet": "# Authenticating to the REST API\n\nLearn how to authenticate your REST API requests.\n\n## Links\n\n- Authenticating to the REST API You can authenticate to the REST API to access more endpoints and have a higher rate limit.\n- Keeping your API credentials secure Follow these best practices to keep your API credentials and tokens secure.\n- Endpoints available for GitHub App installation access tokens Your GitHub App can make requests to the following REST endpoints with an installation access token.\n- Endpoints available for GitHub App user access tokens Your GitHub App can make requests to the following REST endpoints with a user access token.\n- Endpoints available for fine-grained personal access tokens Your fine-grained personal access token can make requests to the following REST endpoints.\n- Permissions required for GitHub Apps For each permission granted to a GitHub App, these are the REST API"
+    },
+    {
+      "title": "Getting started with the REST API",
+      "url": "https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=latest",
+      "snippet": "### Authentication\n\nMany endpoints require authentication or return additional information if you are authenticated. ... you can make more requests per hour when you are authenticated.\n\nTo authenticate your request"
+    },
+    {
+      "title": "Authenticating as a GitHub App installation",
+      "url": "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation",
+      "snippet": "## About authentication as a GitHub App installation\n\nOnce your GitHub App is installed on an account, you can make it authenticate as an app installation for API requests. This allows the app to access resources owned by that installation, as long as the app was granted the necessary repository access and permissions. API requests made by an app installation are attributed to the app. For more information about installing GitHub Apps, see Installing your own GitHub App.\n\nFor example, if you want your app to change the `Status` field of an issue on a project owned by an organization called \"octo-org,\" then you would authenticate as the octo-org installation of your app. The timeline of the issue would state that your app updated the status.\n\nTo make an API request as an installation, you must first generate an installation access token. Then, you will send the installation access token in the `Authorization` header of your subsequent API requests. You can also use GitHub's Octokit SDKs, which can generate an installation access token for you.\n\nSome REST API endpoints do not accept installation access tokens, and most REST API endpoints require your app to have certain permissions t"
+    },
+    {
+      "title": "Generating a JSON Web Token (JWT) for a GitHub App",
+      "url": "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-json-web-token-jwt-for-a-github-app",
+      "snippet": "## About JSON Web Tokens (JWTs)\n\nIn order to authenticate as an app or generate an installation access token, you must generate a JSON Web Token (JWT). If a REST API endpoint requires a JWT, the documentation for that endpoint will indicate that you must use a JWT to access the endpoint.\n\nYour JWT must be signed using the `RS256` algorithm and must contain the following claims.\n\n| Claim | Meaning | Details |\n| --- | --- | --- |\n| `iat` | Issued At | The time that the JWT was created. To protect against clock drift, we recommend that you set this 60 seconds in the past and ensure that your server's date and time is set accurately (for example, by using the Network Time Protocol). |\n| `exp` | Expires At | The expiration time of the JWT, after which it can't be used to request an installation token. The time must be no more than 10 minutes into the future. |\n| `iss` | Issuer | The client ID or application ID of your GitHub App. This value is used to find the right public key to verify the signature of the JWT. You can find your app's IDs on the settings page for your GitHub App. Use of the client ID is recommended. For more information about navigating to the settings page for your Gi"
+    }
+  ]
+}
