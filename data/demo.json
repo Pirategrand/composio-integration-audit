@@ -1,0 +1,32 @@
+{
+  "provenance": {
+    "status": "demonstration",
+    "note": "Two explicitly selected engineering smoke-test apps, not the missing official 100-app input. No assignment-completion claim."
+  },
+  "apps": [
+    {
+      "id": "github-demo",
+      "name": "GitHub",
+      "category": "Developer platform",
+      "description": "Code hosting and developer collaboration. Demonstration only.",
+      "sources": [
+        {
+          "url": "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+          "purpose": "auth"
+        }
+      ]
+    },
+    {
+      "id": "notion-demo",
+      "name": "Notion",
+      "category": "Productivity",
+      "description": "Workspace and document collaboration. Demonstration only.",
+      "sources": [
+        {
+          "url": "https://developers.notion.com/docs/authorization",
+          "purpose": "auth"
+        }
+      ]
+    }
+  ]
+}
