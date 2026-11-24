@@ -1,0 +1,32 @@
+{
+  "fixture_type": "recorded_public_search_results",
+  "app": "notion",
+  "note": "Recorded search-provider response for replay testing. Not an official assignment input or a live execution of the default RSS provider.",
+  "results": [
+    {
+      "title": "Authorization",
+      "url": "https://developers.notion.com/guides/authorization/overview",
+      "snippet": "> Authenticate Notion API requests with personal access tokens, internal connection tokens, or OAuth integration OAuth flows.\n\n## What is authorization?\n\nAuthorization is the process of granting a connection or token access to Notion data. Internal connections use a static credential called an internal connection API token, personal access tokens use a user-scoped static token, and OAuth integrations and public integrations use the OAuth 2.0 protocol.\n\n## Internal connection auth flow set-up\n\nTo use an internal connection, start by creating your connection in the Developer portal.\n\nThe internal connection will be associated with the workspace of your choice. You are required to be a workspace owner to create a connection.\n\nCreate a new connection from the Developer portal.\n\nOnce the connection is created, you can update its settings as needed under the `Configuration` tab and retrieve the API token in this tab.\n\nThe API token will be used to authenticate REST API requests. The connection sends the same token in every API request.\n\nFind the API token in the Configuration tab.\n\n### Connection permissions\n\nBefore a connection can interact with your Notion workspace page(s), the page m"
+    },
+    {
+      "title": "OAuth integrations",
+      "url": "https://developers.notion.com/guides/connections-and-tokens/oauth-integrations/overview",
+      "snippet": "to act on behalf of each person who uses it. Each user authorizes the app separately and grants it access to content. Your app\n...\ncan serve internal tools. Choose OAuth when access needs to be authorized by each user, and an internal connection when"
+    },
+    {
+      "title": "Personal access tokens",
+      "url": "https://developers.notion.com/guides/connections-and-tokens/personal-access-tokens",
+      "snippet": "> Create and manage personal access tokens for Notion API requests, scripts, and Workers using your own permissions.\n\nPersonal access tokens (PATs) let one Notion user call the Notion API or work with Notion Workers. A PAT belongs to one workspace. For Notion API requests, it uses the workspace membership and page permissions of the person who created it.\n\nUse a PAT when API requests should act as you and you don't need an internal connection or the OAuth flow for a public connection.\n\n## When to use a PAT\n\nUse a PAT for personal or developer-owned workflows that one Notion user should own:\n\n- Local scripts, notebooks, and command-line tools that automate work in your own workspace.\n- Development and testing against the Notion API before you create a shared connection.\n- Third-party tools that ask you to paste a Notion token and should act with your Notion permissions.\n- Notion Workers development and deployment with the Notion CLI.\n\nDon't use a PAT to authenticate a product used by many Notion users. Create a public connection so each user can authorize access with OAuth. For a team-owned automation that should not depend on one person's permissions, use an internal connection.\n\n#"
+    },
+    {
+      "title": "Introduction",
+      "url": "https://developers.notion.com/reference/intro",
+      "snippet": ".\n\n## Conventions\n\nFor requests to pages, databases, and other workspace resources, send an `Authorization: Bearer` header with your token and a `Notion-Version` header. The authentication reference lists the supported token types."
+    },
+    {
+      "title": "Create a token",
+      "url": "https://developers.notion.com/reference/create-a-token",
+      "snippet": "_uri` is a required field in the request body for this\n...\ns included in the connection's settings under OAuth Domain & URIs.\n> \n> In most cases, the `redirect_uri` field is required.\n...\nDomain & URIs, and the `redirect_uri` query parameter was not"
+    }
+  ]
+}
