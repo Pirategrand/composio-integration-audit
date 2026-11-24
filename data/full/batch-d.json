@@ -1,0 +1,1370 @@
+[
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "category": "Finance & business operations",
+    "description": "Online payment processing and merchant operations.",
+    "auth_methods": [
+      "OAuth 2.0 client credentials"
+    ],
+    "auth_notes": "Exchange app client ID and secret for a bearer access token. Sandbox and live credentials are separate.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Developer Dashboard supplies default buyer and business test accounts and sandbox credentials.",
+      "production": "Business account required to go live; current getting-started guide also requires a Business account for testing outside the US.",
+      "plan_gate": "No paid developer plan established for sandbox; live payment pricing and product eligibility are separate.",
+      "approval_gate": "Business-account and product-specific production requirements; no blanket instant-production claim.",
+      "notes": "India-based testing must not be treated as US developer-account-only access. No account was created or verified."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Merchant payments and invoicing, subscriptions and disputes are represented in the authentication scopes; exact product access varies."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Vendor-operated local @paypal/mcp and remote servers. Sandbox https://mcp.sandbox.paypal.com and production https://mcp.paypal.com support SSE and Streamable HTTP. Operational merchant-account tools, including invoices; not documentation-only.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Business-account requirement for non-US testing and live use; product eligibility must be checked.",
+    "evidence": [
+      {
+        "url": "https://developer.paypal.com/api/rest/authentication",
+        "title": "Authentication",
+        "supports": [
+          "OAuth 2.0 client-credentials flow",
+          "Bearer token authentication"
+        ]
+      },
+      {
+        "url": "https://developer.paypal.com/sandbox-testing/accounts",
+        "title": "Sandbox accounts",
+        "supports": [
+          "Default sandbox accounts and credentials",
+          "Isolated test transactions"
+        ]
+      },
+      {
+        "url": "https://developer.paypal.com/api/get-started",
+        "title": "Get started with PayPal REST APIs",
+        "supports": [
+          "Business account required outside US and for live use",
+          "REST and JSON"
+        ]
+      },
+      {
+        "url": "https://developer.paypal.com/ai-tools/mcp-server",
+        "title": "MCP server quickstart guide",
+        "supports": [
+          "Official local and remote MCP",
+          "Separate sandbox and production MCP"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "square",
+    "name": "Square",
+    "category": "Finance & business operations",
+    "description": "Payments and seller commerce platform.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Personal bearer tokens suit own-account integrations; OAuth scopes and seller consent are the documented multi-seller production route.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free isolated sandbox; developer signup creates a default test account. Separate sandbox tokens and test values.",
+      "production": "Own-account personal tokens and seller-authorized OAuth are supported. Payment processing and some software features have separate fees or subscription requirements.",
+      "plan_gate": "Sandbox free; some production APIs require a related Square software subscription.",
+      "approval_gate": "No blanket review requirement established for basic token creation; seller, region and product requirements still apply.",
+      "notes": "Sandbox has documented feature gaps. Do not use its dashboard as proof of complete production parity."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "GraphQL",
+        "webhooks"
+      ],
+      "breadth": "Payments, refunds, orders, customers, catalog, inventory, invoices and subscriptions; GraphQL is available for supported query use cases."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official beta server hosted by Block at https://mcp.squareup.com/mcp. Remote server accesses production only; local square-mcp-server can target sandbox. Remote OAuth redirect hostnames use an allowlist. Operational Square account APIs, not documentation-only.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to a documented sandbox prototype. Remote MCP is not the sandbox route.",
+    "evidence": [
+      {
+        "url": "https://developer.squareup.com/docs/build-basics/access-tokens",
+        "title": "Access Tokens and Other Square Credentials",
+        "supports": [
+          "Personal versus OAuth tokens",
+          "Separate environment credentials"
+        ]
+      },
+      {
+        "url": "https://developer.squareup.com/docs/devtools/sandbox/overview",
+        "title": "Square Sandbox",
+        "supports": [
+          "Free self-serve sandbox",
+          "Production plan fees and sandbox limitations",
+          "GraphQL and webhook support"
+        ]
+      },
+      {
+        "url": "https://developer.squareup.com/reference/square",
+        "title": "Square API Reference",
+        "supports": [
+          "Commerce and payments API breadth"
+        ]
+      },
+      {
+        "url": "https://developer.squareup.com/docs/mcp",
+        "title": "Square Model Context Protocol Server",
+        "supports": [
+          "Official vendor MCP",
+          "Remote production only; local sandbox support"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "razorpay",
+    "name": "Razorpay",
+    "category": "Finance & business operations",
+    "description": "Payment gateway and merchant payment operations.",
+    "auth_methods": [
+      "HTTP Basic with key ID and key secret"
+    ],
+    "auth_notes": "Generate environment-specific API keys from the merchant Dashboard. Basic authentication uses the key ID as username and key secret as password.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Test mode available immediately after signup and usable indefinitely; no real money.",
+      "production": "Live mode requires account activation and separate live keys.",
+      "plan_gate": "No paid test-mode prerequisite stated; production payment/product charges are outside this credential audit.",
+      "approval_gate": "Live account activation; additional financial-product requirements may apply.",
+      "notes": "Payments API access and RazorpayX payouts are not interchangeable. RazorpayX activation explicitly involves KYC."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "REST JSON payment APIs; orders and payment integration plus related merchant operations. Product-specific scopes and eligibility need separate checks."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted Remote MCP supports Razorpay API keys or OAuth. Vendor documentation lists India availability. Official source repository is under the razorpay organization. Account API integration server, not merely documentation search; exact tool coverage should be checked against the required payment workflow.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Live activation and product eligibility; hosted MCP documentation is India-specific.",
+    "evidence": [
+      {
+        "url": "https://razorpay.com/docs/api/authentication",
+        "title": "API Authentication",
+        "supports": [
+          "Basic authentication",
+          "Test/live keys",
+          "RazorpayX KYC distinction"
+        ]
+      },
+      {
+        "url": "https://razorpay.com/docs/payments/dashboard/test-live-modes",
+        "title": "Test and Live Modes",
+        "supports": [
+          "Self-serve indefinite test mode",
+          "Live account activation"
+        ]
+      },
+      {
+        "url": "https://razorpay.com/docs/api",
+        "title": "API Reference Guide",
+        "supports": [
+          "REST JSON API"
+        ]
+      },
+      {
+        "url": "https://razorpay.com/docs/mcp-server/remote",
+        "title": "Razorpay Remote MCP Server Setup",
+        "supports": [
+          "Official hosted MCP",
+          "API-key or OAuth authentication",
+          "India availability"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "paddle",
+    "name": "Paddle",
+    "category": "Finance & business operations",
+    "description": "Merchant-of-record billing for software and digital products.",
+    "auth_methods": [
+      "API key bearer token"
+    ],
+    "auth_notes": "Backend API keys carry permissions and are separate from client-side Paddle.js tokens. Sandbox and live keys are not interchangeable.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free separate sandbox signup with no website approval; test cards and separate datasets.",
+      "production": "Live account and website approval required before real transactions.",
+      "plan_gate": "Sandbox signup free; commercial live billing fees separate.",
+      "approval_gate": "Live website/account approval; most live refunds need approval.",
+      "notes": "Sandbox and live accounts must be created separately; catalog and webhook configuration are not shared."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "REST JSON API for customers, product pricing, subscriptions, transactions, adjustments and events."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted account-action MCP: https://sandbox-mcp.paddle.com/mcp uses API key; https://mcp.paddle.com/mcp uses OAuth or API key. Separate docs MCP is not the same server.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Production requires live approval; sandbox remains a documented build route.",
+    "evidence": [
+      {
+        "url": "https://developer.paddle.com/api-reference/about",
+        "title": "Quickstart",
+        "supports": [
+          "Free account signup",
+          "REST JSON and bearer API key",
+          "Live approval"
+        ]
+      },
+      {
+        "url": "https://developer.paddle.com/sdks/sandbox/",
+        "title": "Sandbox",
+        "supports": [
+          "Separate signup and data",
+          "No sandbox website approval",
+          "Live differences"
+        ]
+      },
+      {
+        "url": "https://developer.paddle.com/sdks/ai/paddle-mcp/",
+        "title": "Paddle MCP server",
+        "supports": [
+          "Official account-action MCP",
+          "Environment URLs and auth"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "chargebee",
+    "name": "Chargebee",
+    "category": "Finance & business operations",
+    "description": "Subscription billing, invoices, metering and customer lifecycle management.",
+    "auth_methods": [
+      "HTTP Basic with API key"
+    ],
+    "auth_notes": "API key is Basic username with an empty password. Admin users can create keys; test and live keys differ.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Signup automatically creates a test site; vendor offers a free sandbox.",
+      "production": "Live-site activation requires selecting a plan and completing checkout.",
+      "plan_gate": "Free test site is documented; live pricing and API capacity depend on plan.",
+      "approval_gate": "Admin role needed to create API keys; live account setup and checkout.",
+      "notes": "Free sandbox should not be interpreted as unrestricted free production billing."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Subscriptions, usage metering, invoices, payments, customers and catalog; form-encoded requests and JSON responses."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official system MCP servers include Knowledge Base, Data Lookup, Onboarding and Analytics. Data Lookup has regional site-specific endpoints and API-key or OAuth auth; OAuth unavailable with Multi-Business Entity enabled.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Admin key access and live-site plan activation; MCP server capabilities and auth vary by server/site.",
+    "evidence": [
+      {
+        "url": "https://apidocs.chargebee.com/docs/api/getting-started",
+        "title": "Getting started",
+        "supports": [
+          "Automatic test site",
+          "REST surface and format",
+          "Billing API breadth"
+        ]
+      },
+      {
+        "url": "https://apidocs.chargebee.com/docs/api/auth",
+        "title": "Authentication",
+        "supports": [
+          "Basic API-key authentication",
+          "Admin role"
+        ]
+      },
+      {
+        "url": "https://www.chargebee.com/trial-signup/",
+        "title": "Sign Up - Get Your Free Sandbox",
+        "supports": [
+          "Free sandbox offer"
+        ]
+      },
+      {
+        "url": "https://www.chargebee.com/docs/billing/2.0/getting-started/sites-intro",
+        "title": "Understanding Sites",
+        "supports": [
+          "Test versus live",
+          "Live plan checkout"
+        ]
+      },
+      {
+        "url": "https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/data-lookup-agent",
+        "title": "Chargebee Data Lookup MCP Server",
+        "supports": [
+          "Official account-data MCP",
+          "Regional endpoints",
+          "API-key and OAuth access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "recurly",
+    "name": "Recurly",
+    "category": "Finance & business operations",
+    "description": "Recurring subscriptions, customer billing and payments.",
+    "auth_methods": [
+      "HTTP Basic with private API key"
+    ],
+    "auth_notes": "Keys grant full account access. Creating keys requires a role with Integration permission.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "New sites start in Sandbox; vendor says sandbox sites are free forever but may close after more than 30 days of inactivity.",
+      "production": "Production mode activated by upgrading to a paid Recurly plan.",
+      "plan_gate": "REST API keys available on all Recurly plans; production itself is paid.",
+      "approval_gate": "Integration role required. Compass MCP early access needs site feature flag.",
+      "notes": "Some integrations are limited in sandbox. Development mode uses a payment gateway sandbox and is distinct from the default Sandbox mode."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Accounts, subscription plans, subscriptions, billing and purchases via official client libraries and REST API."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Compass public MCP at https://mcp.recurly.com/mcp exposes Knowledge and Coding agents for docs and API guidance, not established as a billing-transaction connector. Page says early access requires an enabled feature flag.",
+      "scope": "docs_or_developer_only"
+    },
+    "verdict": "conditional",
+    "blocker": "Paid production plan and integration permission; official MCP is knowledge/code oriented and early-access gated.",
+    "evidence": [
+      {
+        "url": "https://docs.recurly.com/recurly-subscriptions/docs/api-keys",
+        "title": "REST API keys",
+        "supports": [
+          "Basic auth",
+          "All-plan API keys",
+          "Integration permission"
+        ]
+      },
+      {
+        "url": "https://docs.recurly.com/recurly-subscriptions/docs/quick-start-guide",
+        "title": "Quick-start guide",
+        "supports": [
+          "Plans and subscriptions API"
+        ]
+      },
+      {
+        "url": "https://support.recurly.com/hc/en-us/articles/360027273912-What-Is-the-Difference-Between-Recurly-s-Site-Modes",
+        "title": "Difference Between Recurly Site Modes",
+        "supports": [
+          "Free sandbox",
+          "Paid production activation",
+          "Sandbox inactivity"
+        ]
+      },
+      {
+        "url": "https://docs.recurly.com/recurly-subscriptions/docs/compass-public-mcp-server",
+        "title": "Compass public MCP server",
+        "supports": [
+          "Official MCP endpoint",
+          "Knowledge/Coding tools",
+          "Early access flag"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "quickbooks-online",
+    "name": "QuickBooks Online",
+    "category": "Finance & business operations",
+    "description": "Business accounting and financial records.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code"
+    ],
+    "auth_notes": "App client ID and secret plus company authorization produce access/refresh tokens; production requires new authorization with production keys.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free Intuit Developer account provides sandbox companies and developer credentials.",
+      "production": "Production keys require legal, technical, security and platform assessment information; production company access also requires user authorization.",
+      "plan_gate": "Free sandbox established. Current commercial API usage tiers and production subscription terms not fully verified.",
+      "approval_gate": "App-specific assessment for production keys, including hosting information.",
+      "notes": "Main production-key evidence is an official 2022 process article. A newer 2024 vendor sandbox guide corroborates testing but does not supersede assessment requirements. Current dashboard process was not exercised."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Customers, invoices, financial transactions, accounting entities and reports; webhooks and batch operations documented."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official source repository https://github.com/intuit/quickbooks-online-mcp-server documents local MCP with OAuth credentials, realm ID, sandbox/production selection, accounting CRUD and reports. Developer portal MCP page returned only a loading shell.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Production assessment and current commercial tier verification; sandbox prototype is documented.",
+    "evidence": [
+      {
+        "url": "https://blogs.intuit.com/2024/11/27/a-guide-to-using-sandbox-environments-for-quickbooks-integrations/",
+        "title": "A guide to using sandbox environments for QuickBooks integrations",
+        "supports": [
+          "Free developer account",
+          "Sandbox companies",
+          "Financial data and webhooks"
+        ]
+      },
+      {
+        "url": "https://blogs.intuit.com/2019/02/15/new-intuit-developer-use-quickbooks-online-api/",
+        "title": "How To Use the QuickBooks Online API",
+        "supports": [
+          "OAuth credentials",
+          "Accounting API tools"
+        ]
+      },
+      {
+        "url": "https://blogs.intuit.com/2022/02/14/updated-process-to-get-production-keys/",
+        "title": "Updated process to get production keys",
+        "supports": [
+          "Production assessment requirement"
+        ]
+      },
+      {
+        "url": "https://github.com/intuit/quickbooks-online-mcp-server",
+        "title": "intuit/quickbooks-online-mcp-server",
+        "supports": [
+          "Official organization-owned MCP repository",
+          "Sandbox configuration",
+          "Accounting entity and report tools"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "xero",
+    "name": "Xero",
+    "category": "Finance & business operations",
+    "description": "Cloud accounting and finance operations.",
+    "auth_methods": [
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Register an app for client credentials and tenant authorization. Basic API-key auth is not supported for new integrations.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free Xero account and demo company are documented for no-cost development.",
+      "production": "Starter app tier has no charge and a maximum of five connections; live organizations need their own eligible Xero account access.",
+      "plan_gate": "Paid app tiers above Starter; certification at Plus and above; Advanced includes additional security/use-case checks for premium APIs.",
+      "approval_gate": "User consent and organization permissions; premium endpoints and scaled tiers can require certification/security assessment.",
+      "notes": "Developer app plan and accounting organization subscription are different. Remote MCP adds a stricter plan gate than baseline APIs."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Accounting data through Open APIs with demo-company support, OpenAPI specifications and webhooks. Journals and other premium endpoints carry additional gates."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted remote MCP at https://api.xero.com/mcp/v1. Starter can use demo organization only; real customer organizations need Core or higher, except documented accountant/bookkeeper exemption. OAuth/PKCE and normal API permissions apply. Operational accounting-account tools inherit API permissions and can change data; not documentation-only.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to documented demo-company prototyping; paid/approval gates apply to scaling, premium APIs and real-organization remote MCP.",
+    "evidence": [
+      {
+        "url": "https://developer.xero.com/faq/getting-started",
+        "title": "Getting started FAQs",
+        "supports": [
+          "OAuth not basic API keys",
+          "Free account and demo company"
+        ]
+      },
+      {
+        "url": "https://developer.xero.com/pricing",
+        "title": "Xero Developer Pricing",
+        "supports": [
+          "Free five-connection Starter",
+          "Plan/certification/security gates",
+          "Webhooks"
+        ]
+      },
+      {
+        "url": "https://developer.xero.com/faq/remote-mcp",
+        "title": "Remote MCP FAQs",
+        "supports": [
+          "Official server endpoint",
+          "Starter demo-only MCP",
+          "Core and above for real organizations"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "freshbooks",
+    "name": "FreshBooks",
+    "category": "Finance & business operations",
+    "description": "Small-business invoicing and accounting.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code"
+    ],
+    "auth_notes": "Self-register an OAuth app with redirect URI; obtain bearer access and refresh tokens. Refresh tokens rotate and must be stored safely.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No dedicated public sandbox established in fetched docs; use a separate test/trial account rather than assume isolated API infrastructure.",
+      "production": "Connect an authorized FreshBooks business; trial is 30 days without card, then paid plans. Developer guide says support can place an account on a partner plan.",
+      "plan_gate": "30-day trial documented; continuing account and partner-plan terms need confirmation.",
+      "approval_gate": "User consent; partner plan requires support contact, not assumed necessary for first trial API use.",
+      "notes": "No signup was performed. Partner-plan pricing/eligibility and any marketplace approval remain unverified."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Invoices, clients, accounting records and expense-related workflows, with OAuth-based API calls."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official FreshBooks connector in Claude uses MCP and is read-only, role-limited, and connects active businesses associated with the login. Public generic server endpoint was not established from fetched docs.",
+      "scope": "read_only_or_limited"
+    },
+    "verdict": "conditional",
+    "blocker": "Trial-limited baseline account; long-term developer/partner-plan terms need confirmation.",
+    "evidence": [
+      {
+        "url": "https://www.freshbooks.com/api/authentication",
+        "title": "Authentication",
+        "supports": [
+          "OAuth 2.0",
+          "Rotating refresh tokens"
+        ]
+      },
+      {
+        "url": "https://www.freshbooks.com/api/start",
+        "title": "Introduction",
+        "supports": [
+          "Self-registration of OAuth app",
+          "Partner-plan support route",
+          "Accounting API examples"
+        ]
+      },
+      {
+        "url": "https://www.freshbooks.com/pricing",
+        "title": "FreshBooks Pricing",
+        "supports": [
+          "30-day no-card trial",
+          "Paid continuation"
+        ]
+      },
+      {
+        "url": "https://support.freshbooks.com/hc/en-us/articles/47907329443597-How-does-the-FreshBooks-connector-in-Claude-work",
+        "title": "FreshBooks connector in Claude",
+        "supports": [
+          "Official read-only MCP connector",
+          "Role and active-business scope"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "zoho-books",
+    "name": "Zoho Books",
+    "category": "Finance & business operations",
+    "description": "Business accounting, invoices, purchases and financial records.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code",
+      "OAuth 2.0 self-client"
+    ],
+    "auth_notes": "Scoped access/refresh tokens and organization ID are required; self-client route supports own-organization backend jobs. Use correct regional Accounts/API domains.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Sandbox APIs exist but are early-access, account/edition-dependent and admin-only; not guaranteed with free signup.",
+      "production": "Normal API supports authorized organizations, with plan-specific daily and concurrency limits, including a Free plan allocation.",
+      "plan_gate": "Free plan API quota documented; plan eligibility can vary by market/account. Sandbox availability not universal.",
+      "approval_gate": "OAuth consent; organization/admin permissions for specific functions. Sandbox administrative endpoints require settings scopes.",
+      "notes": "A Free plan API quota does not prove that all features or early-access sandbox are included."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Contacts, invoices, estimates, purchases, banking and settings; resource APIs and early-access sandbox management."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Zoho Books MCP is available as a Claude connector or through Zoho MCP. Vendor docs describe invoice, expense, contacts and reporting tools. Account region and authorized organization scope matter.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to baseline Free-plan API use for an eligible organization; dedicated sandbox and features need separate eligibility checks.",
+    "evidence": [
+      {
+        "url": "https://www.zoho.com/books/api/v3/introduction/",
+        "title": "Introduction",
+        "supports": [
+          "Free and paid API quotas",
+          "Organization ID and regional endpoints"
+        ]
+      },
+      {
+        "url": "https://www.zoho.com/books/api/v3/oauth/",
+        "title": "OAuth",
+        "supports": [
+          "Authorization-code and self-client flows",
+          "Scopes and regional auth"
+        ]
+      },
+      {
+        "url": "https://www.zoho.com/books/api/v3/sandbox/",
+        "title": "Sandbox",
+        "supports": [
+          "Early-access and account-dependent sandbox",
+          "Admin-only endpoints"
+        ]
+      },
+      {
+        "url": "https://www.zoho.com/us/books/help/mcp/zoho-books-mcp.html",
+        "title": "Set Up MCP Server for Zoho Books",
+        "supports": [
+          "Official vendor MCP connector",
+          "Accounting tool scope"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "plaid",
+    "name": "Plaid",
+    "category": "Finance & business operations",
+    "description": "Financial account connectivity and financial-data APIs.",
+    "auth_methods": [
+      "Client ID and environment secret",
+      "Item access token"
+    ],
+    "auth_notes": "Almost all API endpoints require client_id and secret, in JSON body or headers. Linked-item tokens are separate; bank OAuth flows do not replace app credentials.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Sandbox always free and supports test Items only; Dashboard signup provides credentials.",
+      "production": "Request Production access through Dashboard. New eligible US/Canada teams can apply for a free Trial with ten lifetime-created Production Items; other plans and regions differ.",
+      "plan_gate": "Paid usage is product-specific; EU/UK businesses or end-user use requires Custom plans per billing docs.",
+      "approval_gate": "Production request and product approval; Trial has region, team creation-date and product limitations.",
+      "notes": "Trial is not unrestricted production: deleting an Item does not restore its ten-Item allocation. Do not apply US/Canada eligibility to an India-based team."
+    },
+    "api": {
+      "styles": [
+        "JSON-over-HTTP",
+        "webhooks"
+      ],
+      "breadth": "Financial account connectivity APIs and product-specific data/services; JSON POST endpoints and webhooks. Exact products depend on entitlement."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Dashboard MCP at https://api.dashboard.plaid.com/mcp/ requires Production approval for at least one product and works with Production data only. Official local development MCP is separate, for docs, mock data, sandbox tokens and webhook simulation.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Production approval, regional/product eligibility and pricing. Sandbox API does not unlock remote Dashboard MCP.",
+    "evidence": [
+      {
+        "url": "https://plaid.com/docs/api/",
+        "title": "API Reference",
+        "supports": [
+          "Credential authentication",
+          "JSON POST API",
+          "Sandbox versus Production"
+        ]
+      },
+      {
+        "url": "https://plaid.com/docs/account/billing/",
+        "title": "Plaid pricing and billing",
+        "supports": [
+          "Always-free sandbox",
+          "Restricted free Trial",
+          "Production pricing and regions"
+        ]
+      },
+      {
+        "url": "https://plaid.com/docs/resources/mcp/",
+        "title": "Dashboard MCP server",
+        "supports": [
+          "Official remote and local MCP distinction",
+          "Production-only remote requirements"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "wise-platform",
+    "name": "Wise Platform",
+    "category": "Finance & business operations",
+    "description": "Cross-border transfer and financial infrastructure integrations.",
+    "auth_methods": [
+      "OAuth 2.0 partner credentials",
+      "Personal API bearer token for own Wise Business account"
+    ],
+    "auth_notes": "Platform client ID/secret issued through partner onboarding. Personal business tokens have limited endpoint access and are not a substitute for partner integrations.",
+    "access": {
+      "credential_path": "partner_gated",
+      "sandbox": "Platform sandbox exists; client credentials are provided in partner onboarding for sandbox then production.",
+      "production": "Partner integration must be tested and approved. Own Wise Business personal tokens support a narrower payouts workflow.",
+      "plan_gate": "No open free full-platform credential path established; partnership and business-account commercial terms separate.",
+      "approval_gate": "Wise sales/implementation partner onboarding and production approval.",
+      "notes": "Personal-token quote/recipient/transfer access must not be reported as full Wise Platform access."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Partner profiles, quotes, recipients, transfers, balances and onboarding vary by integration model; personal tokens cover only a subset."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Wise MCP offers Accounts MCP for read-only account questions and Docs MCP for developer documentation. This is not evidence of full money-moving Platform access through MCP.",
+      "scope": "read_only_or_limited"
+    },
+    "verdict": "conditional",
+    "blocker": "Full Platform credentials require partnership; narrower personal-token path needs a Wise Business account and cannot stand in for partner scope.",
+    "evidence": [
+      {
+        "url": "https://docs.wise.com/guides/developer",
+        "title": "Getting started with Wise API",
+        "supports": [
+          "Partner-provided credentials",
+          "Sandbox and production",
+          "Core resource breadth"
+        ]
+      },
+      {
+        "url": "https://docs.wise.com/guides/developer/auth-and-security/personal-api-token",
+        "title": "Personal API tokens",
+        "supports": [
+          "Limited own-business bearer tokens",
+          "Not equivalent to partnership"
+        ]
+      },
+      {
+        "url": "https://docs.wise.com/mcp/overview",
+        "title": "Wise MCP servers",
+        "supports": [
+          "Official Accounts and Docs MCP",
+          "Accounts server read-only"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "brex",
+    "name": "Brex",
+    "category": "Finance & business operations",
+    "description": "Corporate spending, expenses, banking and payment operations.",
+    "auth_methods": [
+      "Scoped user bearer token",
+      "OAuth 2.0 authorization code for partners",
+      "OAuth 2.0 client credentials for partner onboarding"
+    ],
+    "auth_notes": "Existing clients generate user tokens from dashboard; most API data requires admin authorization. Partner OAuth supports a separate distributed-app flow.",
+    "access": {
+      "credential_path": "admin_gated",
+      "sandbox": "Client authentication guide says production only; separate partner guide provides staging URLs. No open self-serve sandbox entitlement established.",
+      "production": "Existing Brex account with appropriate admin-granted product and scope permissions; partner credentials are a separate route.",
+      "plan_gate": "No standalone free developer account path verified. Underlying product entitlement can block even correctly scoped tokens.",
+      "approval_gate": "Admin-granted API access; partner access for partner OAuth. MCP requires admin API agreement acceptance and beta enablement.",
+      "notes": "Important source distinction: production-only applies to ordinary client token guide, not all partner APIs; partner staging is documented but not public sandbox access."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Accounting, budgets, expenses, payments, team, transactions and travel APIs with per-product permissions."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official beta https://api.brex.com/mcp. After admin agreement and beta enablement, employees authorize with OAuth and receive role/capability-limited tools, unlike admin-provisioned Developer API tokens.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Requires eligible Brex account/admin access or partner onboarding; no verified open independent testing route.",
+    "evidence": [
+      {
+        "url": "https://developer.brex.com/guides/authentication",
+        "title": "Authentication",
+        "supports": [
+          "Client dashboard user token",
+          "Ordinary client production server"
+        ]
+      },
+      {
+        "url": "https://developer.brex.com/guides/roles_permissions_scopes",
+        "title": "User roles, permissions and scopes",
+        "supports": [
+          "Most APIs require admin",
+          "Underlying product entitlement",
+          "API breadth"
+        ]
+      },
+      {
+        "url": "https://developer.brex.com/guides/partner_authentication",
+        "title": "Partner authentication",
+        "supports": [
+          "Partner OAuth grants",
+          "Partner staging environment"
+        ]
+      },
+      {
+        "url": "https://developer.brex.com/docs/mcp",
+        "title": "Brex MCP",
+        "supports": [
+          "Official beta endpoint",
+          "Admin prerequisite",
+          "Employee OAuth distinction"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "ramp",
+    "name": "Ramp",
+    "category": "Finance & business operations",
+    "description": "Corporate spend, cards, transactions and finance operations.",
+    "auth_methods": [
+      "OAuth 2.0 client credentials",
+      "OAuth 2.0 authorization code"
+    ],
+    "auth_notes": "Own-business internal apps use client credentials; third-party apps use authorization-code consent. Scoped bearer tokens; sandbox and production apps separate.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "Sandbox request form is documented; demo API and app are separate from production. Instant self-serve approval is not promised.",
+      "production": "Customer quickstart assumes Ramp customer and admin access to create developer app. Some scopes restricted to approved partners/integrators.",
+      "plan_gate": "Some endpoints require Ramp plan features in addition to scopes. No standalone free open developer entitlement verified.",
+      "approval_gate": "Sandbox request, admin app creation, partner-only scopes and approved integrator gates for sensitive access.",
+      "notes": "Admin production access and requested sandbox access are distinct routes; submitting a sandbox request was outside this audit."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Transactions, cards, bills, reimbursements, accounting and business data; sensitive vault and partner application operations separately gated."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official https://mcp.ramp.com/mcp supports user-based Full access or Read-only login. Role permission and supported OAuth redirect URI required; connections expire after 30 days.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Sandbox approval or existing admin-authorized Ramp account needed before implementation testing.",
+    "evidence": [
+      {
+        "url": "https://docs.ramp.com/developer-api/v1/getting-started",
+        "title": "Quickstart",
+        "supports": [
+          "Customer/admin prerequisite",
+          "App credential creation"
+        ]
+      },
+      {
+        "url": "https://docs.ramp.com/developer-api/v1/authorization",
+        "title": "Authorization",
+        "supports": [
+          "OAuth grants",
+          "Scopes and plan/partner gates"
+        ]
+      },
+      {
+        "url": "https://docs.ramp.com/developer-api/v1/sandbox-access",
+        "title": "Get Sandbox Access",
+        "supports": [
+          "Request-based sandbox"
+        ]
+      },
+      {
+        "url": "https://docs.ramp.com/developer-api/v1/ramp-mcp",
+        "title": "Ramp MCP",
+        "supports": [
+          "Official MCP endpoint",
+          "Role and redirect gates"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "expensify",
+    "name": "Expensify",
+    "category": "Finance & business operations",
+    "description": "Expense reports, receipts and expense-workflow operations.",
+    "auth_methods": [
+      "Integration Server partnerUserID and partnerUserSecret",
+      "OAuth 2.0 partner authorization code (private beta)"
+    ],
+    "auth_notes": "Own-account Integration Server credentials are self-generated. Multi-user OAuth partner auth is a separate private-beta application route.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No isolated sandbox established from fetched docs; do not assume production Integration Server is a test environment.",
+      "production": "Free account signup and self-serve own-account credentials documented. Operations depend on underlying account/policy access.",
+      "plan_gate": "No paid prerequisite stated for credential generation; exact report/policy feature plan entitlement not fully verified.",
+      "approval_gate": "Multi-user partner OAuth requires private-beta access request; policy/admin operations need appropriate permissions.",
+      "notes": "The word partner in partnerUserID does not itself mean a sales partnership is needed for ordinary own-account credentials."
+    },
+    "api": {
+      "styles": [
+        "HTTP job API"
+      ],
+      "breadth": "Single Integration Server endpoint accepts requestJobDescription JSON as a form parameter. Report export/download, report/expense creation, policy reads/updates and provisioning workflows."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official https://www.expensify.com/mcp/ uses OAuth and offers search/analysis. It cannot approve reports, edit expenses, reimburse or manage workspace settings.",
+      "scope": "read_only_or_limited"
+    },
+    "verdict": "conditional",
+    "blocker": "No documented isolated sandbox; distributed OAuth is private beta and policy feature entitlements need validation.",
+    "evidence": [
+      {
+        "url": "https://integrations.expensify.com/Integration-Server/doc/getting_started.html",
+        "title": "Getting started",
+        "supports": [
+          "Free signup",
+          "Self-generated credentials"
+        ]
+      },
+      {
+        "url": "https://integrations.expensify.com/Integration-Server/doc/index.html",
+        "title": "Expensify API Reference",
+        "supports": [
+          "Job-style HTTP API",
+          "Private-beta partner OAuth",
+          "Expense/report/policy breadth"
+        ]
+      },
+      {
+        "url": "https://help.expensify.com/articles/new-expensify/connections/connect-ai-assistants/Connect-Claude-to-Expensify-Using-MCP",
+        "title": "Connect Claude to Expensify using MCP",
+        "supports": [
+          "Official endpoint",
+          "Read/search versus unsupported writes"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "docusign",
+    "name": "DocuSign",
+    "category": "Finance & business operations",
+    "description": "Electronic signature and agreement workflows.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code",
+      "OAuth 2.0 JWT grant"
+    ],
+    "auth_notes": "Confidential/public authorization-code routes for user-facing apps; JWT grant for impersonated-user background integrations with required consent and scopes.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free developer/demo account isolated from production; demo signatures are not legally binding.",
+      "production": "Promote integration key through Go-Live to paid enterprise/API-plan production account with admin/developer access.",
+      "plan_gate": "Production enterprise or API plan required; ordinary individual plan does not automatically provide developer functionality.",
+      "approval_gate": "Go-Live requirements, identity verification for most accounts, and partner program for public integrations. Custom production MCP connector requires allowlisting.",
+      "notes": "Public integration and embedded integration partner licensing differ from private own-company integration."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "eSignature and agreement APIs, envelope/signature workflows and Connect event notifications."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted MCP: demo https://mcp-d.docusign.com/mcp, production https://mcp.docusign.com/mcp. Supports authorization-code/JWT access tokens; production custom connectors need allowlisted integration key/account.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Production API plan, Go-Live and potentially partner/allowlist requirements; free demo remains available.",
+    "evidence": [
+      {
+        "url": "https://developers.docusign.com/platform/account/",
+        "title": "Developer account",
+        "supports": [
+          "Free isolated demo",
+          "Production plan gate"
+        ]
+      },
+      {
+        "url": "https://developers.docusign.com/platform/go-live/",
+        "title": "Docusign Go-Live",
+        "supports": [
+          "Production requirements",
+          "Public/embedded partner gates"
+        ]
+      },
+      {
+        "url": "https://developers.docusign.com/platform/auth/",
+        "title": "Authenticate",
+        "supports": [
+          "OAuth authorization-code and JWT",
+          "REST eSignature and Connect"
+        ]
+      },
+      {
+        "url": "https://developers.docusign.com/platform/mcp-server/",
+        "title": "Build with the Docusign MCP Server",
+        "supports": [
+          "Official MCP and production allowlisting"
+        ]
+      },
+      {
+        "url": "https://developers.docusign.com/platform/mcp-server/custom-connectors",
+        "title": "Custom Connectors",
+        "supports": [
+          "Actual demo/production MCP URLs",
+          "OAuth token configuration"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "pandadoc",
+    "name": "PandaDoc",
+    "category": "Finance & business operations",
+    "description": "Document creation, electronic signatures and document automation.",
+    "auth_methods": [
+      "API key",
+      "OAuth 2.0 authorization code"
+    ],
+    "auth_notes": "API-Key header for own workspace; keys inherit creating user role/license. OAuth app registration uses Developer Dashboard and user consent.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Sandbox keys available on all plans including Free; Free API plan advertises unlimited sandbox testing.",
+      "production": "Production key generation documented on all plans. API Free plan lists five documents/month; higher volumes need paid plans.",
+      "plan_gate": "Do not confuse general PandaDoc app plans with API offering. Free API volume is limited; user role/license restricts actions.",
+      "approval_gate": "Some accounts may need Developer Dashboard enabled by support; OAuth reference explicitly says to ensure API is in the plan.",
+      "notes": "Pricing headline mentions 60 free documents, while plan table states five per month. This audit uses the recurring monthly table rather than treating headline as a one-time unrestricted grant."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Create, send and manage documents; templates and document status/workflows. Sandbox and production keys distinct."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted MCP at https://mcp.pandadoc.com/v1/mcp and EU https://mcp.pandadoc.eu/v1/mcp. Account and server region must match; EU has no matching Claude directory listing and needs custom connector.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to documented Free API/sandbox baseline; quotas, account enablement and region must be checked for intended workflow.",
+    "evidence": [
+      {
+        "url": "https://developers.pandadoc.com/reference/api-key-authentication-process",
+        "title": "API Key Authentication",
+        "supports": [
+          "Sandbox and production keys on all plans",
+          "Role/license inheritance"
+        ]
+      },
+      {
+        "url": "https://www.pandadoc.com/developer-api/pricing/",
+        "title": "PandaDoc API Pricing",
+        "supports": [
+          "Free API plan",
+          "Five documents/month",
+          "Unlimited sandbox"
+        ]
+      },
+      {
+        "url": "https://developers.pandadoc.com/reference/authentication-process",
+        "title": "OAuth 2.0 Authentication Process",
+        "supports": [
+          "OAuth",
+          "Plan/dashboard enablement caveat"
+        ]
+      },
+      {
+        "url": "https://developers.pandadoc.com/reference/about",
+        "title": "PandaDoc API Reference",
+        "supports": [
+          "REST document API",
+          "Sandbox testing"
+        ]
+      },
+      {
+        "url": "https://developers.pandadoc.com/docs/getting-started-with-mcp",
+        "title": "Getting Started with MCP",
+        "supports": [
+          "Official regional MCP endpoints",
+          "EU directory limitation"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "typeform",
+    "name": "Typeform",
+    "category": "Finance & business operations",
+    "description": "Forms, surveys and response collection.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Scoped PAT for direct own-account API calls; register OAuth application for delegated users. Tokens sent in Authorization header.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No dedicated isolated sandbox established; Free account supports limited real forms/responses.",
+      "production": "Developer API access available on standard accounts; Free plan has ten responses/month and paid features can prevent publishing unless removed/upgraded.",
+      "plan_gate": "Feature and response quotas depend on plan. Legacy developer overview mentions PRO/PRO+ gates, so current account entitlement must settle feature-specific claims.",
+      "approval_gate": "User consent for OAuth; no blanket app-review requirement established by fetched docs.",
+      "notes": "REST documentation uses older plan names. Treat current Free-plan article as the quota source, and do not assert every webhook/premium feature is free."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Create forms, retrieve responses, manage webhooks and embed forms; JSON APIs with regional base URLs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Streamable HTTP MCP at https://api.typeform.com/mcp with separate EU endpoints. EU authorization issuers differ; account region routing is required. No SSE endpoint. Operational account, form and response tools; MCP is not merely documentation search.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to limited standard-account API prototype; response caps and premium features need plan checks.",
+    "evidence": [
+      {
+        "url": "https://www.typeform.com/developers/get-started/",
+        "title": "Get started",
+        "supports": [
+          "Standard-account developer access",
+          "Create/Responses/Webhooks API",
+          "OAuth and PAT routes"
+        ]
+      },
+      {
+        "url": "https://www.typeform.com/developers/get-started/personal-access-token",
+        "title": "Personal access token",
+        "supports": [
+          "Scoped PAT generation",
+          "Authorization header"
+        ]
+      },
+      {
+        "url": "https://help.typeform.com/hc/en-us/articles/360032972852-Free-plan",
+        "title": "Free plan",
+        "supports": [
+          "Free signup",
+          "Ten responses/month",
+          "Paid-feature publishing limits"
+        ]
+      },
+      {
+        "url": "https://www.typeform.com/developers/mcp/core-concepts/",
+        "title": "Core concepts",
+        "supports": [
+          "Official MCP endpoints",
+          "HTTP transport",
+          "Region-specific auth"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "jotform",
+    "name": "Jotform",
+    "category": "Finance & business operations",
+    "description": "Forms, submissions and form-based workflows.",
+    "auth_methods": [
+      "API key",
+      "JavaScript SDK delegated login"
+    ],
+    "auth_notes": "API key from Account API section, passed in header or parameter. SDK login obtains user permission and exposes an API key; do not label this a standard OAuth flow without further evidence.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No distinct sandbox established; use a separate Free test account/forms and respect real submission limits.",
+      "production": "Starter Free plan supports API access with 1,000 daily requests; higher plans increase quotas.",
+      "plan_gate": "Daily API quota and underlying forms/submission/storage features depend on plan.",
+      "approval_gate": "Account authorization and key permissions; enterprise features separate.",
+      "notes": "Publicly documented API-key route is sufficient for own-account prototype; no claim of unlimited free usage."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Access and manage account, forms, submissions and webhooks through REST APIs and official SDKs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official remote OAuth/Streamable HTTP MCP at https://mcp.jotform.com. Separate MCP App, Apps, Sign and Form Backend endpoints expose different product workflows. Operational form and submission tools, not documentation-only.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to documented Free-plan API baseline; daily request and form limits apply.",
+    "evidence": [
+      {
+        "url": "https://api.jotform.com/docs/",
+        "title": "Jotform API",
+        "supports": [
+          "API-key auth and delegated SDK login",
+          "REST forms/submissions",
+          "Webhooks"
+        ]
+      },
+      {
+        "url": "https://www.jotform.com/help/406-daily-api-call-limits/",
+        "title": "Daily API Call Limits",
+        "supports": [
+          "Free Starter 1,000 daily API requests",
+          "Plan quotas"
+        ]
+      },
+      {
+        "url": "https://www.jotform.com/developers/mcp/",
+        "title": "Jotform MCP Overview",
+        "supports": [
+          "Official remote endpoints",
+          "OAuth and Streamable HTTP",
+          "Distinct MCP App workflows"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  },
+  {
+    "id": "calendly",
+    "name": "Calendly",
+    "category": "Finance & business operations",
+    "description": "Availability, meetings and scheduling workflows.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth 2.1 authorization code with PKCE"
+    ],
+    "auth_notes": "PAT for private/internal apps; OAuth for public integrations. Current developer introduction specifies OAuth 2.1; help overview still refers generically to OAuth 2.0.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No dedicated sandbox established; use test event types/account without scheduling real meetings.",
+      "production": "API GET/POST, webhooks and Scheduling API available on all plans including Free; organization-wide access depends on admin/owner role.",
+      "plan_gate": "Activity logs and invitee/scheduled-event data deletion endpoints are Enterprise-only. Rate and feature limits still apply.",
+      "approval_gate": "User consent and scoped role permissions; no general paid API plan requirement for baseline endpoints.",
+      "notes": "Older claims that webhooks or Scheduling API necessarily require a paid plan conflict with the current fetched vendor overview."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "webhooks"
+      ],
+      "breadth": "Event types, users, scheduled events/invitees and scheduling operations; webhooks for scheduling/cancellation/rescheduling."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted https://mcp.calendly.com requires OAuth 2.1 authorization code + PKCE and Dynamic Client Registration. PATs and manually pre-registered static credentials are not supported for MCP.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker to baseline Free-plan API integration. MCP client must support discovery and DCR; PAT-only MCP clients will not work.",
+    "evidence": [
+      {
+        "url": "https://developer.calendly.com/docs/getting-started/introduction",
+        "title": "Introduction to the API",
+        "supports": [
+          "REST v2",
+          "PAT versus OAuth 2.1",
+          "API/webhook surface"
+        ]
+      },
+      {
+        "url": "https://developer.calendly.com/docs/authentication/how-to-authenticate-with-personal-access-tokens",
+        "title": "Personal Access Tokens",
+        "supports": [
+          "Private-app PAT route",
+          "Scopes and admin reach"
+        ]
+      },
+      {
+        "url": "https://calendly.com/help/calendly-api-overview",
+        "title": "Calendly API overview",
+        "supports": [
+          "All-plan API, webhooks and Scheduling API",
+          "Enterprise-only endpoints",
+          "Role gates"
+        ]
+      },
+      {
+        "url": "https://developer.calendly.com/docs/mcp/calendly-mcp-server",
+        "title": "Calendly MCP Overview",
+        "supports": [
+          "Official endpoint",
+          "OAuth 2.1 PKCE and DCR",
+          "No PAT/static credential MCP"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:43:35+05:30"
+  }
+]
