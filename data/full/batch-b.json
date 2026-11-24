@@ -1,0 +1,1208 @@
+[
+  {
+    "id": "hubspot",
+    "name": "HubSpot",
+    "category": "CRM & commerce",
+    "description": "CRM and marketing/sales/service platform with a broad REST API (api.hubapi.com) using date-based versioning (e.g. /crm/objects/2026-09/contacts).",
+    "auth_methods": [
+      "OAuth2",
+      "Static app token",
+      "Developer API key (selected app endpoints)"
+    ],
+    "auth_notes": "Current Developer Platform supports OAuth for multiple-account distribution and static auth for one authorized account. Developer API keys/client-credential tokens apply to selected developer operations, not a return of legacy general CRM API keys.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Current account-types docs permit up to10developer test accounts, free with a90-day trial of many enterprise features and documented limitations.",
+      "production": "Credentials work against live accounts; free CRM tier exists for self-serve signup",
+      "plan_gate": "Some APIs/scopes are tier-gated by HubSpot subscription; not exhaustively verified",
+      "approval_gate": "Marketplace listing requires review; OAuth apps can be distributed to allowlisted accounts without listing",
+      "notes": "Fresh current-platform auth and account-types pages fetched during integration; no longer based on remembered free-tier regularity."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks",
+        "graphql"
+      ],
+      "breadth": "Very broad: CRM objects, engagements, marketing, files, settings; date-versioned reference with OpenAPI."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official remote MCP documentation describes read-only standard CRM records and no custom Sensitive Data Properties. A separate local Developer MCP exists. Do not infer broad CRM writes from vendor ownership or a different developer tool.",
+      "scope": "read_only_or_limited"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developers.hubspot.com/docs/api/overview",
+        "title": "API reference (developers.hubspot.com)",
+        "supports": [
+          "api.styles",
+          "api.breadth"
+        ]
+      },
+      {
+        "url": "https://developers.hubspot.com/docs/apps/legacy-apps/private-apps/overview",
+        "title": "Legacy private apps (developers.hubspot.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://developers.hubspot.com/docs/apps/legacy-apps/public-apps/overview",
+        "title": "Legacy public apps (developers.hubspot.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://developers.hubspot.com/ai-tools/mcp",
+        "title": "HubSpot MCP Server (developers.hubspot.com)",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview",
+        "title": "Current authentication overview",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      },
+      {
+        "url": "https://developers.hubspot.com/docs/getting-started/account-types",
+        "title": "Current account types and free developer tests",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "salesforce",
+    "name": "Salesforce",
+    "category": "CRM & commerce",
+    "description": "Enterprise CRM with REST, SOAP, Bulk, and Streaming APIs plus a large platform surface; auth via OAuth 2.0 connected apps.",
+    "auth_methods": [
+      "oauth2",
+      "jwt_bearer",
+      "username_password_flow"
+    ],
+    "auth_notes": "REST API requires an OAuth access token from a connected app; docs quickstart uses Salesforce CLI as a preconfigured connected app. OAuth 2.0 with PKCE is used for the hosted MCP servers.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free Developer Edition org for testing/development; sandboxes exist on paid editions",
+      "production": "Full production access per org edition and user permissions",
+      "plan_gate": "API access depends on org edition (API-enabled editions); Developer Edition includes API access",
+      "approval_gate": "AppExchange listing requires security review; direct OAuth integrations do not",
+      "notes": "Developer Edition is explicitly described as free in Salesforce's own quickstart."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "soap",
+        "bulk",
+        "streaming",
+        "webhooks"
+      ],
+      "breadth": "Very broad across CRM objects, metadata, analytics, and platform services."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Salesforce Hosted MCP Servers are GA (per Salesforce docs/blog) with per-user OAuth 2.0 + PKCE; a local Salesforce DX MCP server also exists for developer tooling.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm",
+        "title": "REST API Quick Start (developer.salesforce.com)",
+        "supports": [
+          "auth_methods",
+          "access.credential_path",
+          "access.sandbox"
+        ]
+      },
+      {
+        "url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html",
+        "title": "Hosted MCP Servers overview (developer.salesforce.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "pipedrive",
+    "name": "Pipedrive",
+    "category": "CRM & commerce",
+    "description": "Sales CRM with a RESTful JSON API (v1 and v2), OpenAPI 3 specs, webhooks, and app extension points.",
+    "auth_methods": [
+      "api_token",
+      "oauth2"
+    ],
+    "auth_notes": "API token can be obtained manually from the Pipedrive app; OAuth 2.0 for marketplace/public apps.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "Free Developer Sandbox account available on request (request your own sandbox account per docs)",
+      "production": "Paid plans after trial; trial is self-serve (trial length not re-verified this session)",
+      "plan_gate": "None found for core REST API",
+      "approval_gate": "Marketplace app review for public distribution",
+      "notes": "Sandbox-account wording says 'request', so there may be a light approval step for the sandbox itself."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Broad CRM coverage: leads, deals, persons, organizations, pipelines, activities, products, projects."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Pipedrive ships a native MCP server (official connector in Claude and ChatGPT) with OAuth login; documented on pipedrive.com.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial supports a prototype; ongoing account entitlement needs confirmation.",
+    "evidence": [
+      {
+        "url": "https://developers.pipedrive.com/docs/api/v1/",
+        "title": "Pipedrive API Reference and Documentation",
+        "supports": [
+          "auth_methods",
+          "api",
+          "access.sandbox"
+        ]
+      },
+      {
+        "url": "https://www.pipedrive.com/en/features/mcp-server",
+        "title": "Pipedrive MCP Server",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "zoho-crm",
+    "name": "Zoho CRM",
+    "category": "CRM & commerce",
+    "description": "CRM suite with versioned REST APIs (v6 docs fetched; newer versions exist) and OAuth 2.0 authentication.",
+    "auth_methods": [
+      "oauth2"
+    ],
+    "auth_notes": "OAuth 2.0 with client ID/secret from a self-client/connected app; access tokens expire after one hour; refresh tokens persist until revoked.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Sandbox accounts exist for paid editions; free edition usable directly for basic API work",
+      "production": "Free edition (up to 3 users) per Zoho CRM pricing page; paid editions beyond",
+      "plan_gate": "Feature/API availability varies by edition",
+      "approval_gate": "Marketplace listing review only for public distribution",
+      "notes": "Free edition confirmed on zoho.com pricing page fetched this session."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks",
+        "bulk"
+      ],
+      "breadth": "Broad CRM module coverage: leads, contacts, deals, plus meta and variable APIs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Zoho CRM provides pre-built official MCP servers (Data Insights, Data Operations, Module Customization, Workflow & Process Automation) per Zoho developer docs.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://www.zoho.com/crm/developer/docs/api/v6/oauth-overview.html",
+        "title": "OAuth 2.0 Authentication - Zoho CRM",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://www.zoho.com/crm/zohocrm-pricing.html",
+        "title": "Zoho CRM Pricing and Editions - Free for 3 users",
+        "supports": [
+          "access.credential_path",
+          "access.production"
+        ]
+      },
+      {
+        "url": "https://www.zoho.com/crm/developer/docs/mcp/overview.html",
+        "title": "Zoho CRM MCP - An Overview",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "attio",
+    "name": "Attio",
+    "category": "CRM & commerce",
+    "description": "Modern data-model CRM with a REST API and SDK; auth via OAuth 2.0 or per-workspace API keys.",
+    "auth_methods": [
+      "oauth2",
+      "api_key"
+    ],
+    "auth_notes": "Standard OAuth 2.0 authorization-code flow for multi-workspace apps; manually generated API key for single-workspace apps. Unpublished OAuth apps limited to 25 workspace installs; publishing implies an approved release.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No separate sandbox documented; free plan workspace usable for development",
+      "production": "Free plan confirmed on attio.com/pricing; paid tiers above",
+      "plan_gate": "Not found for core REST API",
+      "approval_gate": "App publishing beyond 25 workspaces requires an approved release",
+      "notes": "API keys are generated from the developer settings page of the workspace's apps."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Records, lists, objects, attributes, notes, tasks, threads/comments; solid CRM coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Attio hosts an official MCP server (mcp.attio.com) with OAuth one-click install for Claude, ChatGPT, Cursor, etc.; read auto-approved, writes confirmed.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://docs.attio.com/rest-api/guides/authentication",
+        "title": "Authenticating requests (docs.attio.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes",
+          "access.approval_gate"
+        ]
+      },
+      {
+        "url": "https://attio.com/pricing",
+        "title": "Plans & Pricing (attio.com)",
+        "supports": [
+          "access.credential_path"
+        ]
+      },
+      {
+        "url": "https://docs.attio.com/mcp/overview",
+        "title": "Attio MCP (docs.attio.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "close",
+    "name": "Close",
+    "category": "CRM & commerce",
+    "description": "Sales engagement CRM with a REST API, webhooks, and an event log; developer platform explicitly supports AI agents.",
+    "auth_methods": [
+      "api_key",
+      "oauth2"
+    ],
+    "auth_notes": "API keys for scripts/private use; OAuth 2.0 for user-facing and public integrations (get listed in the integrations directory).",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No dedicated sandbox documented; trial account used for development",
+      "production": "14-day free trial with no credit card; no free plan (per close.com pricing page)",
+      "plan_gate": "None found for core API",
+      "approval_gate": "Integration directory listing implies review; OAuth apps work without listing",
+      "notes": "Pricing page explicitly states there is no free plan."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Leads, contacts, activities, sequences, pipelines, reporting; interactive API explorer in docs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Close runs an official remote MCP server at mcp.close.com/mcp (HTTP streamable, OAuth 2.0 with DCR, or API key with Close-Scope header: mcp.read / mcp.write_safe / mcp.write_destructive).",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial supports a prototype; ongoing account entitlement needs confirmation.",
+    "evidence": [
+      {
+        "url": "https://developer.close.com/",
+        "title": "Close Developer Platform",
+        "supports": [
+          "auth_methods",
+          "api"
+        ]
+      },
+      {
+        "url": "https://www.close.com/pricing",
+        "title": "Close CRM Pricing",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://developer.close.com/mcp/",
+        "title": "Close MCP Server",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "intercom",
+    "name": "Intercom",
+    "category": "CRM & commerce",
+    "description": "Customer messaging platform with a REST API over conversations, contacts, tickets, and more.",
+    "auth_methods": [
+      "access_token",
+      "oauth2"
+    ],
+    "auth_notes": "Access tokens for private apps on your own workspace (issued per installing teammate); OAuth required for public apps - asking users for access tokens violates the ToS.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "Development workspace pattern documented (install apps to your own workspace)",
+      "production": "Self-serve trial available; exact trial length not re-verified this session",
+      "plan_gate": "Not found for core REST API",
+      "approval_gate": "App-store listing review for public distribution",
+      "notes": "Token conversation access is limited by the installing teammate's permissions."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks",
+        "canvas"
+      ],
+      "breadth": "Conversations, contacts, companies, tickets, articles, segments; mature helpdesk coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Intercom hosts an official remote MCP server (mcp.intercom.com/mcp US, mcp.eu.intercom.com/mcp EU); AU-hosted workspaces not yet supported.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial supports a prototype; ongoing account entitlement needs confirmation.",
+    "evidence": [
+      {
+        "url": "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/",
+        "title": "Authentication (developers.intercom.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://developers.intercom.com/docs/guides/mcp",
+        "title": "Model Context Protocol (developers.intercom.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "zendesk",
+    "name": "Zendesk",
+    "category": "CRM & commerce",
+    "description": "Support suite with REST APIs across Support, Guide, Talk, and more; platform now steering all API auth to OAuth.",
+    "auth_methods": [
+      "oauth2",
+      "api_token_deprecated",
+      "basic_auth_deprecated"
+    ],
+    "auth_notes": "Docs state existing basic auth/API token users must migrate to OAuth access tokens; global OAuth tokens are mandatory for apps distributed to multiple Zendesk customers; verified user required for API requests.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No free sandbox tier found in fetched docs; trial account used for development",
+      "production": "Self-serve trial available (length not re-verified); paid plans beyond",
+      "plan_gate": "Zendesk Bridge / MCP requires a Support plan (Team, Professional, or Enterprise)",
+      "approval_gate": "Global OAuth client setup involves Zendesk approval for cross-account distribution",
+      "notes": "Developer Terms prohibit customers from sharing API credentials with third parties."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Very broad: tickets, users, organizations, help center, macros, views, and side conversations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Zendesk MCP server via Zendesk Bridge is in an early access program (EAP), free during EAP, Support Team plan or above; Zendesk also has an MCP client for outbound tool use.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "OAuth migration requirement means legacy API-token scripts are a dead end; MCP access currently requires joining an EAP.",
+    "evidence": [
+      {
+        "url": "https://developer.zendesk.com/api-reference/introduction/security-and-auth/",
+        "title": "Security and authentication (developer.zendesk.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes",
+          "access.approval_gate"
+        ]
+      },
+      {
+        "url": "https://support.zendesk.com/hc/en-us/articles/11400026079130-Connecting-external-AI-agents-to-the-Zendesk-MCP-server-or-Zendesk-AI-agents-EAP",
+        "title": "Connecting external AI agents to the Zendesk MCP server (EAP)",
+        "supports": [
+          "mcp",
+          "access.plan_gate"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "freshdesk",
+    "name": "Freshdesk",
+    "category": "CRM & commerce",
+    "description": "Helpdesk with a REST v2 API covering tickets, contacts, solutions, and admin objects.",
+    "auth_methods": [
+      "api_key_basic_auth",
+      "oauth2"
+    ],
+    "auth_notes": "Personal API key as basic-auth username (any dummy password); endpoints document OAuth 2.0 scopes (e.g. freshdesk.tickets.create), so OAuth apps are supported too.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No separate sandbox found; trial account used for development",
+      "production": "14-day free trial per freshdesk.com pricing page; paid plans beyond",
+      "plan_gate": "Some endpoints require the corresponding portal feature enabled (403 require_feature)",
+      "approval_gate": "Marketplace review only for listed apps",
+      "notes": "API key found under agent profile settings; admin-level credentials needed for some calls."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Tickets, contacts, companies, agents, solutions, forums, surveys; broad helpdesk coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Freshworks runs an official MCP server for Freshdesk (support.freshdesk.com article); authentication for MCP is API-key only currently.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial supports a prototype; ongoing account entitlement needs confirmation.",
+    "evidence": [
+      {
+        "url": "https://developers.freshdesk.com/api/",
+        "title": "Freshdesk API (developers.freshdesk.com)",
+        "supports": [
+          "auth_methods",
+          "api"
+        ]
+      },
+      {
+        "url": "https://freshdesk.com/pricing",
+        "title": "Freshdesk pricing",
+        "supports": [
+          "access.production"
+        ]
+      },
+      {
+        "url": "https://support.freshdesk.com/support/solutions/articles/50000012670-model-context-protocol-mcp-integration-in-freshdesk",
+        "title": "MCP integration in Freshdesk",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "help-scout",
+    "name": "Help Scout",
+    "category": "CRM & commerce",
+    "description": "Shared-inbox helpdesk with Mailbox API 2.0 (REST) for conversations, customers, mailboxes, and Docs.",
+    "auth_methods": [
+      "oauth2"
+    ],
+    "auth_notes": "OAuth 2.0 only: authorization-code flow for integrations used by other Help Scout users, client-credentials for internal integrations; credentials must be tied to an active invited user.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No separate sandbox found",
+      "production": "Free plan exists (5 users, 1 inbox, 1 Docs site) plus a 15-day trial of Standard/Plus, per helpscout.com/pricing",
+      "plan_gate": "API access is included only on Standard, Plus, and Pro plans - the free plan does not include API access (per Help Scout's MCP support article)",
+      "approval_gate": "None found for OAuth apps",
+      "notes": "Plan gate means buildability on the free plan is effectively blocked; a Standard trial is the practical path."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Conversations, customers, mailboxes, tags, workflows, Docs; solid support coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Help Scout MCP connector for Claude/ChatGPT/Cursor; read-only for new connections; requires a plan with API access (Standard+); report tools require Plus or Pro.",
+      "scope": "read_only_or_limited"
+    },
+    "verdict": "conditional",
+    "blocker": "API and MCP access are plan-gated to Standard/Plus/Pro; free plan has no API access.",
+    "evidence": [
+      {
+        "url": "https://developer.helpscout.com/mailbox-api/overview/authentication/",
+        "title": "Authentication (developer.helpscout.com)",
+        "supports": [
+          "auth_methods"
+        ]
+      },
+      {
+        "url": "https://www.helpscout.com/pricing/",
+        "title": "Help Scout Pricing",
+        "supports": [
+          "access.production"
+        ]
+      },
+      {
+        "url": "https://docs.helpscout.com/article/1779-connect-your-ai-agent-with-help-scout-to-search-conversations-and-pull-reports",
+        "title": "Connect your AI Agent to Help Scout via MCP",
+        "supports": [
+          "mcp",
+          "access.plan_gate"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:39:00+05:30"
+  },
+  {
+    "id": "gorgias",
+    "name": "Gorgias",
+    "category": "CRM & commerce",
+    "description": "Ecommerce helpdesk with a REST API over tickets, customers, and settings.",
+    "auth_methods": [
+      "api_key",
+      "oauth2"
+    ],
+    "auth_notes": "Private apps use an API key (with the account email as username); OAuth2 is mandatory for public apps.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No separate sandbox found in fetched docs",
+      "production": "7-day free trial confirmed by Gorgias docs signup guide; paid plans after",
+      "plan_gate": "None found for the REST API",
+      "approval_gate": "App-store listing review for public apps",
+      "notes": "Trial length (7 days) is short for build-and-test work."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Tickets, messages, customers, tags, macros, rules, views; helpdesk-focused."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Gorgias MCP is in open beta on all Helpdesk plans; connectable from Claude/ChatGPT connector directories or as a custom connector.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial supports a prototype; ongoing account entitlement needs confirmation.",
+    "evidence": [
+      {
+        "url": "https://developers.gorgias.com/reference/authentication",
+        "title": "Authentication (developers.gorgias.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://docs.gorgias.com/en-US/create-a-gorgias-helpdesk-82010",
+        "title": "Create a Gorgias helpdesk",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://docs.gorgias.com/en-US/connect-your-ai-assistant-to-the-gorgias-mcp-6310546",
+        "title": "Connect your AI assistant to the Gorgias MCP",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:40:00+05:30"
+  },
+  {
+    "id": "front",
+    "name": "Front",
+    "category": "CRM & commerce",
+    "description": "Shared inbox platform with a Core API (REST) over conversations, inboxes, contacts, and rules.",
+    "auth_methods": [
+      "api_token",
+      "oauth2"
+    ],
+    "auth_notes": "Bearer tokens via settings API tokens or OAuth; OAuth is required for public integrations unless Front grants an exception; tokens carry granular read/write/delete/send permissions across global/shared/private namespaces.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "No separate sandbox found; own-instance API tokens recommended for testing",
+      "production": "Self-serve trial available (length not re-verified this session); paid plans beyond",
+      "plan_gate": "Not found for Core API; SCIM auto-provisioning requires contacting Front",
+      "approval_gate": "Public App Store integrations must use OAuth and go through Front's framework",
+      "notes": "Private resources require the teammate to enable API access in their settings."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Conversations, messages, inboxes, contacts, teammates, rules; mature coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Front runs an official MCP server at mcp.frontapp.com/mcp (OAuth 2.1 + PKCE, per-user tokens, read/write/send scopes; no Dynamic Client Registration). A separate Admin MCP server manages configuration.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial supports a prototype; ongoing account entitlement needs confirmation.",
+    "evidence": [
+      {
+        "url": "https://dev.frontapp.com/docs/authentication",
+        "title": "Authentication (dev.frontapp.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes",
+          "access"
+        ]
+      },
+      {
+        "url": "https://dev.frontapp.com/docs/mcp-server",
+        "title": "Front MCP Server (dev.frontapp.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:40:00+05:30"
+  },
+  {
+    "id": "shopify",
+    "name": "Shopify",
+    "category": "CRM & commerce",
+    "description": "Commerce platform with GraphQL Admin API, REST Admin API, Storefront API, and webhooks.",
+    "auth_methods": [
+      "oauth2",
+      "client_credentials",
+      "access_token"
+    ],
+    "auth_notes": "Apps get an access token after merchant install and scope approval; client credentials with signed client assertion for server-to-server; offline vs online tokens; delegate tokens for scoped subsystem access.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free development stores via a free Shopify Partner account (per shopify.com partners blog)",
+      "production": "Apps run on merchant stores after install; merchants pay Shopify plans, not the developer",
+      "plan_gate": "Some admin-created custom app data access varies by merchant plan",
+      "approval_gate": "Public apps handling protected customer data need separate Shopify approval; certain scopes are granted per-app",
+      "notes": "Protected-customer-data approval applies to public apps; custom apps get it automatically."
+    },
+    "api": {
+      "styles": [
+        "graphql",
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Extremely broad: products, orders, customers, fulfillment, billing, themes, storefronts."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Storefront Catalog MCP is live for single-merchant product discovery (UCP-based); the merchant-facing Shopify MCP (Admin API over MCP) is documented as coming soon.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://shopify.dev/docs/apps/build/authentication-authorization",
+        "title": "About app authentication (shopify.dev)",
+        "supports": [
+          "auth_methods",
+          "auth_notes",
+          "access.approval_gate"
+        ]
+      },
+      {
+        "url": "https://www.shopify.com/partners/blog/development-stores",
+        "title": "Everything You Need to Know About Development Stores (shopify.com)",
+        "supports": [
+          "access.credential_path",
+          "access.sandbox"
+        ]
+      },
+      {
+        "url": "https://shopify.dev/docs/api/shopify-mcp.md",
+        "title": "Shopify MCP (shopify.dev)",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://shopify.dev/docs/agents/catalog/storefront-catalog",
+        "title": "Storefront Catalog MCP (shopify.dev)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:40:00+05:30"
+  },
+  {
+    "id": "woocommerce",
+    "name": "WooCommerce",
+    "category": "CRM & commerce",
+    "description": "Open-source WordPress ecommerce plugin with a REST API (WP REST API v3 namespace) over products, orders, and customers.",
+    "auth_methods": [
+      "consumer_key_secret",
+      "oauth1_like_keys",
+      "basic_auth_over_https"
+    ],
+    "auth_notes": "REST API keys (consumer key/secret) generated per store user; authentication over HTTPS (and HTTP for local dev); keys scoped read/write/read-write.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Fully self-hostable; local/staging WordPress installs serve as sandboxes",
+      "production": "Free open-source plugin; hosting costs only",
+      "plan_gate": "None",
+      "approval_gate": "None for self-hosted; WooCommerce Marketplace listing is a separate review",
+      "notes": "No vendor account needed at all to develop against a local install."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Products, orders, customers, coupons, reports, settings; broad store coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "WooCommerce registers product/order abilities consumable via the MCP Adapter plugin; official developer docs describe it as a developer preview and the adapter is not bundled.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://woocommerce.github.io/woocommerce-rest-api-docs/",
+        "title": "WooCommerce REST API Documentation",
+        "supports": [
+          "auth_methods",
+          "api"
+        ]
+      },
+      {
+        "url": "https://developer.woocommerce.com/docs/features/mcp/",
+        "title": "MCP Integration (developer.woocommerce.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:40:00+05:30"
+  },
+  {
+    "id": "bigcommerce",
+    "name": "BigCommerce",
+    "category": "CRM & commerce",
+    "description": "SaaS commerce platform with REST (v2/v3) and GraphQL APIs, authenticated by OAuth-based API accounts.",
+    "auth_methods": [
+      "oauth2_api_account"
+    ],
+    "auth_notes": "Three OAuth-based API account types: store-level (static token from the control panel), app-level (per-install tokens), account-level; legacy API tokens being phased toward OAuth credentials.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free sandbox stores via the BigCommerce Partner Portal (Partner Use Sandbox), explicitly for development and testing",
+      "production": "Merchant stores are paid; developer access via free partner account",
+      "plan_gate": "Some endpoints only work with certain API account types",
+      "approval_gate": "App Marketplace listing review for public apps",
+      "notes": "Sandbox stores cannot process live transactions."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "graphql",
+        "webhooks"
+      ],
+      "breadth": "Catalog, orders, customers, carts, checkouts, storefront, admin; broad coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Three official MCP capabilities: Storefront MCP (GA), WebMCP (on by default for eligible storefronts), Store Management MCP (early access); plus a docs-only MCP server.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developer.bigcommerce.com/docs/start/authentication",
+        "title": "API Accounts (developer.bigcommerce.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://docs.bigcommerce.com/developer/docs/overview/sandboxes",
+        "title": "Create a Sandbox Store (docs.bigcommerce.com)",
+        "supports": [
+          "access.sandbox",
+          "access.credential_path"
+        ]
+      },
+      {
+        "url": "https://docs.bigcommerce.com/developer/api-reference/mcp/overview/",
+        "title": "MCP Overview (docs.bigcommerce.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:40:00+05:30"
+  },
+  {
+    "id": "ecwid",
+    "name": "Ecwid",
+    "category": "CRM & commerce",
+    "description": "Hosted ecommerce (Ecwid by Lightspeed) with a REST API, webhooks, payment/shipping APIs, and storefront JS APIs, all delivered through registered apps.",
+    "auth_methods": [
+      "oauth2",
+      "access_token"
+    ],
+    "auth_notes": "All store modifications go through applications; external apps complete an OAuth-style install exchange (code -> store ID + access token); native apps receive an encrypted payload carrying REST API access.",
+    "access": {
+      "credential_path": "paid_self_serve",
+      "sandbox": "A free Ecwid account can be used to build, but API access itself is plan-gated",
+      "production": "Ecwid pricing has Free/Venture/Business/Unlimited tiers; per Ecwid's own API docs, the API is available only on paid plans (Venture and above)",
+      "plan_gate": "REST API requires a paid Ecwid plan",
+      "approval_gate": "Public App Market apps go through review; custom apps for a single store do not",
+      "notes": "Vendor-hosted overview says API access requires a paid plan, using older plan names. It also offers App Market developers a free development account on request. Confirm current entitlement; self-serve free API access was not established."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks",
+        "js"
+      ],
+      "breadth": "Products, orders, customers, discounts, payment/shipping methods, storefront customization."
+    },
+    "mcp": {
+      "status": "not_confirmed",
+      "notes": "No vendor-published MCP server found in searches or vendor docs. The only surfaced listing (zapier.com/mcp/ecwid) is Zapier's own aggregator MCP exposing Ecwid actions, not an Ecwid-dedicated community server; that does not establish a real Ecwid MCP server. Treat Ecwid MCP availability as unverified.",
+      "scope": "not_confirmed"
+    },
+    "verdict": "conditional",
+    "blocker": "REST API access is paid-plan gated in the cited vendor overview, which uses older plan names; official MCP not confirmed.",
+    "evidence": [
+      {
+        "url": "https://raw.githubusercontent.com/Ecwid/ecwid-api-docs/master/includes/_overview.md",
+        "title": "Ecwid API docs overview (Ecwid's official GitHub repo)",
+        "supports": [
+          "access.plan_gate",
+          "access.credential_path",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.ecwid.com/launch-apps/native-and-external-apps",
+        "title": "Native and external apps (docs.ecwid.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid",
+        "title": "Ecwid custom app and app dashboard",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:41:00+05:30"
+  },
+  {
+    "id": "squarespace",
+    "name": "Squarespace",
+    "category": "CRM & commerce",
+    "description": "Website builder with Commerce/Forms/Profiles/Orders REST APIs for merchant sites.",
+    "auth_methods": [
+      "api_key",
+      "oauth2"
+    ],
+    "auth_notes": "Custom applications authenticate with a generated API key (requires the Commerce Advanced plan); Squarespace Extensions and commercial development require OAuth via a registered OAuth client.",
+    "access": {
+      "credential_path": "paid_self_serve",
+      "sandbox": "No public sandbox documented; a trial site plus Commerce Advanced upgrade is the practical path",
+      "production": "Self-serve signup exists, but API key generation requires the Commerce Advanced plan",
+      "plan_gate": "Developer API keys require Commerce Advanced; Webhook Subscriptions API is OAuth-only",
+      "approval_gate": "OAuth client registration involves Squarespace onboarding (commercial development)",
+      "notes": "admin_gated chosen because the API key path is locked behind a top-tier plan, not a review queue."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Orders, products, inventory, transactions, forms, profiles, webhooks; commerce-focused."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Squarespace MCP server; domains tools need no sign-in, commerce tools require sign-in and are currently limited to Claude and ChatGPT.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "API keys for custom apps require the Commerce Advanced plan; OAuth path requires registering as an OAuth client.",
+    "evidence": [
+      {
+        "url": "https://developers.squarespace.com/commerce-apis/authentication-and-permissions",
+        "title": "Authentication and permissions (developers.squarespace.com)",
+        "supports": [
+          "auth_methods",
+          "access.plan_gate",
+          "access.credential_path"
+        ]
+      },
+      {
+        "url": "https://developers.squarespace.com/mcp/overview",
+        "title": "Squarespace MCP Server overview (developers.squarespace.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:41:00+05:30"
+  },
+  {
+    "id": "wix",
+    "name": "Wix",
+    "category": "CRM & commerce",
+    "description": "Website builder platform with REST APIs and SDKs across sites, stores, bookings, and CRM.",
+    "auth_methods": [
+      "oauth2",
+      "api_key_account_level"
+    ],
+    "auth_notes": "Self-managed apps authenticate with OAuth (app instance, on behalf of a user, or visitor); Wix-managed apps (Blocks/CLI) have built-in auth; Wix API keys exist but are not available for third-party apps; legacy custom authentication is deprecated.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free Wix account and Dev Center app creation (standard Wix pattern; not re-fetched this session)",
+      "production": "APIs act on real sites; some business features depend on the site's premium package",
+      "plan_gate": "Certain business solutions require the target site to have the corresponding premium plan",
+      "approval_gate": "Wix App Market submission is reviewed; unlisted apps can be installed directly",
+      "notes": "Access classification is medium-confidence because the free developer flow was not re-fetched. Fresh Wix support and API-key setup pages confirm a free account signup and scoped site/account API keys; individual product features can remain premium."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "sdk",
+        "webhooks"
+      ],
+      "breadth": "Very broad across sites, stores, bookings, events, blog, CRM, members."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Wix MCP (also a built-in Claude connector) that can search docs, write platform code, call APIs on sites, and manage sites/apps/projects; a separate Wix Site MCP serves visitor-facing agents.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://dev.wix.com/docs/rest/articles/getting-started/authentication",
+        "title": "About Authentication for Wix Apps (dev.wix.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://dev.wix.com/docs/overview/ai-the-wix-platform/the-wix-mcp.md",
+        "title": "The Wix MCP (dev.wix.com)",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://support.wix.com/en/article/signing-up-for-a-free-wix-account",
+        "title": "Free Wix account signup",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://dev.wix.com/docs/develop-websites-sdk/code-your-site/authorization/generate-an-api-key",
+        "title": "Scoped Wix API-key creation",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:41:00+05:30"
+  },
+  {
+    "id": "webflow",
+    "name": "Webflow",
+    "category": "CRM & commerce",
+    "description": "Visual web platform with a Data API (REST v2) over sites, pages, CMS collections, forms, and ecommerce.",
+    "auth_methods": [
+      "site_token",
+      "workspace_token",
+      "oauth2"
+    ],
+    "auth_notes": "Site tokens (per site, created by a site administrator, expire after 365 days of inactivity), workspace tokens (all sites in a workspace), and OAuth tokens for multi-site/public marketplace integrations.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free Starter plan sites work with the CMS API (per Webflow's own blog); tokens from site settings",
+      "production": "Works on any site plan that includes CMS: Starter (free), CMS, Business; Basic explicitly lacks CMS",
+      "plan_gate": "CMS endpoints return nothing useful on the Basic plan; rate limits vary by plan (60 vs 120 rpm)",
+      "approval_gate": "Marketplace app listing review for public apps",
+      "notes": "Site administrator access is required to generate a token."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Sites, pages, CMS, forms, users, ecommerce; strong design/CMS coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Webflow MCP server (plugins for Claude Desktop/Claude Code, OAuth site authorization); endpoint advertised on developers.webflow.com.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developers.webflow.com/data/reference/authentication",
+        "title": "Authentication (developers.webflow.com)",
+        "supports": [
+          "auth_methods"
+        ]
+      },
+      {
+        "url": "https://developers.webflow.com/data/reference/authentication/site-token",
+        "title": "Site Token (developers.webflow.com)",
+        "supports": [
+          "auth_notes",
+          "access"
+        ]
+      },
+      {
+        "url": "https://webflow.com/blog/getting-started-webflow-cms-api",
+        "title": "How to get started with the Webflow CMS API (webflow.com)",
+        "supports": [
+          "access.plan_gate",
+          "access.credential_path"
+        ]
+      },
+      {
+        "url": "https://developers.webflow.com/mcp/reference/getting-started",
+        "title": "Webflow MCP getting started (developers.webflow.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:41:00+05:30"
+  },
+  {
+    "id": "klaviyo",
+    "name": "Klaviyo",
+    "category": "CRM & commerce",
+    "description": "Email/SMS marketing platform with server-side and client-side REST APIs over profiles, events, campaigns, and flows.",
+    "auth_methods": [
+      "private_api_key",
+      "oauth2",
+      "public_api_key"
+    ],
+    "auth_notes": "Private keys (scoped: custom/read-only/full-access) for server-side /api endpoints; OAuth recommended for tech partners (marketplace listing, better rate limits); public key (6-char company ID) for client-side /client endpoints. Managing keys requires Owner/Admin/Manager role.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No separate sandbox; free plan account usable for development",
+      "production": "Free plan confirmed on klaviyo.com/pricing; paid tiers scale with profiles",
+      "plan_gate": "None found for core API access",
+      "approval_gate": "Marketplace listing review only for public distribution",
+      "notes": "Private keys are shown once at creation and cannot be edited afterward."
+    },
+    "api": {
+      "styles": [
+        "rest",
+        "webhooks"
+      ],
+      "breadth": "Profiles, events, lists, segments, campaigns, flows, templates; broad marketing coverage."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Klaviyo MCP server documented on developers.klaviyo.com, with connection guides and an available-tools list.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developers.klaviyo.com/en/docs/authenticate_",
+        "title": "Authenticate API requests (developers.klaviyo.com)",
+        "supports": [
+          "auth_methods",
+          "auth_notes"
+        ]
+      },
+      {
+        "url": "https://www.klaviyo.com/pricing",
+        "title": "Klaviyo Pricing | Start Free",
+        "supports": [
+          "access.credential_path"
+        ]
+      },
+      {
+        "url": "https://developers.klaviyo.com/en/docs/klaviyo_mcp_server",
+        "title": "Klaviyo MCP server (developers.klaviyo.com)",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:41:00+05:30"
+  }
+]
