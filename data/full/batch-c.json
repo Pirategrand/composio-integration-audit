@@ -1,0 +1,1425 @@
+[
+  {
+    "id": "mailchimp",
+    "name": "Mailchimp",
+    "category": "Marketing & analytics",
+    "description": "Email campaigns, audience management and campaign reporting.",
+    "auth_methods": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Own-account scripts can use an API key; installed third-party integrations need OAuth 2. Tokens support HTTP Basic or Bearer transport and inherit the authorizing user role.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Dedicated isolated sandbox not established in the reviewed pages. Use a separate own-account prototype without live sends.",
+      "production": "An account can generate a key and call the Marketing API; available features follow account plan and role.",
+      "plan_gate": "A Free Marketing plan exists; advanced features depend on the selected plan.",
+      "approval_gate": "Own-account key flow is documented. Public distribution uses OAuth; listing/review details not established here.",
+      "notes": "Do not confuse the Marketing API with separately priced transactional email or SMS products."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Audiences, campaigns and activity/analytics; feature access follows plan."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Vendor documentation provides a documentation-search MCP at https://mailchimp.com/developer/_mcp/server. This is not evidence of an account-data/action MCP for Mailchimp Marketing.",
+      "scope": "docs_or_developer_only"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://mailchimp.com/developer/marketing/api-concepts/authentication",
+        "title": "Authentication",
+        "supports": [
+          "API keys versus OAuth for own-account versus third-party use",
+          "Basic/Bearer transport and role restrictions"
+        ]
+      },
+      {
+        "url": "https://mailchimp.com/developer/marketing/build/get-started/create-an-account",
+        "title": "Create an account",
+        "supports": [
+          "Self-service account/key path",
+          "Plan-dependent Marketing API features"
+        ]
+      },
+      {
+        "url": "https://mailchimp.com/pricing/marketing/",
+        "title": "Mailchimp Pricing Plans",
+        "supports": [
+          "Free Marketing plan exists"
+        ]
+      },
+      {
+        "url": "https://mailchimp.com/marketing/build/ai-tools/mcp-server",
+        "title": "MCP server",
+        "supports": [
+          "Official documentation-only MCP server"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "brevo",
+    "name": "Brevo",
+    "category": "Marketing & analytics",
+    "description": "Transactional messaging, marketing campaigns, contacts and CRM.",
+    "auth_methods": [
+      "API key",
+      "OAuth 2.0 authorization code",
+      "OAuth 2.0 client credentials"
+    ],
+    "auth_notes": "API keys use the api-key header. OAuth supports end-user authorization and scoped short-lived machine-to-machine tokens. Private OAuth apps are internal; public OAuth apps require Brevo review.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Separate sandbox not established in reviewed sources.",
+      "production": "Free email API entry exists; normal sender/domain setup and product limits still apply.",
+      "plan_gate": "Free email API tier is advertised; SMS/WhatsApp and higher-volume features are not implied free.",
+      "approval_gate": "Private OAuth apps work immediately; public OAuth apps need review.",
+      "notes": "An API key is sufficient for an own-account prototype, while public customer onboarding has a separate OAuth review gate."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks",
+        "SMTP"
+      ],
+      "breadth": "Contacts/lists, transactional and marketing email, campaigns, CRM deals/companies/tasks, SMS and WhatsApp surfaces."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Brevo documents an account-action MCP at https://mcp.brevo.com/v1/brevo/mcp authenticated with an MCP token. It is separate from the developer-documentation MCP.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developers.brevo.com/docs/api-key-authentication",
+        "title": "API key authentication",
+        "supports": [
+          "Self-service API key creation and header"
+        ]
+      },
+      {
+        "url": "https://developers.brevo.com/docs/authentication-schemes",
+        "title": "Authentication schemes",
+        "supports": [
+          "API key and OAuth alternatives",
+          "Private versus public OAuth review"
+        ]
+      },
+      {
+        "url": "https://developers.brevo.com/docs/oauth-m2m-authentication",
+        "title": "Machine-to-machine (M2M)",
+        "supports": [
+          "Client credentials flow"
+        ]
+      },
+      {
+        "url": "https://www.brevo.com/features/email-api/",
+        "title": "Free Email API for Developers",
+        "supports": [
+          "Free API entry and REST/SMTP/webhooks",
+          "Multichannel scope"
+        ]
+      },
+      {
+        "url": "https://developers.brevo.com/docs/mcp-protocol",
+        "title": "Brevo MCP Server",
+        "supports": [
+          "Official account-action MCP and token setup"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "sendgrid",
+    "name": "SendGrid",
+    "category": "Marketing & analytics",
+    "description": "Programmable email delivery, templates and delivery events.",
+    "auth_methods": [
+      "API key"
+    ],
+    "auth_notes": "REST calls use Bearer API keys created in the console. Some services accept Basic authentication with the literal username apikey and the API key as password, not the account password. Account 2FA is required.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "Mail Send sandbox mode validates request shape without delivering mail, generating delivery events or consuming credits. It is not a full delivery simulator.",
+      "production": "Sending requires sender/domain setup and an eligible account; ongoing sending after the trial needs a paid plan.",
+      "plan_gate": "Current pricing describes a 60-day Email API trial rather than a permanent free sending plan.",
+      "approval_gate": "Self-service trial/key creation is documented; account-specific anti-abuse eligibility was not tested.",
+      "notes": "No account was created. Sandbox mode can validate payload structure, not deliverability or template content."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "SMTP",
+        "Webhooks"
+      ],
+      "breadth": "Email send, templates, sender/domain setup, API keys and delivery/engagement events."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Twilio hosts https://mcp.twilio.com/docs and explicitly indexes SendGrid docs. It is documentation-only, does not connect to accounts and does not execute API calls. A SendGrid account-action MCP was not confirmed.",
+      "scope": "docs_or_developer_only"
+    },
+    "verdict": "conditional",
+    "blocker": "Time-limited trial and sender verification constrain a no-paid-account prototype; sandbox does not validate actual delivery.",
+    "evidence": [
+      {
+        "url": "https://www.twilio.com/docs/sendgrid/for-developers/sending-email/authentication",
+        "title": "Authentication",
+        "supports": [
+          "API-key Bearer and service-specific Basic authentication",
+          "Console key path and 2FA"
+        ]
+      },
+      {
+        "url": "https://www.twilio.com/en-us/products/email-api/pricing.md",
+        "title": "Start sending with a free SendGrid Email API trial",
+        "supports": [
+          "60-day free trial and paid continuation"
+        ]
+      },
+      {
+        "url": "https://www.twilio.com/docs/sendgrid/for-developers/sending-email/sandbox-mode",
+        "title": "Sandbox Mode",
+        "supports": [
+          "Validation-only testing with no sends/events/credits"
+        ]
+      },
+      {
+        "url": "https://www.twilio.com/docs/sendgrid",
+        "title": "Twilio SendGrid",
+        "supports": [
+          "Email API and sender/domain setup surface"
+        ]
+      },
+      {
+        "url": "https://www.twilio.com/docs/ai/mcp",
+        "title": "Twilio MCP server",
+        "supports": [
+          "Official docs MCP includes SendGrid",
+          "No account access or API execution"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "postmark",
+    "name": "Postmark",
+    "category": "Marketing & analytics",
+    "description": "Transactional and broadcast email delivery with delivery diagnostics.",
+    "auth_methods": [
+      "Server API token",
+      "Account API token"
+    ],
+    "auth_notes": "Server tokens authorize server-specific email operations; account tokens authorize account-level operations. SMTP tokens are a separate sending credential.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Server sandbox mode is documented; the free developer plan also allows limited test email use.",
+      "production": "Before manual account approval, sending is restricted to verified owned domains and the documented sink address. Broader recipients require approval.",
+      "plan_gate": "Free developer plan includes limited monthly test emails; higher sending volumes require paid capacity.",
+      "approval_gate": "Manual review of new accounts is required before unrestricted recipient sending; only the Account Owner can request approval.",
+      "notes": "An API prototype can use templates, inbound processing and other API features while approval is pending."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "SMTP",
+        "Webhooks"
+      ],
+      "breadth": "Send/batch send, templates, messages, bounces, delivery stats, domains, sender signatures and webhooks."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Postmark Labs publishes an experimental server linked by the vendor to https://github.com/ActiveCampaign/postmark-mcp. The documented implementation uses a Postmark server token and one server.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Own-domain/sandbox development is possible, but broad production sending requires manual approval and sending limits apply.",
+    "evidence": [
+      {
+        "url": "https://postmarkapp.com/support/article/1002-getting-started-with-postmark",
+        "title": "Getting started with Postmark",
+        "supports": [
+          "Free developer test-email allowance",
+          "Sender and domain verification"
+        ]
+      },
+      {
+        "url": "https://postmarkapp.com/support/article/1008-what-are-the-account-and-server-api-tokens",
+        "title": "What are the Account and Server API Tokens, and SMTP Tokens?",
+        "supports": [
+          "Separate account/server/SMTP credentials"
+        ]
+      },
+      {
+        "url": "https://postmarkapp.com/developer/",
+        "title": "Introduction | Postmark Developer Documentation",
+        "supports": [
+          "API breadth and SMTP/webhooks"
+        ]
+      },
+      {
+        "url": "https://postmarkapp.com/support/article/1084-how-does-the-account-approval-process-work",
+        "title": "How does the account approval process work?",
+        "supports": [
+          "Restricted recipients before manual account approval",
+          "API development possible while waiting"
+        ]
+      },
+      {
+        "url": "https://postmarkapp.com/developer/user-guide/sandbox-mode/server-sandbox-mode/",
+        "title": "Server sandbox mode",
+        "supports": [
+          "Dedicated server sandbox capability"
+        ]
+      },
+      {
+        "url": "https://postmarkapp.com/blog/postmark-labs-teaching-ai-to-speak-email-with-our-new-mcp-server",
+        "title": "Postmark MCP Server",
+        "supports": [
+          "Vendor ownership and experimental single-server MCP"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "resend",
+    "name": "Resend",
+    "category": "Marketing & analytics",
+    "description": "Email delivery APIs and email infrastructure for developers.",
+    "auth_methods": [
+      "API key"
+    ],
+    "auth_notes": "REST uses Authorization: Bearer with an API key. The official hosted MCP also supports an OAuth sign-in route.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No separate sandbox mode; vendor supplies test recipient addresses that simulate delivery, bounce, complaint and suppression outcomes.",
+      "production": "Free accounts have immediate production access with no production approval, after domain verification and API key setup.",
+      "plan_gate": "Free-forever tier exists, with email/feature limits; paid capacity is separate.",
+      "approval_gate": "No production approval required according to the explicit vendor policy. DNS domain verification is still required for the sending domain.",
+      "notes": "Test event simulation is not an isolated production sandbox."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Email operations; test event simulation; broader resources are exposed in the API reference."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official remote MCP at https://mcp.resend.com/mcp and a local resend-mcp implementation are documented by Resend.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://resend.com/docs/api-reference/",
+        "title": "Introduction",
+        "supports": [
+          "REST and Bearer API-key authentication"
+        ]
+      },
+      {
+        "url": "https://resend.com/pricing",
+        "title": "Resend Pricing",
+        "supports": [
+          "Free-forever tier and feature limits"
+        ]
+      },
+      {
+        "url": "https://resend.com/docs/knowledge-base/does-resend-require-production-approval",
+        "title": "Does Resend require production approval?",
+        "supports": [
+          "Immediate free-account production access",
+          "No sandbox or approval; domain verification still needed"
+        ]
+      },
+      {
+        "url": "https://resend.com/docs/dashboard/emails/send-test-emails",
+        "title": "Send Test Emails",
+        "supports": [
+          "Test recipient event simulation"
+        ]
+      },
+      {
+        "url": "https://resend.com/docs/mcp-server",
+        "title": "MCP Server",
+        "supports": [
+          "Official hosted and local MCP; OAuth route"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "customer-io",
+    "name": "Customer.io",
+    "category": "Marketing & analytics",
+    "description": "Event-driven customer messaging, automations and customer data routing.",
+    "auth_methods": [
+      "Private API key (Bearer)",
+      "Public API key (limited client ingestion)",
+      "Legacy Track site ID and API key (HTTP Basic)",
+      "Legacy App API key (Bearer)"
+    ],
+    "auth_notes": "Current private sk_ keys grant server-side API access and use Bearer authentication; public keys are limited to client-side identify/track. Legacy Track credentials use Basic site_id:key. Region and integration-source association matter.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "A dedicated isolated sandbox was not confirmed. Trial accounts support limited test messages; keep test data separate.",
+      "production": "Self-service 14-day trial supports evaluation. Ongoing production requires an eligible paid plan and channel setup.",
+      "plan_gate": "Essentials, Premium and Enterprise plans; certain integrations are higher-plan-only.",
+      "approval_gate": "MCP must be enabled by an account admin. Additional sensitive-data/live-write controls apply; ordinary API account permissions still apply.",
+      "notes": "The vendor updated API key docs in November 2026. Treat old Track credentials as legacy rather than the only supported path."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "App API: messages, people, segments, automations and broadcasts; Track/Pipelines: identify and event/data routing."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Customer.io hosts https://mcp.customer.io/mcp with an EU alternative. Admin enablement is required; per-user OAuth and read/write/live/sensitive scopes govern access.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Trial-limited evaluation, paid production plan, and admin enablement for MCP; live-message permissions remain separate.",
+    "evidence": [
+      {
+        "url": "https://docs.customer.io/managing-credentials",
+        "title": "Manage your API credentials",
+        "supports": [
+          "Current public/private keys and legacy Track/App credentials",
+          "Bearer versus Basic, regions and source restrictions"
+        ]
+      },
+      {
+        "url": "https://docs.customer.io/integrations/api/app/",
+        "title": "App API Reference",
+        "supports": [
+          "Bearer private-key authentication and messaging/resource breadth"
+        ]
+      },
+      {
+        "url": "https://docs.customer.io/integrations/api/customerio-apis",
+        "title": "About Customer.io APIs",
+        "supports": [
+          "App/Track/Pipelines API roles"
+        ]
+      },
+      {
+        "url": "https://docs.customer.io/accounts/billing/plan-features/",
+        "title": "Plan features",
+        "supports": [
+          "14-day trial and plan-specific features"
+        ]
+      },
+      {
+        "url": "https://docs.customer.io/ai/mcp/get-started/",
+        "title": "Get started with the Customer.io MCP server",
+        "supports": [
+          "Official hosted MCP",
+          "Admin enablement and scoped user access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "kit-convertkit",
+    "name": "Kit (ConvertKit)",
+    "category": "Marketing & analytics",
+    "description": "Creator newsletters, subscriber lists and marketing automations.",
+    "auth_methods": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Use V4 X-Kit-Api-Key for individual automation/testing; public integrations must use OAuth. Bulk and purchase endpoints require OAuth. V3 is legacy; V4 is the stable choice.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Personal V4 keys support prototyping; a separate isolated sandbox was not confirmed.",
+      "production": "Any-plan API key generation is explicitly documented, but public apps require OAuth and full API eligibility depends on account features.",
+      "plan_gate": "Help-center API guidance says creators on any plan can generate V3/V4 keys. Official account-data MCP requires a paid Creator or Creator Pro plan.",
+      "approval_gate": "Public app/listing requires OAuth; detailed listing approval workflow not audited here.",
+      "notes": "The general API overview refers to eligible plans; the more specific API-key help page explicitly allows keys on any plan. Do not transfer this any-plan finding to paid-only MCP."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Subscribers, tags, custom fields, broadcasts, sequences and purchases; OAuth-only bulk/purchase operations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Kit hosts an account-action MCP at https://app.kit.com/mcp, separate from its Docs MCP. It is paid-plan-only and drafts broadcasts but does not schedule/send them.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Own-account key prototype is accessible, but multi-user/public integration needs OAuth; MCP is paid-only and some endpoints reject API keys.",
+    "evidence": [
+      {
+        "url": "https://developers.kit.com/api-reference/authentication",
+        "title": "API Authentication",
+        "supports": [
+          "API-key/OAuth split",
+          "OAuth-only bulk and purchase endpoints"
+        ]
+      },
+      {
+        "url": "https://developers.kit.com/kit-app-store/authentication",
+        "title": "App Authentication",
+        "supports": [
+          "OAuth required for live/public apps"
+        ]
+      },
+      {
+        "url": "https://developers.kit.com/api-reference/overview",
+        "title": "API Overview",
+        "supports": [
+          "V4 stable API and resource breadth",
+          "Plan eligibility caveat"
+        ]
+      },
+      {
+        "url": "https://help.kit.com/en/articles/9902901-kit-api-overview",
+        "title": "Kit API overview",
+        "supports": [
+          "Creators on any plan can generate API keys",
+          "Individual-use keys versus public OAuth apps"
+        ]
+      },
+      {
+        "url": "https://developers.kit.com/mcp/kit-mcp",
+        "title": "Kit MCP",
+        "supports": [
+          "Official paid-plan-only account MCP",
+          "Broadcast drafts only"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "activecampaign",
+    "name": "ActiveCampaign",
+    "category": "Marketing & analytics",
+    "description": "Contact management, email campaigns and automations.",
+    "auth_methods": [
+      "API key"
+    ],
+    "auth_notes": "Each account user has an API URL and API key; send the key in the Api-Token header. Deleting that user can break integrations using their key.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "Free developer sandbox exists but requires a request form and follow-up; it is not instant self-service.",
+      "production": "A trial account works with the API. Continued production depends on an active paid account and relevant product features.",
+      "plan_gate": "Trial supported; free developer sandbox has contact/send/user limits and no SMS credits for automations.",
+      "approval_gate": "Dedicated sandbox is request-gated. Corporate AI-tool admins may need to approve MCP connections.",
+      "notes": "An ordinary trial is the lower-friction path for API evaluation; do not describe the requested developer sandbox as instantly obtainable."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Contact sync, campaigns, automations, lists, tags and custom fields."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "ActiveCampaign documents a per-account Remote MCP URL under Settings > Developer. Branding must be on for the URL to appear; the server supports account actions.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Trial lifetime and paid production access; the free long-lived developer sandbox requires vendor follow-up.",
+    "evidence": [
+      {
+        "url": "https://developers.activecampaign.com/reference/authentication",
+        "title": "Authentication",
+        "supports": [
+          "Api-Token header and per-user key"
+        ]
+      },
+      {
+        "url": "https://help.activecampaign.com/hc/en-us/articles/207317590-Getting-started-with-the-API",
+        "title": "Getting started with the API",
+        "supports": [
+          "Trial accounts work",
+          "REST resource breadth and user-bound credentials"
+        ]
+      },
+      {
+        "url": "https://developers.activecampaign.com/page/developer-sandbox-accounts",
+        "title": "Developer Sandbox Accounts",
+        "supports": [
+          "Free requested sandbox, limits and expiry"
+        ]
+      },
+      {
+        "url": "https://help.activecampaign.com/hc/en-us/articles/22566179229596-Get-started-with-the-ActiveCampaign-MCP-Server",
+        "title": "Get started with the ActiveCampaign MCP Server",
+        "supports": [
+          "Official account-action MCP",
+          "Branding and organization setup conditions"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "google-ads",
+    "name": "Google Ads",
+    "category": "Marketing & analytics",
+    "description": "Programmatic advertising account management and reporting.",
+    "auth_methods": [
+      "OAuth 2.0 user credentials",
+      "Service account"
+    ],
+    "auth_notes": "OAuth credentials must belong to the Cloud project with the API enabled/access level. Current body text says developer tokens were sunset September 9, 2026; some page summaries still mention them.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "Enabling the API grants Cloud-project Test access for test accounts.",
+      "production": "Production access requires Explorer or higher project access; Explorer/Basic may be automatically approved, while Standard involves review. Ad serving itself can spend money.",
+      "plan_gate": "No paid SaaS subscription prerequisite established for test access; advertising spend is separate.",
+      "approval_gate": "Production access upgrade required; Basic also requires brand verification; Standard targets high-volume users.",
+      "notes": "Current access-level and migration-page body text supersede stale summaries that still describe developer tokens. No credentials or ads were executed."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Reporting and account/campaign resources; permissions/access level constrain management, planning and billing-related services."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Google publishes the Google Ads MCP server; local ADC supports OAuth user/service accounts and the guide covers read plus limited asset/video/label mutations.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Immediate test access does not grant production access; account permissions and Cloud-project access upgrade are needed.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels",
+        "title": "Access levels and permissible use",
+        "supports": [
+          "Test versus production access levels",
+          "Project-based access and production review/verification"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/google-ads/api/docs/api-policy/developer-token",
+        "title": "Developer token",
+        "supports": [
+          "September 9, 2026 token sunset",
+          "Cloud-project access migration and stale-summary conflict"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/google-ads/api/docs/oauth/overview",
+        "title": "Use OAuth 2.0 to access Google Ads API",
+        "supports": [
+          "User/service-account OAuth and project binding"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/google-ads/api/docs/start",
+        "title": "Get started",
+        "supports": [
+          "REST/client-library entry and setup"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server",
+        "title": "Google Ads MCP server: Developer integration guide",
+        "supports": [
+          "Official MCP and supported authentication/capabilities"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "meta-marketing-api",
+    "name": "Meta Marketing API",
+    "category": "Marketing & analytics",
+    "description": "Manage Meta campaigns, creatives and advertising reporting.",
+    "auth_methods": [
+      "OAuth 2.0 access token"
+    ],
+    "auth_notes": "Requires a Meta developer account/app and an active ad account. Access-token permissions and the app user role determine scope.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "Standard app access supports app-role users for development. A separate isolated advertising sandbox was not established in the reviewed sources.",
+      "production": "Third-party/non-role users generally require Advanced Access and business verification/review. Ad account billing is separate from API documentation access.",
+      "plan_gate": "An active ad account is needed for ads workflows; no paid developer subscription was established. Ad delivery spends advertising budget.",
+      "approval_gate": "Standard versus Advanced access applies; Advanced requires business verification and applicable app review. The Ads MCP has its own ads_mcp_management permission and rollout conditions.",
+      "notes": "Do not equate developer app creation or MCP availability with permission to manage arbitrary customer ad accounts."
+    },
+    "api": {
+      "styles": [
+        "Graph API"
+      ],
+      "breadth": "Campaigns, ad sets, ads/creatives and reporting; official Ads MCP also covers catalogs and signals."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Meta hosts the Ads MCP server at https://mcp.facebook.com/ads. The vendor overview and July 2026 launch post establish ownership and permission-gated access.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Development can be scoped to app-role users, but customer distribution and some Ads MCP access require permission review/business verification.",
+    "evidence": [
+      {
+        "url": "https://developers.facebook.com/documentation/ads-commerce/marketing-api/",
+        "title": "Marketing API",
+        "supports": [
+          "Graph API advertising surface"
+        ]
+      },
+      {
+        "url": "https://developers.facebook.com/docs/marketing-api/get-started",
+        "title": "Get started with the Marketing API",
+        "supports": [
+          "Developer app and active ad account requirements",
+          "Access tokens"
+        ]
+      },
+      {
+        "url": "https://developers.facebook.com/docs/graph-api/overview/access-levels/",
+        "title": "Access Levels",
+        "supports": [
+          "Standard role-user versus Advanced third-party access",
+          "Business verification and app review"
+        ]
+      },
+      {
+        "url": "https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview",
+        "title": "Ads MCP Server",
+        "supports": [
+          "Official hosted account-action MCP"
+        ]
+      },
+      {
+        "url": "https://developers.facebook.com/blog/post/2026/07/16/meta-ads-mcp-server/",
+        "title": "Meta ads MCP server is now available for developers",
+        "supports": [
+          "MCP developer setup, permission and gradual rollout"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "linkedin-marketing-api",
+    "name": "LinkedIn Marketing API",
+    "category": "Marketing & analytics",
+    "description": "LinkedIn advertising campaign management and reporting.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code"
+    ],
+    "auth_notes": "Three-legged OAuth authorizes member access; advertising products and account permissions are separate from having a LinkedIn developer app.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "The reviewed access-tier page says API calls operate on production data and describes limited test ad-account creation after Development access. Do not assume an open isolated sandbox.",
+      "production": "Advertising API access requires a reviewed application and supported established-business/use-case qualifications. Scaling to Standard has another discretionary review.",
+      "plan_gate": "No paid developer subscription was established; approval and ad-account access are the documented gates.",
+      "approval_gate": "Development tier itself requires application review. Private audience-related APIs need additional approval; Standard is discretionary.",
+      "notes": "The detailed tier page fetched is versioned 2024-11 and warns of an older API sunset. Current vendor product page independently confirms Development review; exact numeric tier limits are intentionally not used."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Campaigns, creatives and ad analytics; audience-related APIs can be private/additionally gated."
+    },
+    "mcp": {
+      "status": "not_confirmed",
+      "notes": "No vendor-owned LinkedIn Marketing account-action MCP was established from reviewed primary sources. Third-party search results do not prove an official server.",
+      "scope": "not_confirmed"
+    },
+    "verdict": "conditional",
+    "blocker": "Vendor approval is required before even Development-tier advertising API use; not an immediate self-service integration.",
+    "evidence": [
+      {
+        "url": "https://developer.linkedin.com/product-catalog/marketing/advertising-api",
+        "title": "LinkedIn Advertising API",
+        "supports": [
+          "Campaign/creative/analytics breadth",
+          "Development review and supported-business qualification",
+          "Private API additional approval"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/linkedin/marketing/integrations/marketing-tiers?view=li-lms-2024-11",
+        "title": "LinkedIn Marketing API Program Access Tiers",
+        "supports": [
+          "Production-data caveat and discretionary tiers",
+          "Versioned-page freshness caveat"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow",
+        "title": "LinkedIn 3-Legged OAuth Flow",
+        "supports": [
+          "OAuth authorization-code authentication"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "tiktok-marketing-api",
+    "name": "TikTok Marketing API",
+    "category": "Marketing & analytics",
+    "description": "TikTok advertising campaign operations and reporting.",
+    "auth_methods": [
+      "OAuth-style advertiser authorization code and access token"
+    ],
+    "auth_notes": "Business/developer account and approved app precede advertiser authorization; exchange auth_code with app_id/secret for a long-term token.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "Legacy sandbox supports mock reporting and most endpoints, but the current vendor page says sandbox accounts will be deprecated December 1, 2026.",
+      "production": "Developer profile and app approval plus advertiser authorization are required for direct Marketing API production use.",
+      "plan_gate": "No paid developer subscription prerequisite established; real advertising spend is separate.",
+      "approval_gate": "Developer profile must be approved; app permissions are reviewed, and extra Accounts API scope has an additional application.",
+      "notes": "Official MCP is a separate lower-friction route: the vendor says no developer account/app or extra MCP permissions application is needed, but a TikTok for Business account and authorization are still required."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Advertising management and reporting, with app-selected permission scope."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "TikTok documents hosted Business MCP flat/layered endpoints at business-api.tiktok.com/open_mcp/tt-ads-mcp-flat and /tt-ads-mcp-layer, available to Business-account users.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Direct API needs reviewed developer/app access. The legacy sandbox is near deprecation; MCP availability does not remove direct API review.",
+    "evidence": [
+      {
+        "url": "https://business-api.tiktok.com/portal/docs/marketing-api-get-started/v1.3",
+        "title": "Get started for Marketing API",
+        "supports": [
+          "Account/developer/app workflow"
+        ]
+      },
+      {
+        "url": "https://business-api.tiktok.com/portal/docs/create-a-developer-app/v1.3",
+        "title": "Create a developer app",
+        "supports": [
+          "Developer approval and app permission review"
+        ]
+      },
+      {
+        "url": "https://business-api.tiktok.com/portal/docs/marketing-api-authorization/v1.3",
+        "title": "Marketing API Authorization",
+        "supports": [
+          "Advertiser consent and authorization-code token exchange"
+        ]
+      },
+      {
+        "url": "https://business-api.tiktok.com/portal/docs/sandbox-accounts/v1.3",
+        "title": "Sandbox accounts",
+        "supports": [
+          "Mock sandbox capability",
+          "December 1, 2026 deprecation notice"
+        ]
+      },
+      {
+        "url": "https://business-api.tiktok.com/portal/docs/how-to-connect-to-tiktok-for-business-mcp-server/v1.3",
+        "title": "How to connect a ready-made agent to TikTok for Business MCP Server",
+        "supports": [
+          "Official hosted MCP",
+          "No developer app needed for MCP route"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "youtube-data-api",
+    "name": "YouTube Data API",
+    "category": "Marketing & analytics",
+    "description": "Search and manage YouTube video, channel and playlist resources.",
+    "auth_methods": [
+      "API key",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "API keys cover public-data requests. Private data and resource inserts/updates/deletes require OAuth user authorization. Do not assume service-account access from generic Google credential guidance.",
+    "access": {
+      "credential_path": "unknown",
+      "sandbox": "No separate sandbox established. Public-data requests and a dedicated test channel/project are practical prototype scopes, with writes touching real resources.",
+      "production": "Enable API in a Cloud project and create the applicable credentials; public reads have a default quota. Broader OAuth distribution and higher quota may need verification/audit.",
+      "plan_gate": "Default quota is documented, but an explicit current no-payment/billing statement was not established from the reviewed primary pages. Do not infer free access solely from credential setup.",
+      "approval_gate": "Requests for quota above default require a compliance audit. Other upload/OAuth restrictions were not exhaustively audited.",
+      "notes": "Current quota docs describe separate search/upload daily buckets plus a bucket for other methods, so old fixed per-search-unit assumptions should not be reused."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Videos, channels, playlists, comments, captions and live-streaming resources."
+    },
+    "mcp": {
+      "status": "not_confirmed",
+      "notes": "A vendor-owned YouTube Data API account-action MCP was not confirmed. Third-party YouTube servers are not treated as official.",
+      "scope": "not_confirmed"
+    },
+    "verdict": "conditional",
+    "blocker": "Self-service credential/default-quota setup is documented, but no-payment billing eligibility was not explicitly verified; OAuth distribution/upload restrictions need endpoint-specific review.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/youtube/registering_an_application",
+        "title": "Obtaining authorization credentials",
+        "supports": [
+          "Cloud project and API-key/OAuth credential creation"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/youtube/v3/guides/authentication",
+        "title": "Authentication",
+        "supports": [
+          "Public API keys versus OAuth for private data/writes"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/youtube/data/reference/rest",
+        "title": "API Reference",
+        "supports": [
+          "REST resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/youtube/data/guides/quota_and_compliance_audits",
+        "title": "Quota and Compliance Audits",
+        "supports": [
+          "Default quota and higher-quota audit"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/youtube/data/determine_quota_cost",
+        "title": "Quota Calculator",
+        "supports": [
+          "Current quota structure and per-method limits"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "category": "Marketing & analytics",
+    "description": "Community content and approved app/bot workflows.",
+    "auth_methods": [
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Reddit Data API clients must use a registered OAuth token and descriptive User-Agent. Registering an app/profile is not equivalent to data-access approval.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "No unrestricted Data API sandbox confirmed. Devvit is the preferred development route for supported noncommercial apps, but does not waive approval/policy restrictions.",
+      "production": "The current Responsible Builder Policy requires explicit approval before accessing Reddit data through the API; commercial use additionally needs explicit written approval.",
+      "plan_gate": "Eligible approved use cases may have free access limits. This is not an unconditional free self-service Data API.",
+      "approval_gate": "Explicit access approval is mandatory; moderation apps also face Devvit review and purpose restrictions.",
+      "notes": "The May 2026 Data API wiki warns some legacy resources are stale. The October 2026 Responsible Builder Policy is used for access conclusions."
+    },
+    "api": {
+      "styles": [
+        "HTTP API"
+      ],
+      "breadth": "Registered/approved data access and Devvit client resources for posts, comments, users and subreddits; scope depends on accepted use case."
+    },
+    "mcp": {
+      "status": "not_confirmed",
+      "notes": "No Reddit-owned account-action MCP established from reviewed primary sources.",
+      "scope": "not_confirmed"
+    },
+    "verdict": "conditional",
+    "blocker": "Explicit approval is required before Data API use, even for a noncommercial build; commercial use needs written approval.",
+    "evidence": [
+      {
+        "url": "https://support.reddithelp.com/hc/en-us/articles/16160319875092-Reddit-Data-API-Wiki",
+        "title": "Reddit Data API Wiki",
+        "supports": [
+          "OAuth/User-Agent and eligible free rate limits",
+          "Legacy-documentation warning"
+        ]
+      },
+      {
+        "url": "https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy",
+        "title": "Responsible Builder Policy",
+        "supports": [
+          "Explicit prior access approval",
+          "Commercial written approval and Devvit scope"
+        ]
+      },
+      {
+        "url": "https://developers.reddit.com/app-registration",
+        "title": "App Registration",
+        "supports": [
+          "Developer-profile registration is a separate prerequisite"
+        ]
+      },
+      {
+        "url": "https://developers.reddit.com/docs/api/redditapi/classes/RedditAPIClient",
+        "title": "RedditAPIClient",
+        "supports": [
+          "Developer API resource breadth"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "x-api",
+    "name": "X API",
+    "category": "Marketing & analytics",
+    "description": "Read and manage X posts, users and social resources.",
+    "auth_methods": [
+      "OAuth 1.0a user context",
+      "OAuth 2.0 authorization code with PKCE",
+      "App-only Bearer token"
+    ],
+    "auth_notes": "App-only tokens cover permitted public reads; user OAuth is needed for actions/private user context. Credentials come from the X Developer Console. Enterprise-only Basic auth is not the recommended general integration path.",
+    "access": {
+      "credential_path": "paid_self_serve",
+      "sandbox": "No free isolated sandbox was confirmed. Endpoint operations use the pay-per-use production package.",
+      "production": "Pay-per-use requests consume prepaid credits with per-endpoint/per-resource charges.",
+      "plan_gate": "Current docs use credit-based pay-per-use, not the older fixed Basic/Pro subscription model. Promotional credits require payment-card/purchase conditions and are not a no-payment free tier.",
+      "approval_gate": "Developer app and product enrollment required; separate Enterprise access exists for higher-volume needs.",
+      "notes": "Public fetches of docs.x.com failed, but the same primary pages were successfully read in the browser. No developer-console sign-in or purchase occurred."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "Posts/search, users, timelines, bookmarks, lists, direct-message-related resources and activity events, subject to scopes and paid access."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "X documents an account-action MCP at https://api.x.com/mcp, with native OAuth discovery or read-only app Bearer access, plus a separate Docs MCP at https://docs.x.com/mcp.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Paid API credits/access required; no paid credentials were obtained for this research. This is not a claim that a toolkit cannot be built.",
+    "evidence": [
+      {
+        "url": "https://docs.x.com/overview",
+        "title": "X Developer Platform",
+        "supports": [
+          "API resource breadth and pay-per-use model; browser-read primary source"
+        ]
+      },
+      {
+        "url": "https://docs.x.com/fundamentals/authentication/overview",
+        "title": "Authentication",
+        "supports": [
+          "OAuth 1.0a, OAuth 2.0 PKCE and app-only credentials; browser-read primary source"
+        ]
+      },
+      {
+        "url": "https://docs.x.com/x-api/getting-started/pricing",
+        "title": "X API pay-per-usage pricing and credits",
+        "supports": [
+          "Prepaid per-use charges and incentive conditions; browser-read primary source"
+        ]
+      },
+      {
+        "url": "https://docs.x.com/tools/mcp",
+        "title": "MCP servers for the X API and X developer docs",
+        "supports": [
+          "Official hosted action MCP and separate Docs MCP; browser-read primary source"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "buffer",
+    "name": "Buffer",
+    "category": "Marketing & analytics",
+    "description": "Social post scheduling, queues, channels and ideas.",
+    "auth_methods": [
+      "API key",
+      "OAuth 2.0 (MCP connection)"
+    ],
+    "auth_notes": "The current direct API is GraphQL, using an API key as a Bearer token from Settings > API. Official MCP clients generally connect through OAuth.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No separate sandbox established; API acts on the connected Buffer account. Keep tests to reads/ideas/drafts.",
+      "production": "API access is available on current plans including Free, within plan-specific key/client and request limits.",
+      "plan_gate": "Free plan includes API access; higher plans increase limits. Social network/account features can impose additional constraints.",
+      "approval_gate": "Own-account API key path is self-service; public-app distribution details were not fully audited.",
+      "notes": "Current docs supersede older claims that Buffer no longer offers an API or only exposes a legacy REST API."
+    },
+    "api": {
+      "styles": [
+        "GraphQL"
+      ],
+      "breadth": "Posts create/delete/retrieve, ideas, account/organization/channel retrieval; MCP adds queue/draft/post-analytics operations as documented."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Buffer runs https://mcp.buffer.com/mcp and documents its tools, security and OAuth connection.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://developers.buffer.com/guides/getting-started.html",
+        "title": "Quick Start",
+        "supports": [
+          "Current GraphQL API",
+          "Self-service account/API-key setup and resource scope"
+        ]
+      },
+      {
+        "url": "https://developers.buffer.com/guides/authentication.html",
+        "title": "Authentication",
+        "supports": [
+          "Bearer API key from account settings"
+        ]
+      },
+      {
+        "url": "https://buffer.com/api",
+        "title": "Buffer API | Build with Buffer",
+        "supports": [
+          "Free plan API eligibility and plan-specific limits"
+        ]
+      },
+      {
+        "url": "https://developers.buffer.com/guides/integrations/mcp.html",
+        "title": "MCP server",
+        "supports": [
+          "Official hosted account-action MCP and OAuth"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "hootsuite",
+    "name": "Hootsuite",
+    "category": "Marketing & analytics",
+    "description": "Social publishing, advocacy and inbox integrations.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code"
+    ],
+    "auth_notes": "An approved Developer account/app provides a REST client ID/secret; authorize a Hootsuite user and request offline scope for refresh support.",
+    "access": {
+      "credential_path": "review_gated",
+      "sandbox": "No isolated API sandbox established. API and dashboard operate on the same data.",
+      "production": "REST access is free for approved developers, but requires an active Hootsuite user and developer account; user product entitlement is separate.",
+      "plan_gate": "REST API fee is not charged to approved developers. Ow.ly API is Enterprise-only; other product/account gates remain.",
+      "approval_gate": "Developer account approval required. Public App Directory distribution has review; non-public apps do not need directory review.",
+      "notes": "Free REST API access must not be described as a free Hootsuite product account. Publishing API documentation lists unsupported networks."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "Publishing/scheduling, user provisioning, Amplify advocacy, Inbox 2.0; Ow.ly shortening is Enterprise-only."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Hootsuite lists official product MCP endpoints including https://mcp.hootsuite.com/perch, /nest, /lumen and /parliament; account/product access still applies.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Developer approval and active product account required; some sub-APIs are Enterprise-only and network coverage is limited.",
+    "evidence": [
+      {
+        "url": "https://developer.hootsuite.com/docs/getting-started-with-the-rest-api",
+        "title": "Getting Started",
+        "supports": [
+          "Approved developer credential path and OAuth code flow"
+        ]
+      },
+      {
+        "url": "https://developer.hootsuite.com/docs/api-authentication",
+        "title": "Authentication",
+        "supports": [
+          "OAuth authentication details"
+        ]
+      },
+      {
+        "url": "https://developer.hootsuite.com/docs/faq",
+        "title": "FAQ",
+        "supports": [
+          "REST free only for approved developers",
+          "Public directory review distinction and Ow.ly Enterprise gate"
+        ]
+      },
+      {
+        "url": "https://developer.hootsuite.com/docs/api-overview",
+        "title": "Overview",
+        "supports": [
+          "Same-data production behavior and API breadth",
+          "Unsupported publishing networks"
+        ]
+      },
+      {
+        "url": "https://www.hootsuite.com/integrations/mcp",
+        "title": "Hootsuite MCP Servers",
+        "supports": [
+          "Official product MCP endpoints"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "google-analytics",
+    "name": "Google Analytics",
+    "category": "Marketing & analytics",
+    "description": "GA4 reporting and property administration.",
+    "auth_methods": [
+      "OAuth 2.0 user credentials",
+      "Service account"
+    ],
+    "auth_notes": "Enable APIs in a Google Cloud project and grant the user/service account access to the GA4 property. ADC is a credential-loading mechanism, not a distinct API-key authentication method.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No separate isolated API sandbox confirmed. Use a dedicated test GA4 property with the required access. UI demo-account availability is not treated as proof of API access.",
+      "production": "Standard GA properties are free; reporting/admin API use requires explicit property permissions and enabled APIs.",
+      "plan_gate": "Standard/free and enterprise property variants have different quotas and features.",
+      "approval_gate": "Existing-property access must be granted by its administrator. Public OAuth app verification may be relevant; detailed distribution review not audited here.",
+      "notes": "A newly created test property may have little/no report data until instrumented. No property was created or connected."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Data API reports plus Admin API accounts/properties, links, custom dimensions/metrics and settings."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Google publishes https://github.com/googleanalytics/google-analytics-mcp. Its official guide says the MCP is read-only for reports and property configuration, not settings mutation.",
+      "scope": "read_only_or_limited"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://support.google.com/analytics/answer/11828307?hl=en",
+        "title": "Google Analytics account training guide and support",
+        "supports": [
+          "Standard Google Analytics is free"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/analytics/devguides/reporting/data/v1/quickstart",
+        "title": "Google Analytics API quickstart",
+        "supports": [
+          "Self-service enablement and user/service-account auth",
+          "Property permissions"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/analytics/devguides/config/admin/v1",
+        "title": "Google Analytics Admin API overview",
+        "supports": [
+          "Admin API breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/analytics/devguides/reporting/data/v1",
+        "title": "Google Analytics Data API overview",
+        "supports": [
+          "Reporting API surface"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/analytics/devguides/MCP",
+        "title": "Try the Google Analytics MCP server",
+        "supports": [
+          "Official repository and read-only scope"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "mixpanel",
+    "name": "Mixpanel",
+    "category": "Marketing & analytics",
+    "description": "Event ingestion, product analysis and data export.",
+    "auth_methods": [
+      "Service account (HTTP Basic)",
+      "Project token (ingestion)",
+      "OAuth 2.0 (MCP)"
+    ],
+    "auth_notes": "Service accounts are recommended for authenticated server APIs; Owner/Admin permission is required to create/manage them. Most client ingestion uses a project token, which is not a secret server credential.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No separate sandbox confirmed. Use a separate test project; ingestion and queries act on real project data.",
+      "production": "Free plan supports limited use and all-plan raw event/profile exports. Report Query API access is documented for paid Growth/Enterprise plans.",
+      "plan_gate": "Query API and Data Pipelines must not be inferred free: the export FAQ places Query API on Growth/Enterprise and Pipelines behind an add-on.",
+      "approval_gate": "Owner/Admin creates service accounts. MCP is on by default for new Free/Growth accounts after August 1, 2026; other accounts require admin enablement.",
+      "notes": "MCP docs mention Free-plan query access limits while the export FAQ says Query API is paid. Treat full report-query capability on Free as unresolved until account-specific confirmation."
+    },
+    "api": {
+      "styles": [
+        "HTTP API"
+      ],
+      "breadth": "Ingestion/import, reports/query, raw export, profiles, Lexicon metadata, privacy requests, feature flags and platform configuration."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Mixpanel hosts https://mcp.mixpanel.com/mcp with EU/India endpoints. OAuth and beta service-account connection modes are documented; role and plan constraints apply.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Free ingestion/export is buildable; complete report-query connectors need paid-plan eligibility or clarification, plus admin-created service credentials.",
+    "evidence": [
+      {
+        "url": "https://docs.mixpanel.com/reference/authentication",
+        "title": "Authentication Methods",
+        "supports": [
+          "Project-token ingestion versus authenticated server APIs"
+        ]
+      },
+      {
+        "url": "https://docs.mixpanel.com/reference/service-accounts",
+        "title": "Service Accounts",
+        "supports": [
+          "Basic authentication and Owner/Admin credential management"
+        ]
+      },
+      {
+        "url": "https://docs.mixpanel.com/reference/overview",
+        "title": "Overview",
+        "supports": [
+          "API family breadth"
+        ]
+      },
+      {
+        "url": "https://docs.mixpanel.com/docs/pricing",
+        "title": "Pricing",
+        "supports": [
+          "Self-service Free plan and feature limits"
+        ]
+      },
+      {
+        "url": "https://docs.mixpanel.com/troubleshooting/exporting-data",
+        "title": "Exporting Data FAQ",
+        "supports": [
+          "All-plan event/profile exports",
+          "Paid Query API and Data Pipelines add-on"
+        ]
+      },
+      {
+        "url": "https://docs.mixpanel.com/docs/mcp",
+        "title": "Mixpanel MCP Server",
+        "supports": [
+          "Official region-aware MCP",
+          "Account-date/admin conditions and Free query-limit caveat"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  },
+  {
+    "id": "amplitude",
+    "name": "Amplitude",
+    "category": "Marketing & analytics",
+    "description": "Event analytics, reports, experiments and product data management.",
+    "auth_methods": [
+      "Project API key",
+      "API key and secret key (HTTP Basic)",
+      "OAuth 2.0 (MCP)"
+    ],
+    "auth_notes": "Export and Dashboard REST use Basic api_key:secret_key; HTTP V2/Batch ingestion uses API key in JSON. Other API families can have different credentials. Managers/Admins manage project keys.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "No isolated sandbox confirmed. A separate test project can separate test events/content from production.",
+      "production": "Free plan has no credit-card requirement or time limit, with volume/feature limits. API credentials and roles still constrain each endpoint.",
+      "plan_gate": "Free includes MCP, but advanced capabilities and volumes depend on plan. Do not infer all API families/features are unrestricted.",
+      "approval_gate": "No general vendor approval established for a self-owned free project; Managers/Admins must manage keys, and MCP writes depend on role permissions.",
+      "notes": "Use the correct project region. Ingestion keys do not substitute for server-side read secrets."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "HTTP ingestion"
+      ],
+      "breadth": "Event ingestion, raw export, dashboard/report queries and specialized management/experiment APIs; endpoint-specific auth and feature gates."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Amplitude hosts https://mcp.amplitude.com/mcp and an EU endpoint for account data/actions. This is distinct from its public Docs MCP; it does not ingest production events.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No material new-onboarding blocker established for a scoped own-account prototype; quotas, scopes and product permissions still apply.",
+    "evidence": [
+      {
+        "url": "https://amplitude.com/docs/apis/authentication",
+        "title": "API Authentication",
+        "supports": [
+          "Endpoint-specific API-key/secret authentication",
+          "Manager/Admin key management"
+        ]
+      },
+      {
+        "url": "https://amplitude.com/docs/apis",
+        "title": "APIs",
+        "supports": [
+          "Multiple ingestion, analytics and management API families"
+        ]
+      },
+      {
+        "url": "https://amplitude.com/pricing",
+        "title": "Amplitude Pricing",
+        "supports": [
+          "No-card Free plan and limited volumes/features",
+          "MCP on every plan"
+        ]
+      },
+      {
+        "url": "https://amplitude.com/docs/amplitude-ai/amplitude-mcp",
+        "title": "Amplitude MCP Server",
+        "supports": [
+          "Official account-action MCP versus Docs MCP",
+          "MCP is not event ingestion"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:44:35+05:30"
+  }
+]
