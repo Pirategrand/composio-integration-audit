@@ -1,0 +1,1360 @@
+[
+  {
+    "id": "gitlab",
+    "name": "GitLab",
+    "category": "Developer & infrastructure",
+    "description": "Source control, CI/CD and software delivery.",
+    "auth_methods": [
+      "OAuth2",
+      "Personal access token",
+      "Project/group token"
+    ],
+    "auth_notes": "CI job tokens cover selected endpoints only; deploy tokens are not general public API credentials.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Capability-specific; see notes.",
+      "approval_gate": "MCP access must be allowed at group/instance level; role and token scopes still apply.",
+      "notes": "Personal token creation is documented. GitLab.com project tokens require Premium or Ultimate, unlike self-managed project tokens. Do not generalize one token type to another."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Broad projects, merge requests, issues, pipelines and administration surface."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "GitLab MCP accepts OAuth mcp-scoped tokens or fine-grained PATs with MCP execute permission; legacy PATs and project/group tokens are rejected. Top-level group or instance access must be enabled.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "MCP scope and enablement differ from ordinary REST access.",
+    "evidence": [
+      {
+        "url": "https://docs.gitlab.com/api/rest/authentication/",
+        "title": "REST API authentication | GitLab Docs",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.gitlab.com/user/model_context_protocol/mcp_server/",
+        "title": "GitLab MCP server | GitLab Docs",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://docs.gitlab.com/user/profile/personal_access_tokens/",
+        "title": "Personal access tokens | GitLab Docs",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      },
+      {
+        "url": "https://docs.gitlab.com/security/tokens/access_token_scopes/",
+        "title": "Access token scopes | GitLab Docs",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "jira",
+    "name": "Jira",
+    "category": "Developer & infrastructure",
+    "description": "Issues, projects and workflow tracking.",
+    "auth_methods": [
+      "OAuth2",
+      "Basic with API token"
+    ],
+    "auth_notes": "Basic here is email plus API token, not an account password.",
+    "access": {
+      "credential_path": "unknown",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Capability-specific; see notes.",
+      "approval_gate": "MCP API-token auth needs organization-admin enablement; Jira project/site permissions govern operations.",
+      "notes": "Personal scripts can use an account API token. Distributed integrations should use supported OAuth patterns; Atlassian explicitly warns against apps that collect customer API tokens. Free-plan eligibility was not independently established by the fetched pages."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Jira Cloud REST v3 covers issues, projects, workflows and permissions."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Atlassian Rovo MCP is official. OAuth 2.1 is the ordinary interactive route; direct API-token MCP requires organization-admin enablement.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Personal API-token feasibility does not authorize a customer-token collection design.",
+    "evidence": [
+      {
+        "url": "https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/",
+        "title": "Basic auth for REST APIs",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://developer.atlassian.com/cloud/rovo-mcp/guides/configuring-authentication-via-api-token/",
+        "title": "Configuring authentication via API token",
+        "supports": [
+          "auth",
+          "api",
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/",
+        "title": "The Jira Cloud platform REST API",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://developer.atlassian.com/cloud/rovo-mcp/",
+        "title": "Atlassian Rovo MCP Overview",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "sentry",
+    "name": "Sentry",
+    "category": "Developer & infrastructure",
+    "description": "Error monitoring, issue triage and application performance.",
+    "auth_methods": [
+      "Bearer token",
+      "OAuth2"
+    ],
+    "auth_notes": "DSNs identify ingestion destinations and are not interchangeable with management auth tokens.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Free Developer tier is documented; paid features and volume are not implied to be free.",
+      "approval_gate": "Account role and resource permissions apply.",
+      "notes": "Free Developer plan exists. Auth tokens are documented for user/organization API access; resource permissions and product quotas remain relevant."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Organizations, projects, issues, releases and monitoring resources."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Sentry hosts an OAuth MCP endpoint at mcp.sentry.dev. It can be scoped to an organization or project; local CLI MCP is also documented.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blanket onboarding gate found for a personal developer prototype; avoid treating DSNs as management tokens.",
+    "evidence": [
+      {
+        "url": "https://docs.sentry.io/api/auth/",
+        "title": "API Authentication | Sentry Docs",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://sentry.io/pricing/",
+        "title": "Pricing: Free Developer Plan, Pay as You Grow | Sentry",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://docs.sentry.io/account/auth-tokens/",
+        "title": "Auth Tokens | Sentry Docs",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      },
+      {
+        "url": "https://mcp.sentry.dev/",
+        "title": "Sentry MCP",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "datadog",
+    "name": "Datadog",
+    "category": "Developer & infrastructure",
+    "description": "Telemetry, monitors, dashboards and operational analysis.",
+    "auth_methods": [
+      "API key",
+      "Application key",
+      "OAuth2"
+    ],
+    "auth_notes": "An API key and an application key serve different roles; do not label all endpoints API-key-only.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Self-serve trial; toolset availability varies.",
+      "approval_gate": "Role mcp_read/mcp_write plus underlying resource permissions and organization enablement.",
+      "notes": "Datadog advertises a self-serve free trial. API/application key permissions depend on the account and role. Public docs alone do not establish all paid product entitlements."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Broad telemetry queries, monitors, dashboards, incidents and account/product APIs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Datadog MCP supports OAuth and documented headless key setup. Both MCP role permissions and organization-wide enablement are needed; some toolsets are preview-gated.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Organization MCP controls and product/toolset entitlement can block an otherwise valid API key.",
+    "evidence": [
+      {
+        "url": "https://docs.datadoghq.com/mcp%5Fserver/setup.md",
+        "title": "Set Up the Datadog MCP Server",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://docs.datadoghq.com/api/latest/authentication",
+        "title": "Authentication - Datadog API",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.datadoghq.com/account%5Fmanagement/api-app-keys.md",
+        "title": "API and Application Keys",
+        "supports": [
+          "auth",
+          "access",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.datadoghq.com/mcp%5Fserver.md",
+        "title": "Datadog MCP Server",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://www.datadoghq.com/free-datadog-trial/",
+        "title": "Self-serve trial",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "newrelic",
+    "name": "New Relic",
+    "category": "Developer & infrastructure",
+    "description": "Application telemetry and operational data queries.",
+    "auth_methods": [
+      "User API key",
+      "License key",
+      "OAuth2"
+    ],
+    "auth_notes": "NerdGraph user keys and ingest license keys are distinct.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "MCP unavailable to Free accounts; advanced MCP tools require additional compute entitlement.",
+      "approval_gate": "Administrator enables MCP and assigns an allowed organization role.",
+      "notes": "The API key guide links free account signup. NerdGraph uses user API keys; ingest license keys are not the same credential as query/user keys."
+    },
+    "api": {
+      "styles": [
+        "GraphQL",
+        "REST"
+      ],
+      "breadth": "NerdGraph provides a broad control/query surface; product REST and ingest APIs use their own keys."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official MCP requires a paid plan, not Free. Core versus advanced tools depend on paid data/compute and Advanced Compute entitlements; admin enablement and role permissions apply.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Ordinary free-account API research is possible, but official hosted MCP is paid and role-gated.",
+    "evidence": [
+      {
+        "url": "https://docs.newrelic.com/docs/agentic-ai/mcp/overview/",
+        "title": "New Relic Ground Truth | New Relic Documentation",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/",
+        "title": "New Relic API keys | New Relic Documentation",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.newrelic.com/docs/apis/nerdgraph/get-started/introduction-new-relic-nerdgraph/",
+        "title": "Meet NerdGraph: our GraphQL API | New Relic Documentation",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.newrelic.com/docs/agentic-ai/mcp/setup/",
+        "title": "Set up New Relic MCP | New Relic Documentation",
+        "supports": [
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "pagerduty",
+    "name": "PagerDuty",
+    "category": "Developer & infrastructure",
+    "description": "Incidents, services, escalation and on-call schedules.",
+    "auth_methods": [
+      "API token",
+      "OAuth2"
+    ],
+    "auth_notes": "User token versus general-access key is a meaningful access distinction.",
+    "access": {
+      "credential_path": "admin_gated",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Current plans support REST; some legacy plans do not.",
+      "approval_gate": "Admin/owner for general keys; MCP documentation lists Advanced Permissions.",
+      "notes": "REST API is available on current pricing plans, with legacy-plan exceptions. General API keys require an Admin or Account Owner; personal tokens have a different path."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Incidents, services, users, schedules and operational resources."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted MCP supports OAuth and user API keys. Its documented requirements include Advanced Permissions. The local self-hosted MCP repository is deprecated and archived.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Account roles, legacy plan eligibility and Advanced Permissions for MCP need checking.",
+    "evidence": [
+      {
+        "url": "https://docs.pagerduty.com/account-admin/api-access-keys",
+        "title": "API Access Keys | PagerDuty Docs",
+        "supports": [
+          "auth",
+          "access",
+          "api"
+        ]
+      },
+      {
+        "url": "https://www.pagerduty.com/pricing/",
+        "title": "Plans & Pricing",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://docs.pagerduty.com/ai-automation/advance/pagerduty-mcp-server",
+        "title": "PagerDuty MCP Server | PagerDuty Docs",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://docs.pagerduty.com/developer/authentication",
+        "title": "Authentication | PagerDuty Docs",
+        "supports": [
+          "auth"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "opsgenie",
+    "name": "Opsgenie",
+    "category": "Developer & infrastructure",
+    "description": "Legacy alerting and on-call incident response.",
+    "auth_methods": [
+      "API key"
+    ],
+    "auth_notes": "API documentation existing does not override the current product lifecycle.",
+    "access": {
+      "credential_path": "unknown",
+      "sandbox": "No new signup path established.",
+      "production": "Existing tenants only until scheduled shutdown on 5 April 2027.",
+      "plan_gate": "No new plans or signups; existing customers only.",
+      "approval_gate": "Account role and resource permissions apply.",
+      "notes": "Atlassian ended new sales and signups on 4 June 2025. Existing customers can use it only until end of support, 5 April 2027. Historical free-plan text is not a current signup path."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Legacy alerts and incident/on-call API for existing tenants."
+    },
+    "mcp": {
+      "status": "not_confirmed",
+      "notes": "No independently confirmed current official MCP route in this source review.",
+      "scope": "not_confirmed"
+    },
+    "verdict": "blocked",
+    "blocker": "New developer onboarding is closed; product access is scheduled to shut off on 5 April 2027.",
+    "evidence": [
+      {
+        "url": "https://www.atlassian.com/licensing/opsgenie",
+        "title": "Opsgenie Licensing | Atlassian",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://support.atlassian.com/opsgenie/docs/what-happens-when-opsgenie-is-turned-off/",
+        "title": "What happens when Opsgenie is turned off? | Opsgenie | Atlassian Support",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://docs.opsgenie.com/docs/api-overview",
+        "title": "API Overview",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://support.atlassian.com/jira-service-management-cloud/docs/merge-opsgenie-with-jira-service-management/",
+        "title": "Merge Opsgenie and move your data to Jira Service Management | Jira Service Management Cloud | Atlassian Support",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "betterstack",
+    "name": "Better Stack",
+    "category": "Developer & infrastructure",
+    "description": "Uptime monitoring, telemetry, incidents and status pages.",
+    "auth_methods": [
+      "Bearer API token",
+      "OAuth2"
+    ],
+    "auth_notes": "Global tokens span teams; team-scoped incidents tokens have narrower reach.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "MCP every plan including Free; AI SRE is a separate paid product.",
+      "approval_gate": "Account role and resource permissions apply.",
+      "notes": "Free personal-project plan is documented. Incidents API has global and team-scoped tokens. The vendor comparison explicitly says MCP is available on every plan, including free."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Incidents, monitors, status pages and telemetry-related resources."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted MCP uses OAuth or API token. Do not confuse the all-plan MCP service with the paid browser-based AI SRE product.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Resource/role permissions and quotas still apply; AI model-provider costs are separate.",
+    "evidence": [
+      {
+        "url": "https://betterstack.com/docs/getting-started/integrations/mcp/",
+        "title": "MCP server | Better Stack Documentation",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://betterstack.com/docs/ai-sre/mcp-server-comparison/",
+        "title": "AI SRE vs MCP server | Better Stack Documentation",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://betterstack.com/pricing.md",
+        "title": "Pricing",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/",
+        "title": "Incidents API token setup",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "category": "Developer & infrastructure",
+    "description": "Web deployment, projects, domains and hosting operations.",
+    "auth_methods": [
+      "Bearer access token",
+      "OAuth2"
+    ],
+    "auth_notes": "Personal/project-scoped tokens are not blanket team authority.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Hobby is free; MCP documented on all plans.",
+      "approval_gate": "Team security requirements and account permissions can restrict access.",
+      "notes": "Account tokens can be created from personal settings with narrow project/team scopes. The Hobby plan is free. Some teams require 2FA or SAML before token access."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Projects, deployments, domains, teams and platform operations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Vercel MCP is official and available on all plans, subject to its AI Product Terms. Interactive setup uses OAuth.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Team scopes, SAML/2FA policies and plan usage limits apply; no deployment was performed.",
+    "evidence": [
+      {
+        "url": "https://vercel.com/docs/agent-resources/vercel-mcp",
+        "title": "Use Vercel",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://vercel.com/docs/accounts/access-tokens",
+        "title": "Access tokens",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      },
+      {
+        "url": "https://vercel.com/docs/rest-api/getting-started",
+        "title": "Make Your First Vercel API Request",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://vercel.com/docs/plans/hobby",
+        "title": "Vercel Hobby Plan",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "netlify",
+    "name": "Netlify",
+    "category": "Developer & infrastructure",
+    "description": "Sites, deployments, forms and hosting automation.",
+    "auth_methods": [
+      "OAuth2",
+      "Personal access token"
+    ],
+    "auth_notes": "Password resets invalidate older PAT/OAuth tokens; SSO team access is granted separately.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Free credit-based plan has a hard limit and no auto recharge.",
+      "approval_gate": "SSO teams deny PAT access by default unless granted while SSO-authenticated.",
+      "notes": "PAT creation is self-serve. New-account credit-based plans include Free, with a hard monthly credit limit and no auto recharge; docs explicitly include deploying by API."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Sites, deployments, forms, account/team and hosting resources."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official netlify/netlify-mcp repository exposes Netlify API and CLI capabilities. It is a local integration pattern, not proof of a universally hosted endpoint.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Team SSO authorization and usage credits remain operational limits.",
+    "evidence": [
+      {
+        "url": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api",
+        "title": "Get started with the Netlify API",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://www.netlify.com/auth.md",
+        "title": "Authenticating AI agents with Netlify",
+        "supports": [
+          "auth"
+        ]
+      },
+      {
+        "url": "https://github.com/netlify/netlify-mcp/",
+        "title": "netlify/netlify-mcp",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://www.netlify.com/knowledge-base/netlify-for-coding-agents/",
+        "title": "Netlify for Coding Agents: Build and Ship a Full App",
+        "supports": [
+          "context"
+        ]
+      },
+      {
+        "url": "https://docs.netlify.com/manage/accounts-and-billing/billing/billing-for-credit-based-plans/credit-based-pricing-plans/",
+        "title": "Free credit-based API deployment plan",
+        "supports": [
+          "access",
+          "api"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "category": "Developer & infrastructure",
+    "description": "Network, DNS, edge compute and developer platform.",
+    "auth_methods": [
+      "API token",
+      "OAuth2"
+    ],
+    "auth_notes": "Account-owned and user-owned tokens have different creation rights; some account actions require user-owned/OAuth credentials.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Capability-specific; see notes.",
+      "approval_gate": "Account API tokens require API Token Provisioning capability or Super Administrator; this is not a universal user-token gate.",
+      "notes": "User-owned tokens can be created with specific permissions. Free account creation is documented; product APIs have their own usage and entitlement limits."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Broad DNS, Workers, storage, security and account resource APIs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Cloudflare publishes its own MCP server directory and official implementation repository. Individual servers expose different product capabilities and auth contexts.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Token permissions and product entitlements, especially account-owned token creation rights.",
+    "evidence": [
+      {
+        "url": "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+        "title": "Cloudflare's own MCP servers \u00b7 Cloudflare Agents docs",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://developers.cloudflare.com/fundamentals/api/get-started/create-token/",
+        "title": "Create API token \u00b7 Cloudflare Fundamentals docs",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://github.com/cloudflare/mcp",
+        "title": "cloudflare/mcp",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/",
+        "title": "Account API tokens \u00b7 Cloudflare Fundamentals docs",
+        "supports": [
+          "auth",
+          "access",
+          "api"
+        ]
+      },
+      {
+        "url": "https://developers.cloudflare.com/fundamentals/account/create-account/",
+        "title": "Account creation",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "category": "Developer & infrastructure",
+    "description": "Postgres projects, authentication, storage and platform management.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth2",
+      "Project API key"
+    ],
+    "auth_notes": "Project API keys are not substitutes for Management API PATs.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Free projects have resource limits and inactivity pausing; paid capabilities remain gated.",
+      "approval_gate": "Account role and resource permissions apply.",
+      "notes": "Free plan includes two projects and API requests within plan/resource limits. Management PATs can be scoped to organizations, projects and permissions; database credentials form a separate channel."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Management API handles projects/configuration; project APIs handle database/auth/storage data."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Supabase MCP is documented. It uses the management identity/authorization route; scope to a project and prefer read-only controls where appropriate.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Do not confuse management PATs, project anon/service-role keys and database-password access.",
+    "evidence": [
+      {
+        "url": "https://supabase.com/docs/guides/platform/personal-access-tokens",
+        "title": "Personal Access Tokens",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      },
+      {
+        "url": "https://supabase.com/docs/reference/api/introduction",
+        "title": "Introduction | Management API Reference | Supabase Docs",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://supabase.com/docs/guides/ai-tools/mcp",
+        "title": "Supabase MCP Server",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://supabase.com/features/mcp-server",
+        "title": "MCP Server | Supabase Features",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://supabase.com/pricing",
+        "title": "Free plan and project limits",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "neon",
+    "name": "Neon",
+    "category": "Developer & infrastructure",
+    "description": "Serverless Postgres projects, branches and compute.",
+    "auth_methods": [
+      "API key",
+      "OAuth2"
+    ],
+    "auth_notes": "A personal key and an organization key do not grant equivalent scope.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Free plan with defined compute/storage/egress allowances.",
+      "approval_gate": "Organization/project-scoped API keys require admin; personal keys follow user access.",
+      "notes": "Free plan has no monthly cost within allowances. Any user can create a personal API key; organization/project-scoped keys require an organization administrator."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Projects, branches, endpoints, roles and platform/database-management operations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Neon MCP supports OAuth for local interactive clients and API keys for headless/remote agents. Tool modes can narrow secret/data access.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Organization-scoped key creation needs admin rights; personal key remains scoped to membership.",
+    "evidence": [
+      {
+        "url": "https://neon.com/docs/ai/neon-mcp-server",
+        "title": "Neon MCP Server overview - Neon Docs",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://neon.com/docs/manage/api-keys",
+        "title": "Manage API Keys - Neon Docs",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://neon.com/docs/introduction/plans",
+        "title": "Neon plans - Neon Docs",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "firebase",
+    "name": "Firebase",
+    "category": "Developer & infrastructure",
+    "description": "Application backend, authentication, databases and project services.",
+    "auth_methods": [
+      "OAuth2",
+      "Service account token",
+      "Firebase ID token"
+    ],
+    "auth_notes": "Realtime Database rules can allow public access, but this is not a reason to use public rules. Service-account OAuth can bypass rules within its authority.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Spark no-cost subset; Blaze/billing required for additional services or quotas.",
+      "approval_gate": "Google Cloud IAM and product-specific security rules apply.",
+      "notes": "Spark is no-cost and needs no payment information for included services. Blaze links billing for additional services/usage. OAuth service-account credentials and IAM govern administrative access."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Management API covers Firebase projects/apps; product APIs include Realtime Database and authentication."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Firebase MCP is documented and uses Firebase CLI login/context. It can expose development and administration capabilities; no server was connected here.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Product-specific IAM, security rules and billing requirements; a free Spark project is not entitlement to every capability.",
+    "evidence": [
+      {
+        "url": "https://firebase.google.com/docs/ai-assistance/mcp-server",
+        "title": "Firebase MCP server \u00a0|\u00a0 Develop with AI assistance",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://firebase.google.com/docs/reference/firebase-management/rest",
+        "title": "Firebase Management API",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://firebase.google.com/docs/projects/billing/firebase-pricing-plans",
+        "title": "Firebase pricing plans \u00a0|\u00a0 Firebase Documentation",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://firebase.google.com/support/guides/service-accounts",
+        "title": "Overview of Firebase-related service accounts \u00a0|\u00a0 Firebase AI Logic",
+        "supports": [
+          "access"
+        ]
+      },
+      {
+        "url": "https://firebase.google.com/docs/database/rest/auth",
+        "title": "Database REST authorization",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB Atlas",
+    "category": "Developer & infrastructure",
+    "description": "Managed MongoDB databases and project/cluster administration.",
+    "auth_methods": [
+      "OAuth2 service account",
+      "HTTP Digest API key",
+      "Database user credentials"
+    ],
+    "auth_notes": "Admin API is not a database query API. Direct service-account/API-key IP policy does not automatically apply to every delegated connection.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Free clusters have a subset of Atlas features and one free cluster per project.",
+      "approval_gate": "Organization/project roles and API IP list requirements; database roles are separate.",
+      "notes": "Free clusters never expire and can be created through the Admin API, UI or CLI. Admin API keys/service accounts need appropriate organization/project roles and usually an IP access list."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Atlas Admin API manages projects/clusters/users; it does not expose the documents stored in databases."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official MongoDB MCP supports Atlas management and database tools, each with its own prerequisites/credentials. Delegated MCP connection rules differ from direct service-account IP policy.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Separate control-plane credentials from database users, and verify IP allowlists and role grants.",
+    "evidence": [
+      {
+        "url": "https://www.mongodb.com/docs/atlas/configure-api-access/",
+        "title": "Get Started with the Atlas Administration API",
+        "supports": [
+          "access",
+          "api"
+        ]
+      },
+      {
+        "url": "https://www.mongodb.com/docs/mcp-server/prerequisites/",
+        "title": "MongoDB MCP Server Prerequisites for Running Atlas Tools",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccount",
+        "title": "Create One Organization Service Account | Atlas Admin API v2 documentation",
+        "supports": [
+          "access",
+          "api"
+        ]
+      },
+      {
+        "url": "https://www.mongodb.com/docs/mcp-server/get-started/",
+        "title": "Get Started with the MongoDB MCP Server",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://www.mongodb.com/docs/atlas/docs/atlas/tutorial/deploy-free-tier-cluster/",
+        "title": "Free cluster creation via Admin API",
+        "supports": [
+          "access",
+          "api"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "elastic",
+    "name": "Elastic Cloud",
+    "category": "Developer & infrastructure",
+    "description": "Search, analytics, observability and cloud deployments.",
+    "auth_methods": [
+      "API key",
+      "OAuth2"
+    ],
+    "auth_notes": "Cloud API keys are not interchangeable with every Elasticsearch or Kibana key type.",
+    "access": {
+      "credential_path": "trial_self_serve",
+      "sandbox": "Not tested; documentation review only.",
+      "production": "Requires valid account permissions; not exercised.",
+      "plan_gate": "Free trial, not a permanent free Cloud service assumption.",
+      "approval_gate": "Kibana Agent Builder privileges and index/data permissions.",
+      "notes": "Elastic Cloud advertises a free self-serve trial without a credit card. Cloud management keys and Elasticsearch/Kibana project keys are different authorization scopes."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Cloud deployment/project management plus Elasticsearch/Kibana search and analytics APIs."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official Elastic Agent Builder MCP accepts scoped API keys; Serverless also offers OAuth 2.1 through application connections. Keys require Agent Builder Kibana privileges.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Trial duration/entitlements, project privileges and data-index scopes; no production subscription verified.",
+    "evidence": [
+      {
+        "url": "https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server-api-keys",
+        "title": "Authenticate MCP clients with API keys",
+        "supports": [
+          "auth",
+          "api",
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://www.elastic.co/docs/deploy-manage/api-keys/elastic-cloud-api-keys",
+        "title": "Elastic Cloud API keys",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://www.elastic.co/elasticsearch/agent-builder",
+        "title": "Elastic Agent Builder | Production-ready AI agents | Elastic",
+        "supports": [
+          "context"
+        ]
+      },
+      {
+        "url": "https://www.elastic.co/cloud/cloud-trial-overview",
+        "title": "Elastic Cloud Trial - get started in 5 minutes! | Elastic",
+        "supports": [
+          "access"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "category": "Developer & infrastructure",
+    "description": "Code hosting, issues, pull requests and developer workflows.",
+    "auth_methods": [
+      "Personal access token",
+      "GitHub App token",
+      "OAuth2"
+    ],
+    "auth_notes": "Personal access tokens, GitHub App tokens and OAuth app tokens. Basic authentication is documented only for particular app endpoints, not username/password access to the general REST API.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Documented development path; not exercised.",
+      "production": "Capability, role and geography-dependent; not exercised.",
+      "plan_gate": "A personal-use token can be created by a user. Organization SSO and app permissions can add authorization requirements. Some public data is available without authentication. Free-plan and organization-specific policy coverage were not exhaustively checked.",
+      "approval_gate": "Organization authorization, token permissions and rate limits, not an absence of public API documentation.",
+      "notes": "A personal-use token can be created by a user. Organization SSO and app permissions can add authorization requirements. Some public data is available without authentication. Free-plan and organization-specific policy coverage were not exhaustively checked."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Broad REST API; the rate-limit documentation also identifies a separate GraphQL API. Core domains include repositories, issues and pull requests."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "GitHub provides and maintains an official MCP server, available regardless of GitHub plan. Individual tools inherit their corresponding feature or license requirements. Hosted and local configurations are documented; neither was connected in this pilot.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Organization authorization, token permissions and rate limits, not an absence of public API documentation.",
+    "evidence": [
+      {
+        "url": "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+        "title": "Authentication and token creation",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api",
+        "title": "REST and GraphQL rate-limit context",
+        "supports": [
+          "api"
+        ]
+      },
+      {
+        "url": "https://github.com/github/github-mcp-server?tab=readme-ov-file",
+        "title": "Official MCP implementation",
+        "supports": [
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/customize-copilot/extend-copilot-with-tools-and-context/set-up-the-github-mcp-server",
+        "title": "Official MCP ownership and plan scope",
+        "supports": [
+          "access",
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "category": "Developer & infrastructure",
+    "description": "Workspace content, pages and database-oriented workflows.",
+    "auth_methods": [
+      "Internal connection token",
+      "Personal access token",
+      "OAuth2"
+    ],
+    "auth_notes": "Internal connection tokens, personal access tokens and OAuth 2.0 integrations. HTTP Basic appears in the OAuth token exchange, not as the normal content API authentication method.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Documented development path; not exercised.",
+      "production": "Capability, role and geography-dependent; not exercised.",
+      "plan_gate": "Internal connections and user-authorized integrations have documented developer setup. OAuth authorization can start without Marketplace review. Content access must still be shared or granted. Plan and workspace controls are capability-specific.",
+      "approval_gate": "Workspace content permissions and member eligibility. Business/Enterprise owner access is needed for noninteractive hosted-MCP tokens, not for every integration path.",
+      "notes": "Internal connections and user-authorized integrations have documented developer setup. OAuth authorization can start without Marketplace review. Content access must still be shared or granted. Plan and workspace controls are capability-specific."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Documented REST API for workspace content. A toolkit must respect the connection's actual page and workspace permissions."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted Notion MCP supports interactive OAuth on every plan. Noninteractive MCP tokens require Business or Enterprise and a workspace owner. Guests cannot connect. The older open-source server is no longer actively maintained.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Workspace content permissions and member eligibility. Business/Enterprise owner access is needed for noninteractive hosted-MCP tokens, not for every integration path.",
+    "evidence": [
+      {
+        "url": "https://developers.notion.com/guides/authorization/overview",
+        "title": "Authorization methods and Marketplace distinction",
+        "supports": [
+          "auth"
+        ]
+      },
+      {
+        "url": "https://developers.notion.com/guides/connections-and-tokens/internal-connections",
+        "title": "Internal connection setup and content permissions",
+        "supports": [
+          "auth",
+          "access"
+        ]
+      },
+      {
+        "url": "https://developers.notion.com/guides/mcp/get-started-with-mcp",
+        "title": "Hosted MCP plans, tokens and guest restrictions",
+        "supports": [
+          "auth",
+          "access",
+          "api",
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "linear",
+    "name": "Linear",
+    "category": "Developer & infrastructure",
+    "description": "Issues, projects, teams and product-development workflows.",
+    "auth_methods": [
+      "API key",
+      "OAuth2"
+    ],
+    "auth_notes": "Personal API keys and OAuth2 for the GraphQL API. The hosted MCP supports interactive OAuth 2.1 and direct bearer-token or API-key authentication.",
+    "access": {
+      "credential_path": "admin_gated",
+      "sandbox": "Documented development path; not exercised.",
+      "production": "Capability, role and geography-dependent; not exercised.",
+      "plan_gate": "Admins and permitted members can create personal API keys. An administrator can disable member-created keys. This is a role/policy gate, not evidence of a blanket contact-sales requirement. Free-tier API eligibility was not independently established in this pilot.",
+      "approval_gate": "Member API-key policy and selected OAuth scopes. Do not confuse enterprise auto-connect requirements with the ordinary API path.",
+      "notes": "Admins and permitted members can create personal API keys. An administrator can disable member-created keys. This is a role/policy gate, not evidence of a blanket contact-sales requirement. Free-tier API eligibility was not independently established in this pilot. Admins can disable member-created API keys; no universal free-tier API entitlement is claimed."
+    },
+    "api": {
+      "styles": [
+        "GraphQL"
+      ],
+      "breadth": "Public GraphQL API, the same API Linear says it uses internally. Queries, mutations and webhooks cover its core entities."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official centrally hosted MCP uses Streamable HTTP. A read-only endpoint and read-only scopes are documented. Enterprise-managed authentication has separate plan and admin requirements.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Member API-key policy and selected OAuth scopes. Do not confuse enterprise auto-connect requirements with the ordinary API path.",
+    "evidence": [
+      {
+        "url": "https://linear.app/developers/graphql",
+        "title": "GraphQL and authentication",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://linear.app/docs/api-and-webhooks",
+        "title": "Member key policy and API surface",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://linear.app/docs/mcp",
+        "title": "Official MCP transport and authentication",
+        "supports": [
+          "auth",
+          "mcp"
+        ]
+      },
+      {
+        "url": "https://linear.app/developers/oauth-2-0-authentication",
+        "title": "OAuth grant and refresh behavior",
+        "supports": [
+          "auth"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23"
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "category": "Developer & infrastructure",
+    "description": "Payment, customer, billing and financial operations.",
+    "auth_methods": [
+      "API key",
+      "OAuth2"
+    ],
+    "auth_notes": "Stripe API requests use API keys. Restricted keys limit resource permissions. Hosted MCP uses OAuth or agent-tagged API keys, which are not interchangeable with every historical secret-key setup.",
+    "access": {
+      "credential_path": "unknown",
+      "sandbox": "Documented development path; not exercised.",
+      "production": "Capability, role and geography-dependent; not exercised.",
+      "plan_gate": "Sandbox keys support building and testing separately from live mode. This pilot did not validate account eligibility, live activation, geographic availability or commercial terms. Sandbox documentation is not proof of unrestricted production access.",
+      "approval_gate": "Sandbox versus live eligibility, resource permissions and approval rules. Existing MCP key configurations need a near-term migration check.",
+      "notes": "Sandbox key creation is documented, but this review did not establish a current free/trial signup entitlement or geographic account eligibility. Production financial access is not inferred."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Broad documented API with resource-level key permissions. Sensitive financial operations require stricter permissions and approval controls."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Official hosted MCP is in public preview. Its documentation says full-access secret keys and non-agent-tagged restricted keys will stop working for MCP starting December 2026, with migration requested by 30 November 2026.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Sandbox versus live eligibility, resource permissions and approval rules. Existing MCP key configurations need a near-term migration check.",
+    "evidence": [
+      {
+        "url": "https://docs.stripe.com/api/authentication",
+        "title": "API authentication",
+        "supports": [
+          "auth",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.stripe.com/keys",
+        "title": "Sandbox, live and agent key distinctions",
+        "supports": [
+          "auth"
+        ]
+      },
+      {
+        "url": "https://docs.stripe.com/keys/restricted-api-keys",
+        "title": "Restricted resource permissions",
+        "supports": [
+          "auth",
+          "access",
+          "api"
+        ]
+      },
+      {
+        "url": "https://docs.stripe.com/mcp",
+        "title": "MCP authentication and migration date",
+        "supports": [
+          "auth",
+          "mcp"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23"
+  }
+]
