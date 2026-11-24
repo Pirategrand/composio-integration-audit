@@ -1,0 +1,1608 @@
+[
+  {
+    "id": "slack",
+    "name": "Slack",
+    "category": "Productivity & collaboration",
+    "description": "Channels, messages and workplace collaboration.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Bot and user bearer tokens"
+    ],
+    "auth_notes": "Create a Slack app; install it to obtain scoped tokens. OAuth is needed to obtain other users' tokens.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Slack Developer Program offers a basic developer sandbox at no additional cost; extra features require a qualifying paid workspace or payment method.",
+      "production": "Internal integrations can use installed-app tokens. Marketplace publication is a separate review path; workspace policies can require admin approval.",
+      "plan_gate": "Some AI and advanced sandbox capabilities are gated. MCP is limited to internal or Marketplace-published apps, not unlisted distribution.",
+      "approval_gate": "Workspace installation controls and Marketplace review apply according to distribution.",
+      "notes": "Free sandbox route is documented, not executed. No card or account was supplied."
+    },
+    "api": {
+      "styles": [
+        "HTTP Web API",
+        "Events API"
+      ],
+      "breadth": "Messaging, channels, users and files through the Web API; event-driven app integrations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Slack hosts https://mcp.slack.com/mcp using Streamable HTTP and confidential OAuth. Internal and Marketplace apps only; no DCR.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Prototype is available in a free sandbox, but MCP distribution excludes unlisted apps and organizational approval can apply.",
+    "evidence": [
+      {
+        "url": "https://docs.slack.dev/faq.md",
+        "title": "Slack developer FAQ",
+        "supports": [
+          "App creation issues bot/user tokens; OAuth for other users",
+          "Workspace app governance"
+        ]
+      },
+      {
+        "url": "https://docs.slack.dev/tools/developer-sandboxes",
+        "title": "Developer sandboxes",
+        "supports": [
+          "Basic sandbox at no additional cost through Developer Program",
+          "Additional feature eligibility"
+        ]
+      },
+      {
+        "url": "https://docs.slack.dev/ai/slack-mcp-server/",
+        "title": "Slack MCP server overview",
+        "supports": [
+          "Vendor endpoint and OAuth",
+          "Only internal or Marketplace-published apps may use MCP"
+        ]
+      },
+      {
+        "url": "https://docs.slack.dev/apis/web-api/",
+        "title": "Slack Web API",
+        "supports": [
+          "HTTP API surface"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "microsoft-teams",
+    "name": "Microsoft Teams",
+    "category": "Productivity & collaboration",
+    "description": "Teams, channels, chats and meeting collaboration.",
+    "auth_methods": [
+      "OAuth 2.0 delegated access",
+      "OAuth 2.0 client credentials"
+    ],
+    "auth_notes": "Register an application with Microsoft Entra ID and request Microsoft Graph permissions. Delegated and app-only permission models differ.",
+    "access": {
+      "credential_path": "admin_gated",
+      "sandbox": "Microsoft 365 E5 developer sandbox is free only for qualifying Developer Program members. A production subscription does not automatically qualify an account.",
+      "production": "Use a Teams-enabled tenant with the permissions and licenses needed for each endpoint. Do not assume every Teams API is free or supports personal Microsoft accounts.",
+      "plan_gate": "Teams resource licenses and endpoint-specific requirements apply; selected export/compliance APIs have separate licensing/payment models.",
+      "approval_gate": "Application permissions require tenant admin consent. Delegated consent can also require an admin; sandbox eligibility is not universal.",
+      "notes": "No qualifying tenant or developer-subscription entitlement was verified for this audit."
+    },
+    "api": {
+      "styles": [
+        "REST (Microsoft Graph)",
+        "Change notifications"
+      ],
+      "breadth": "Teams, channels, chats and messages; capabilities and permission models vary by operation."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Microsoft documents a tenant-scoped Teams MCP server, but labels application-specific Microsoft 365 MCP tools as preview/backward compatibility and not for new production projects. It directs new projects to Work IQ MCP with the Microsoft Copilot harness.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "Requires suitable tenant, licensing and consent; free sandbox eligibility cannot be assumed. Legacy Teams MCP is not a recommended new-production route.",
+    "evidence": [
+      {
+        "url": "https://learn.microsoft.com/en-us/graph/api/resources/teams-api-overview?view=graph-rest-1.0",
+        "title": "Use Microsoft Graph with Teams",
+        "supports": [
+          "Teams API scope"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/graph/auth/auth-concepts",
+        "title": "Authentication and authorization basics",
+        "supports": [
+          "Entra app and OAuth access models"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/graph/permissions-overview",
+        "title": "Microsoft Graph permissions overview",
+        "supports": [
+          "Delegated versus application permissions and admin consent"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/office/developer-program/microsoft-365-developer-program-faq",
+        "title": "Microsoft 365 Developer Program FAQ",
+        "supports": [
+          "Eligibility-gated free development sandbox"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-teams-tools",
+        "title": "Teams reference (preview)",
+        "supports": [
+          "Official tenant-scoped MCP server",
+          "Preview/backward-compatibility restriction"
+        ]
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/graph/teams-licenses?ad=in-text-link",
+        "title": "Payment models and licensing requirements for Teams APIs",
+        "supports": [
+          "Selected endpoints have additional license/payment conditions"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "google-drive",
+    "name": "Google Drive",
+    "category": "Productivity & collaboration",
+    "description": "File storage, sharing and metadata.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Service account (resource access or Workspace domain-wide delegation)"
+    ],
+    "auth_notes": "Use drive.file for narrow per-file access where possible. Broad Drive scopes can be restricted and trigger verification/security-assessment requirements. API keys alone do not authorize private user data.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a separate Cloud project and test users/resources. This is testing against real services, not an isolated provider data sandbox.",
+      "production": "Standard API usage is documented at no additional cost within quotas. External distribution must meet scope-specific OAuth requirements.",
+      "plan_gate": "Quotas apply. Docs still describe planned later-2026 billing for above-standard usage; rollout date/account applicability was not verified. Workspace domain-wide delegation requires an appropriate organization.",
+      "approval_gate": "User consent; scope-dependent Google verification for public apps; Workspace admin controls and domain-wide delegation approval where applicable. MCP additionally requires Developer Preview membership.",
+      "notes": "Self-use/test API credentials are distinct from public OAuth launch approval. No project, token or data calls were created."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Files, folders, shared drives, permissions, search, uploads/downloads and change tracking."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Google documents https://drivemcp.googleapis.com/mcp/v1. Developer Preview Program membership and an AI-agent OAuth client are prerequisites; official does not mean unrestricted general availability.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "API prototype is self-serve; public sensitive/restricted scopes, organizational controls and MCP preview eligibility are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/workspace/guides/create-credentials",
+        "title": "Create access credentials",
+        "supports": [
+          "OAuth client IDs and service accounts",
+          "Domain-wide delegation requires Workspace administrator"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/get-started",
+        "title": "Develop on Google Workspace",
+        "supports": [
+          "Cloud project, API enablement, consent and credentials",
+          "Supported Workspace APIs do not require Cloud Billing for standard setup"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/drive/api/guides/about-sdk",
+        "title": "Google Drive API overview",
+        "supports": [
+          "API purpose and resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/drive/api/guides/limits",
+        "title": "Usage limits: Google Drive",
+        "supports": [
+          "Standard use at no additional cost",
+          "Quotas and planned above-quota billing"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/drive/api/guides/api-specific-auth",
+        "title": "OAuth scopes: Google Drive",
+        "supports": [
+          "Scope-specific authorization and verification"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+        "title": "Restricted scope verification",
+        "supports": [
+          "Testing exceptions",
+          "Public restricted-scope verification and possible annual third-party security assessment"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/configure-mcp-servers",
+        "title": "Configure Google Workspace MCP servers",
+        "supports": [
+          "Official product-specific remote MCP servers and endpoints",
+          "Developer Preview Program membership required",
+          "AI-agent OAuth client configuration"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/tools-safety",
+        "title": "Google Workspace standardized model for agent tools and APIs",
+        "supports": [
+          "Standard quotas and proposed future billing above thresholds",
+          "Do not assume unlimited free use"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "google-calendar",
+    "name": "Google Calendar",
+    "category": "Productivity & collaboration",
+    "description": "Calendars, events and availability.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Service account (resource access or Workspace domain-wide delegation)"
+    ],
+    "auth_notes": "Choose minimum calendar scopes. Public user-data access can require OAuth verification; organization policy and delegated access must be checked. API keys alone do not authorize private user data.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a separate Cloud project and test users/resources. This is testing against real services, not an isolated provider data sandbox.",
+      "production": "Standard API usage is documented at no additional cost within quotas. External distribution must meet scope-specific OAuth requirements.",
+      "plan_gate": "Quotas apply. Docs still describe planned later-2026 billing for above-standard usage; rollout date/account applicability was not verified. Workspace domain-wide delegation requires an appropriate organization.",
+      "approval_gate": "User consent; scope-dependent Google verification for public apps; Workspace admin controls and domain-wide delegation approval where applicable. MCP additionally requires Developer Preview membership.",
+      "notes": "Self-use/test API credentials are distinct from public OAuth launch approval. No project, token or data calls were created."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Calendars, recurring and single events, calendar lists, ACLs and settings."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Google documents https://calendarmcp.googleapis.com/mcp/v1. Developer Preview Program membership and an AI-agent OAuth client are prerequisites; official does not mean unrestricted general availability.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "API prototype is self-serve; public sensitive/restricted scopes, organizational controls and MCP preview eligibility are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/workspace/guides/create-credentials",
+        "title": "Create access credentials",
+        "supports": [
+          "OAuth client IDs and service accounts",
+          "Domain-wide delegation requires Workspace administrator"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/get-started",
+        "title": "Develop on Google Workspace",
+        "supports": [
+          "Cloud project, API enablement, consent and credentials",
+          "Supported Workspace APIs do not require Cloud Billing for standard setup"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/calendar/api/guides/overview",
+        "title": "Google Calendar API overview",
+        "supports": [
+          "API purpose and resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/calendar/api/guides/quota",
+        "title": "Usage limits: Google Calendar",
+        "supports": [
+          "Standard use at no additional cost",
+          "Quotas and planned above-quota billing"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/calendar/api/auth",
+        "title": "OAuth scopes: Google Calendar",
+        "supports": [
+          "Scope-specific authorization and verification"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+        "title": "Restricted scope verification",
+        "supports": [
+          "Testing exceptions",
+          "Public restricted-scope verification and possible annual third-party security assessment"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/configure-mcp-servers",
+        "title": "Configure Google Workspace MCP servers",
+        "supports": [
+          "Official product-specific remote MCP servers and endpoints",
+          "Developer Preview Program membership required",
+          "AI-agent OAuth client configuration"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/tools-safety",
+        "title": "Google Workspace standardized model for agent tools and APIs",
+        "supports": [
+          "Standard quotas and proposed future billing above thresholds",
+          "Do not assume unlimited free use"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "gmail",
+    "name": "Gmail",
+    "category": "Productivity & collaboration",
+    "description": "Mailboxes, messages, threads and sending.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Service account (resource access or Workspace domain-wide delegation)"
+    ],
+    "auth_notes": "Many read/modify mailbox scopes are restricted. Public server-side restricted-data integrations can require verification and an annual independent security assessment; sending-only scopes differ. API keys alone do not authorize private user data.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a separate Cloud project and test users/resources. This is testing against real services, not an isolated provider data sandbox.",
+      "production": "Standard API usage is documented at no additional cost within quotas. External distribution must meet scope-specific OAuth requirements.",
+      "plan_gate": "Quotas apply. Docs still describe planned later-2026 billing for above-standard usage; rollout date/account applicability was not verified. Workspace domain-wide delegation requires an appropriate organization.",
+      "approval_gate": "User consent; scope-dependent Google verification for public apps; Workspace admin controls and domain-wide delegation approval where applicable. MCP additionally requires Developer Preview membership.",
+      "notes": "Self-use/test API credentials are distinct from public OAuth launch approval. No project, token or data calls were created."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Messages, drafts, threads, labels, mailbox settings and push notifications."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Google documents https://gmailmcp.googleapis.com/mcp/v1. Developer Preview Program membership and an AI-agent OAuth client are prerequisites; official does not mean unrestricted general availability.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "API prototype is self-serve; public sensitive/restricted scopes, organizational controls and MCP preview eligibility are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/workspace/guides/create-credentials",
+        "title": "Create access credentials",
+        "supports": [
+          "OAuth client IDs and service accounts",
+          "Domain-wide delegation requires Workspace administrator"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/get-started",
+        "title": "Develop on Google Workspace",
+        "supports": [
+          "Cloud project, API enablement, consent and credentials",
+          "Supported Workspace APIs do not require Cloud Billing for standard setup"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/gmail/api/guides",
+        "title": "Gmail API overview",
+        "supports": [
+          "API purpose and resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/gmail/api/reference/quota",
+        "title": "Usage limits: Gmail",
+        "supports": [
+          "Standard use at no additional cost",
+          "Quotas and planned above-quota billing"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/gmail/api/auth/scopes",
+        "title": "OAuth scopes: Gmail",
+        "supports": [
+          "Scope-specific authorization and verification"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+        "title": "Restricted scope verification",
+        "supports": [
+          "Testing exceptions",
+          "Public restricted-scope verification and possible annual third-party security assessment"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/configure-mcp-servers",
+        "title": "Configure Google Workspace MCP servers",
+        "supports": [
+          "Official product-specific remote MCP servers and endpoints",
+          "Developer Preview Program membership required",
+          "AI-agent OAuth client configuration"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/tools-safety",
+        "title": "Google Workspace standardized model for agent tools and APIs",
+        "supports": [
+          "Standard quotas and proposed future billing above thresholds",
+          "Do not assume unlimited free use"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "google-sheets",
+    "name": "Google Sheets",
+    "category": "Productivity & collaboration",
+    "description": "Spreadsheet data and formatting.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Service account (resource access or Workspace domain-wide delegation)"
+    ],
+    "auth_notes": "spreadsheets scopes are sensitive; drive.file is a recommended non-sensitive per-file alternative. Broad Drive scopes are restricted. API keys alone do not authorize private user data.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a separate Cloud project and test users/resources. This is testing against real services, not an isolated provider data sandbox.",
+      "production": "Standard API usage is documented at no additional cost within quotas. External distribution must meet scope-specific OAuth requirements.",
+      "plan_gate": "Quotas apply. Docs still describe planned later-2026 billing for above-standard usage; rollout date/account applicability was not verified. Workspace domain-wide delegation requires an appropriate organization.",
+      "approval_gate": "User consent; scope-dependent Google verification for public apps; Workspace admin controls and domain-wide delegation approval where applicable. MCP additionally requires Developer Preview membership.",
+      "notes": "Self-use/test API credentials are distinct from public OAuth launch approval. No project, token or data calls were created."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Create spreadsheets, read/write cell values and update formatting and sheet structure."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Google documents https://sheetsmcp.googleapis.com/mcp/v1. Developer Preview Program membership and an AI-agent OAuth client are prerequisites; official does not mean unrestricted general availability.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "API prototype is self-serve; public sensitive/restricted scopes, organizational controls and MCP preview eligibility are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/workspace/guides/create-credentials",
+        "title": "Create access credentials",
+        "supports": [
+          "OAuth client IDs and service accounts",
+          "Domain-wide delegation requires Workspace administrator"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/get-started",
+        "title": "Develop on Google Workspace",
+        "supports": [
+          "Cloud project, API enablement, consent and credentials",
+          "Supported Workspace APIs do not require Cloud Billing for standard setup"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/sheets/api/guides/concepts",
+        "title": "Google Sheets API overview",
+        "supports": [
+          "API purpose and resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/sheets/api/limits",
+        "title": "Usage limits: Google Sheets",
+        "supports": [
+          "Standard use at no additional cost",
+          "Quotas and planned above-quota billing"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/sheets/api/scopes",
+        "title": "OAuth scopes: Google Sheets",
+        "supports": [
+          "Scope-specific authorization and verification"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+        "title": "Restricted scope verification",
+        "supports": [
+          "Testing exceptions",
+          "Public restricted-scope verification and possible annual third-party security assessment"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/configure-mcp-servers",
+        "title": "Configure Google Workspace MCP servers",
+        "supports": [
+          "Official product-specific remote MCP servers and endpoints",
+          "Developer Preview Program membership required",
+          "AI-agent OAuth client configuration"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/tools-safety",
+        "title": "Google Workspace standardized model for agent tools and APIs",
+        "supports": [
+          "Standard quotas and proposed future billing above thresholds",
+          "Do not assume unlimited free use"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "google-docs",
+    "name": "Google Docs",
+    "category": "Productivity & collaboration",
+    "description": "Document content and structure editing.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Service account (resource access or Workspace domain-wide delegation)"
+    ],
+    "auth_notes": "documents scopes are sensitive; drive.file is a recommended non-sensitive per-file alternative. Broad Drive scopes are restricted. API keys alone do not authorize private user data.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a separate Cloud project and test users/resources. This is testing against real services, not an isolated provider data sandbox.",
+      "production": "Standard API usage is documented at no additional cost within quotas. External distribution must meet scope-specific OAuth requirements.",
+      "plan_gate": "Quotas apply. Docs still describe planned later-2026 billing for above-standard usage; rollout date/account applicability was not verified. Workspace domain-wide delegation requires an appropriate organization.",
+      "approval_gate": "User consent; scope-dependent Google verification for public apps; Workspace admin controls and domain-wide delegation approval where applicable. MCP additionally requires Developer Preview membership.",
+      "notes": "Self-use/test API credentials are distinct from public OAuth launch approval. No project, token or data calls were created."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Create and read documents and apply structured document updates. File sharing and storage management use Drive API."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Google documents https://docsmcp.googleapis.com/mcp/v1. Developer Preview Program membership and an AI-agent OAuth client are prerequisites; official does not mean unrestricted general availability.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "API prototype is self-serve; public sensitive/restricted scopes, organizational controls and MCP preview eligibility are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developers.google.com/workspace/guides/create-credentials",
+        "title": "Create access credentials",
+        "supports": [
+          "OAuth client IDs and service accounts",
+          "Domain-wide delegation requires Workspace administrator"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/get-started",
+        "title": "Develop on Google Workspace",
+        "supports": [
+          "Cloud project, API enablement, consent and credentials",
+          "Supported Workspace APIs do not require Cloud Billing for standard setup"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/docs/api/how-tos/overview",
+        "title": "Google Docs API overview",
+        "supports": [
+          "API purpose and resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/docs/api/limits",
+        "title": "Usage limits: Google Docs",
+        "supports": [
+          "Standard use at no additional cost",
+          "Quotas and planned above-quota billing"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/docs/api/auth",
+        "title": "OAuth scopes: Google Docs",
+        "supports": [
+          "Scope-specific authorization and verification"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification",
+        "title": "Restricted scope verification",
+        "supports": [
+          "Testing exceptions",
+          "Public restricted-scope verification and possible annual third-party security assessment"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/guides/configure-mcp-servers",
+        "title": "Configure Google Workspace MCP servers",
+        "supports": [
+          "Official product-specific remote MCP servers and endpoints",
+          "Developer Preview Program membership required",
+          "AI-agent OAuth client configuration"
+        ]
+      },
+      {
+        "url": "https://developers.google.com/workspace/tools-safety",
+        "title": "Google Workspace standardized model for agent tools and APIs",
+        "supports": [
+          "Standard quotas and proposed future billing above thresholds",
+          "Do not assume unlimited free use"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "airtable",
+    "name": "Airtable",
+    "category": "Productivity & collaboration",
+    "description": "Bases, tables and structured records.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Create a scoped PAT in the developer hub and select allowed bases/workspaces. Use OAuth for integrations other users authorize.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a separate test base; no universal isolated sandbox established. Managed-app development bases cannot be called by API/MCP.",
+      "production": "PATs work for own accessible data; OAuth is the distributed integration path. Permissions, resource scope and workspace limits apply.",
+      "plan_gate": "Free plan includes 1,000 API calls per workspace per month. Business/Enterprise features and service accounts have separate entitlements.",
+      "approval_gate": "PAT access mirrors the creator's permissions; organizational controls can restrict integrations.",
+      "notes": "Open documentation is not evidence of unlimited usage. Free-plan call limits are explicitly documented."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Records, schema/metadata and base/table data; authenticated public API requests respect PAT scopes and selected resources."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Airtable hosts https://mcp.airtable.com/mcp using OAuth. MCP consumes the same API limits; it is included with the current Airtable plan.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker for a small own-base prototype within the Free quota; plan and permission limits remain.",
+    "evidence": [
+      {
+        "url": "https://airtable.com/developers/web/guides/personal-access-tokens",
+        "title": "Personal access tokens",
+        "supports": [
+          "PAT setup and resource scopes",
+          "OAuth for third-party integrations"
+        ]
+      },
+      {
+        "url": "https://support.airtable.com/articles/9934989703-creating-personal-access-tokens",
+        "title": "Creating personal access tokens",
+        "supports": [
+          "PATs available on all plan types with feature exceptions"
+        ]
+      },
+      {
+        "url": "https://support.airtable.com/articles/7735693959-managing-api-call-limits-in-airtable",
+        "title": "Managing API call limits",
+        "supports": [
+          "Free monthly quota and rate limits",
+          "REST record/schema operations"
+        ]
+      },
+      {
+        "url": "https://support.airtable.com/articles/9897799762-using-the-airtable-mcp-server",
+        "title": "Using Airtable MCP server",
+        "supports": [
+          "Official endpoint and OAuth",
+          "Existing plan/API quota applies",
+          "Managed-app development-base restriction"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "asana",
+    "name": "Asana",
+    "category": "Productivity & collaboration",
+    "description": "Tasks, projects and work tracking.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Generate a PAT in the developer console for own-account use; use OAuth for apps acting for others.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Asana explicitly allows testing in a free account or an existing workspace; a requested developer sandbox can expose premium features.",
+      "production": "Apps start private to the developer; distribution can be changed to selected organizations or any workspace.",
+      "plan_gate": "Free account supports baseline testing; premium workspace features are not implied by API availability. Command MCP requires its own Command license.",
+      "approval_gate": "Enterprise app management may block PATs or individual MCP clients; users must have resource access.",
+      "notes": "No premium sandbox or service account entitlement assumed."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Work Graph resources including tasks and projects, with resource-oriented JSON API."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Asana V2 MCP is generally available at https://mcp.asana.com/v2/mcp with OAuth. Custom MCP apps are registered separately; their tokens cannot call the standard API. Avoid deprecated V1 SSE.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker for baseline testing with free-account data. Premium features, Command and managed-workspace policies are separate.",
+    "evidence": [
+      {
+        "url": "https://developers.asana.com/docs/personal-access-token",
+        "title": "Personal access token",
+        "supports": [
+          "Self-service PAT",
+          "OAuth recommended for other users",
+          "Enterprise PAT controls"
+        ]
+      },
+      {
+        "url": "https://developers.asana.com/docs/overview",
+        "title": "Build an app with Asana",
+        "supports": [
+          "Free-account testing and requested premium sandbox",
+          "Distribution controls"
+        ]
+      },
+      {
+        "url": "https://developers.asana.com/reference/rest-api-reference",
+        "title": "REST API reference",
+        "supports": [
+          "REST/JSON API"
+        ]
+      },
+      {
+        "url": "https://developers.asana.com/docs/integrating-with-asanas-mcp-server",
+        "title": "Integrating with Asana MCP",
+        "supports": [
+          "Official V2 endpoint and registration",
+          "MCP-only tokens and Command license"
+        ]
+      },
+      {
+        "url": "https://developers.asana.com/docs/using-asanas-mcp-server",
+        "title": "Using Asana MCP",
+        "supports": [
+          "Workspace/client app management gates"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "trello",
+    "name": "Trello",
+    "category": "Productivity & collaboration",
+    "description": "Boards, lists, cards and checklists.",
+    "auth_methods": [
+      "API key plus user token",
+      "OAuth 1.0 (REST API)",
+      "OAuth 2.0 (MCP)"
+    ],
+    "auth_notes": "REST API key is generated for a Power-Up in its admin page; obtain user consent/token through the authorize route or OAuth 1.0. Do not substitute OAuth 2.0 MCP auth for REST auth.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a disposable board/workspace; no separate universal sandbox established.",
+      "production": "REST access uses authorized user permissions. Publishing a Power-Up is a separate distribution concern, not required for a personal token experiment.",
+      "plan_gate": "Free workspace available. MCP works on all plans; custom fields and Planner focus-time operations require qualifying paid tiers.",
+      "approval_gate": "User consent and enterprise app/MCP policies may apply.",
+      "notes": "API key alone is insufficient for private account data."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Boards, lists, cards, members, labels, checklists and actions/comments."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Trello hosts https://mcp.trello.com/v1 using OAuth 2.0; vendor support and atlassian/trello-mcp-server repository confirm ownership. Separate from Atlassian Rovo MCP; API-token MCP auth is not supported.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker for a small Free workspace prototype. Paid-feature and enterprise controls still apply.",
+    "evidence": [
+      {
+        "url": "https://developer.atlassian.com/cloud/trello/guides/rest-api/authorization/",
+        "title": "Authorizing with Trello REST API",
+        "supports": [
+          "API key/user token and OAuth 1.0",
+          "Self-service key/token flow"
+        ]
+      },
+      {
+        "url": "https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/",
+        "title": "API Introduction",
+        "supports": [
+          "Board/card/list API and rate limits"
+        ]
+      },
+      {
+        "url": "https://trello.com/pricing",
+        "title": "Trello pricing",
+        "supports": [
+          "Free workspace availability"
+        ]
+      },
+      {
+        "url": "https://support.atlassian.com/trello/docs/connect-trello-to-ai-assistants-with-trello-mcp/",
+        "title": "Connect Trello to AI assistants with MCP",
+        "supports": [
+          "Official remote endpoint",
+          "All-plan availability and OAuth 2.0",
+          "Paid feature/admin gates"
+        ]
+      },
+      {
+        "url": "https://github.com/atlassian/trello-mcp-server",
+        "title": "Official Trello MCP repository",
+        "supports": [
+          "Vendor ownership and hosted server"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "clickup",
+    "name": "ClickUp",
+    "category": "Productivity & collaboration",
+    "description": "Tasks, workspaces and work collaboration.",
+    "auth_methods": [
+      "Personal API token",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Generate personal token in Settings > Apps. Only workspace owners/admins can create OAuth apps for other users.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use personal/test workspace data; isolated sandbox not established.",
+      "production": "Personal tokens for individual/testing use, OAuth for multi-user apps. Authorized workspace selection and resource permissions apply.",
+      "plan_gate": "Public API available on all plans; enterprise user/guest administration endpoints and some parameters are plan-gated. MCP also available on all plans with plan-dependent limits.",
+      "approval_gate": "Owner/admin needed to register OAuth app; end users authorize workspaces.",
+      "notes": "Personal token availability does not imply permission to register a public OAuth application in someone else's workspace."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "Task create/update with assignees, priorities, dates, dependencies, tags and custom fields; broader workspace integrations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. ClickUp hosts https://mcp.clickup.com/mcp. MCP accepts OAuth, not personal API tokens; Free Forever MCP has a daily call allowance.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "Own-token baseline prototype is available; multi-user OAuth app registration requires owner/admin role.",
+    "evidence": [
+      {
+        "url": "https://developer.clickup.com/docs/authentication",
+        "title": "Authentication",
+        "supports": [
+          "Personal token and OAuth",
+          "Owner/admin required for OAuth app registration"
+        ]
+      },
+      {
+        "url": "https://developer.clickup.com/docs/apis-available-by-plan",
+        "title": "API availability by Plan",
+        "supports": [
+          "API available on all plans",
+          "Enterprise endpoint/parameter restrictions"
+        ]
+      },
+      {
+        "url": "https://developer.clickup.com/docs/tasks",
+        "title": "Tasks",
+        "supports": [
+          "Task API resource breadth"
+        ]
+      },
+      {
+        "url": "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server",
+        "title": "ClickUp MCP server",
+        "supports": [
+          "Official endpoint, OAuth-only and all-plan access",
+          "Plan-based limits"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "monday-com",
+    "name": "Monday.com",
+    "category": "Productivity & collaboration",
+    "description": "Boards, items and work workflows.",
+    "auth_methods": [
+      "Personal API token",
+      "OAuth 2.0 app tokens"
+    ],
+    "auth_notes": "Get personal token through Developer Center. App OAuth tokens are separately scoped; personal tokens mirror the user's UI permissions.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free developer sandbox is explicitly separate from production and includes selected advanced features for testing only.",
+      "production": "Use a regular authorized monday account for production. Developer accounts cannot run production business workflows or serve end customers.",
+      "plan_gate": "API is a free feature across plans with plan-based complexity/call limits. Developer sandbox has its own capacity limits.",
+      "approval_gate": "User access governs API calls. Personal MCP testing needs no separate admin approval; additional customer MCP connections via DCR require customer admin approval.",
+      "notes": "Sandbox entitlement is not a free production license for advanced features."
+    },
+    "api": {
+      "styles": [
+        "GraphQL"
+      ],
+      "breadth": "Queries and mutations over boards/items and related work data using a single GraphQL endpoint."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. monday hosts https://mcp.monday.com/mcp over Streamable HTTP. Supports personal API bearer tokens or OAuth; additional customer connections may need admin-approved dynamic connectors.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker for a development prototype. Sandbox is not for production workloads.",
+    "evidence": [
+      {
+        "url": "https://developer.monday.com/api-reference/docs/authentication",
+        "title": "Authentication",
+        "supports": [
+          "Personal token and app-token distinction",
+          "Free developer-account path"
+        ]
+      },
+      {
+        "url": "https://developer.monday.com/api-reference/docs/developer-sandbox",
+        "title": "Developer Sandbox Account",
+        "supports": [
+          "Free sandbox and advanced testing features",
+          "Not for production business workflows"
+        ]
+      },
+      {
+        "url": "https://developer.monday.com/api-reference/docs/rate-limits",
+        "title": "Rate limits",
+        "supports": [
+          "API free across plans",
+          "Plan-based quotas"
+        ]
+      },
+      {
+        "url": "https://developer.monday.com/api-reference/docs/introduction-to-graphql",
+        "title": "GraphQL overview",
+        "supports": [
+          "GraphQL API"
+        ]
+      },
+      {
+        "url": "https://developer.monday.com/api-reference/docs/integrate-with-monday-mcp",
+        "title": "Integrate with monday MCP",
+        "supports": [
+          "Official endpoint, bearer/OAuth and DCR gates"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "todoist",
+    "name": "Todoist",
+    "category": "Productivity & collaboration",
+    "description": "Personal tasks, projects and collaboration.",
+    "auth_methods": [
+      "Personal API token",
+      "OAuth 2.0"
+    ],
+    "auth_notes": "Find own API token in Settings > Integrations > Developer. Register OAuth integration for authorization by other users.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Test with disposable tasks/projects in a normal account; no isolated sandbox established.",
+      "production": "API explicitly free to use, with features restricted by authenticated account plan.",
+      "plan_gate": "Account-plan feature restrictions apply; activity history availability differs by plan.",
+      "approval_gate": "User authorization required; managed AI clients may need their own organization's approval.",
+      "notes": "No paid AI assistant subscription is included in Todoist API access."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Sync API"
+      ],
+      "breadth": "Tasks, projects, sections, labels, comments, filters and workspace-related resources, with sync operations."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Todoist runs https://ai.todoist.net/mcp using OAuth and read/write scope for tasks and projects.",
+      "scope": "operational"
+    },
+    "verdict": "ready",
+    "blocker": "No blocker for a baseline free-account prototype; paid feature limits apply.",
+    "evidence": [
+      {
+        "url": "https://developer.todoist.com/api/v1",
+        "title": "Todoist API",
+        "supports": [
+          "Free API with plan-restricted features",
+          "OAuth and resource breadth"
+        ]
+      },
+      {
+        "url": "https://www.todoist.com/help/todoist/integrations/find-your-api-token-Jpzx9IIlB",
+        "title": "Find your API token",
+        "supports": [
+          "Own-account token retrieval"
+        ]
+      },
+      {
+        "url": "https://www.todoist.com/help/todoist/todoist-and-ai/connect-todoist-to-an-ai-assistant-xMSzFfHng",
+        "title": "Connect Todoist to an AI assistant",
+        "supports": [
+          "Official MCP endpoint and OAuth",
+          "Plan-specific activity history"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "coda",
+    "name": "Coda",
+    "category": "Productivity & collaboration",
+    "description": "Collaborative docs with tables, formulas and controls.",
+    "auth_methods": [
+      "API bearer token"
+    ],
+    "auth_notes": "Generate API token in account settings, optionally restricted. MCP account-authorization setup is separate; an unrestricted public REST OAuth registration path was not established.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use a test doc/workspace; isolated sandbox not established.",
+      "production": "API available free in free and paid workspaces, subject to token owner's workspace role and doc access.",
+      "plan_gate": "Doc creation requires a Doc Maker/Admin role or applicable automatic promotion rules. MCP full access requires a paid Doc Maker; free Doc Makers and Editors receive a limited taste, Editors read-only.",
+      "approval_gate": "Existing doc/workspace access and role restrictions apply; Enterprise admins may manage account settings.",
+      "notes": "The fetched Coda-hosted OpenAPI document now calls the product Superhuman Docs (formerly Coda) and lists a new API base. Preserve the selected app name; migration behavior was not executed."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Docs, pages, tables, rows, formulas and controls; create/copy docs and read/insert/update/upsert rows."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Coda support documents its hosted MCP at https://coda.io/apis/mcp. Paid Doc Makers get full experience; free/Editor use is limited to 30 requests per week and 60 per month, with Editor read-only access.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Core API prototype is free, but role-dependent writes and product/base-URL transition need checking before implementation; full MCP is plan/role-gated.",
+    "evidence": [
+      {
+        "url": "https://coda.io/apis/v1/openapi.yaml",
+        "title": "Coda-hosted OpenAPI: Superhuman Docs API",
+        "supports": [
+          "Free API in free and paid workspaces",
+          "Role-dependent operations",
+          "Formerly Coda and updated API base"
+        ]
+      },
+      {
+        "url": "https://help.coda.io/hc/en-us/articles/39555941038349-Does-Coda-have-an-API",
+        "title": "Does Coda have an API?",
+        "supports": [
+          "Public REST API and table/doc operations"
+        ]
+      },
+      {
+        "url": "https://help.coda.io/hc/en-us/articles/39763414725389-Manage-your-Coda-account-settings",
+        "title": "Manage Coda account settings",
+        "supports": [
+          "Self-service API token generation"
+        ]
+      },
+      {
+        "url": "https://help.coda.io/hc/en-us/articles/44722661982989-Connect-to-the-Coda-MCP",
+        "title": "Connect to Coda MCP",
+        "supports": [
+          "Official endpoint",
+          "Plan/role limits"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "confluence",
+    "name": "Confluence",
+    "category": "Productivity & collaboration",
+    "description": "Spaces, pages and team documentation.",
+    "auth_methods": [
+      "API token with account email (Basic authentication)",
+      "OAuth 2.0 (3LO)"
+    ],
+    "auth_notes": "Generate an Atlassian API token for scripts; use OAuth 2.0 3LO for delegated applications. API permissions follow user access.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "A separate Free site can hold test content; managed product sandboxes are a Premium feature, not part of Free.",
+      "production": "Core REST integrations can use a Free site with accessible content. Distributed OAuth integrations have a separate sharing/review process and show unapproved-app warnings until reviewed.",
+      "plan_gate": "Free plan exists for up to 10 people; fine-grained permissions, storage and advanced features vary by plan.",
+      "approval_gate": "User/site permissions and OAuth consent apply; app-review approval is separate from initial private development.",
+      "notes": "Pricing-page fetch failed; official support plan documentation establishes Free availability instead."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "Pages/content, spaces, search/CQL, attachments, comments and permissions, depending on endpoint/version."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Atlassian hosts Rovo MCP at https://mcp.atlassian.com/v2/mcp with Confluence tools, OAuth 2.1 or API-token headless auth. Some enriched tools consume Rovo credits; this is not unlimited free MCP.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Free-site prototype is available; managed sandbox, advanced capabilities, MCP credits and public app-review status are separate.",
+    "evidence": [
+      {
+        "url": "https://developer.atlassian.com/cloud/confluence/using-the-rest-api/",
+        "title": "Using the REST API",
+        "supports": [
+          "Account-email/API-token auth",
+          "Content search and API use"
+        ]
+      },
+      {
+        "url": "https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/",
+        "title": "OAuth 2.0 (3LO) apps",
+        "supports": [
+          "Delegated OAuth and distribution/review warning"
+        ]
+      },
+      {
+        "url": "https://support.atlassian.com/confluence-cloud/docs/learn-about-confluence-cloud-plans/",
+        "title": "Confluence Cloud plan features",
+        "supports": [
+          "Free plan and Premium sandboxes"
+        ]
+      },
+      {
+        "url": "https://developer.atlassian.com/cloud/rovo-mcp/",
+        "title": "Atlassian Rovo MCP overview",
+        "supports": [
+          "Official server endpoint and Confluence tools",
+          "OAuth/API-token and Rovo credit usage"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "dropbox",
+    "name": "Dropbox",
+    "category": "Productivity & collaboration",
+    "description": "File storage, sharing and synchronization.",
+    "auth_methods": [
+      "OAuth 2.0",
+      "Generated short-lived access token (testing)"
+    ],
+    "auth_notes": "Create an app in Developer Console; generate test token for own account or implement OAuth for production. Team scopes require appropriate team-admin authority.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Development-status apps can connect own account, then a limited number of other users; testing uses real Dropbox data, not a synthetic data sandbox.",
+      "production": "Broad distribution requires production-status review. Development apps can remain suitable for demos/internal tools but user-linking thresholds apply.",
+      "plan_gate": "Dropbox Basic is a free account. Team APIs require team data/permissions; not every enterprise capability is implied by Basic.",
+      "approval_gate": "Production approval for broader distribution; user authorization and team-admin permissions for team scopes.",
+      "notes": "Developer guide states review is normally considered after 50 linked users, with a two-week approval window at that point; avoid treating self-use as already approved public distribution."
+    },
+    "api": {
+      "styles": [
+        "HTTP API"
+      ],
+      "breadth": "File/folder operations, metadata, sharing and content transfers; team API capabilities require the relevant team context."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Dropbox documents its remote data MCP at https://mcp.dropbox.com/mcp in open beta. This is distinct from the documentation-only MCP mentioned in developer docs.",
+      "scope": "limited_or_preview"
+    },
+    "verdict": "conditional",
+    "blocker": "Own-account prototype is available; public distribution, team scopes and MCP beta conditions require separate checks.",
+    "evidence": [
+      {
+        "url": "https://www.dropbox.com/basic",
+        "title": "Dropbox Basic",
+        "supports": [
+          "Free account availability"
+        ]
+      },
+      {
+        "url": "https://docs.dropboxapi.com/dropbox-api/docs/get-started/quick-start",
+        "title": "Dropbox API quickstart",
+        "supports": [
+          "Developer Console app and generated test token",
+          "Production OAuth and team-scope admin condition"
+        ]
+      },
+      {
+        "url": "https://docs.dropboxapi.com/dropbox-api/docs/developer-resources/developer-guide",
+        "title": "DBX Platform developer guide",
+        "supports": [
+          "Development status versus production approval",
+          "Distribution thresholds"
+        ]
+      },
+      {
+        "url": "https://docs.dropboxapi.com/dropbox-api/docs/oauth",
+        "title": "OAuth",
+        "supports": [
+          "OAuth token lifecycle"
+        ]
+      },
+      {
+        "url": "https://help.dropbox.com/integrations/connect-dropbox-mcp-server",
+        "title": "Connect Dropbox remote MCP server",
+        "supports": [
+          "Official data MCP endpoint and beta status"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "box",
+    "name": "Box",
+    "category": "Productivity & collaboration",
+    "description": "Files, folders, metadata and enterprise content workflows.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code",
+      "OAuth 2.0 client credentials grant",
+      "JWT assertion",
+      "Developer access token (testing)"
+    ],
+    "auth_notes": "Free developer account includes Developer Console and automatically authorized default CCG app. Developer token is short-lived and intended for testing. General server-app authorization rules still apply in enterprise accounts.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Free developer plan supports testing; dedicated enterprise developer sandboxes are a separate plan capability.",
+      "production": "Production-scale multi-user enterprise administration, licensed capacity and specialized products depend on paid plans and enterprise settings.",
+      "plan_gate": "Free developer plan includes broad APIs but not every endpoint. Specialized products and higher scale are paid; MCP docgen scope requires Enterprise Advanced.",
+      "approval_gate": "Default free-development CCG app auto-authorized; enterprise CCG/JWT apps require authorization. OAuth enablement depends on enterprise policy; MCP uses Admin Console configuration.",
+      "notes": "Do not flatten general admin-authorization rules into a claim that free default CCG setup is blocked."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "Content, metadata, search, users/groups, webhooks, AI, Hubs and Sign, with endpoint-level plan restrictions."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Box hosts https://mcp.box.com over OAuth. Admin enables MCP and creates Integration Credentials for custom clients; older self-hosted implementation is deprecated.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Free API prototype is available, but production scale, enterprise app authorization and hosted MCP enablement are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developer.box.com/guides/getting-started/free-developer-plan",
+        "title": "Free developer plan",
+        "supports": [
+          "No-cost developer account and API set",
+          "Automatically authorized default CCG app",
+          "Paid endpoint/production distinctions"
+        ]
+      },
+      {
+        "url": "https://developer.box.com/guides/authentication",
+        "title": "Authentication",
+        "supports": [
+          "OAuth, CCG, JWT and developer tokens",
+          "Enterprise admin authorization rules"
+        ]
+      },
+      {
+        "url": "https://developer.box.com/guides/box-mcp",
+        "title": "Box MCP server",
+        "supports": [
+          "Official hosted endpoint",
+          "Deprecated self-hosted project"
+        ]
+      },
+      {
+        "url": "https://developer.box.com/guides/box-mcp/setup",
+        "title": "Set up MCP server",
+        "supports": [
+          "Admin Console setup and OAuth credentials",
+          "Enterprise Advanced docgen scope"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "zoom",
+    "name": "Zoom",
+    "category": "Productivity & collaboration",
+    "description": "Meetings, chat and collaboration products.",
+    "auth_methods": [
+      "OAuth 2.0 authorization code",
+      "Server-to-server OAuth"
+    ],
+    "auth_notes": "Use OAuth for user-authorized/Marketplace apps; server-to-server OAuth for backend access to own account. App activation and allowed scopes are required before token use.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use development/private apps and disposable account resources. No universal isolated product sandbox established.",
+      "production": "Private/beta apps do not require Marketplace review; public and unlisted apps do. Product license, scope and role conditions differ by API.",
+      "plan_gate": "API rate limits explicitly include Free accounts; product-specific operations can require paid licenses. MCP requires licenses for the respective products.",
+      "approval_gate": "Permissions to edit S2S apps and add relevant scopes; admin scopes need admin-level role permissions. Public/unlisted distribution reviewed.",
+      "notes": "Free account rate-limit support does not mean all Zoom products or endpoints are free."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "Meetings, chat, users and product-specific APIs; additional product surfaces vary by entitlement."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Zoom hosts product-specific MCP servers; Meetings Streamable HTTP endpoint is https://zoom.us/mcp/meeting/streamable. OAuth with PKCE, manually registered Marketplace integration and product licenses are required.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Baseline Free-account API testing is possible; role/product licenses and public distribution review are separate gates.",
+    "evidence": [
+      {
+        "url": "https://developers.zoom.us/docs/api/authentication/",
+        "title": "API Authentication",
+        "supports": [
+          "User OAuth versus S2S OAuth"
+        ]
+      },
+      {
+        "url": "https://developers.zoom.us/docs/internal-apps/create/",
+        "title": "Create S2S OAuth app",
+        "supports": [
+          "App permissions, scopes and activation"
+        ]
+      },
+      {
+        "url": "https://developers.zoom.us/docs/api/rate-limits/",
+        "title": "Rate limits",
+        "supports": [
+          "Free account API limits"
+        ]
+      },
+      {
+        "url": "https://developers.zoom.us/docs/distribute/app-review-process/",
+        "title": "App Review Process",
+        "supports": [
+          "Public/unlisted review and private/beta exception"
+        ]
+      },
+      {
+        "url": "https://developers.zoom.us/docs/api/",
+        "title": "API reference",
+        "supports": [
+          "Product API breadth"
+        ]
+      },
+      {
+        "url": "https://developers.zoom.us/docs/mcp/servers/",
+        "title": "Zoom as MCP server overview",
+        "supports": [
+          "Official product-specific endpoints and transport"
+        ]
+      },
+      {
+        "url": "https://developers.zoom.us/docs/mcp/servers/connect-to-zoom-mcp-servers/",
+        "title": "Connect to Zoom MCP servers",
+        "supports": [
+          "Manual client registration and licenses"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "miro",
+    "name": "Miro",
+    "category": "Productivity & collaboration",
+    "description": "Boards, diagrams and visual workspaces.",
+    "auth_methods": [
+      "OAuth 2.0 (REST)",
+      "OAuth 2.1 (MCP)"
+    ],
+    "auth_notes": "Create a developer team/app, configure scopes and authorize installation to obtain REST access token. Use OAuth flow for user-authorized integrations.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Developer team is an explicit non-production sandbox for developing/testing apps only.",
+      "production": "REST APIs are free with a Miro account and developer team; production use must use appropriately authorized teams/resources rather than sandbox business work.",
+      "plan_gate": "REST available on any plan. Dedicated MCP landing, FAQ and Help Center say MCP also works on Free plans, conflicting with an Enterprise-only claim in the comparison page.",
+      "approval_gate": "Enterprise MCP is disabled until admin enables it, potentially for selected teams/user groups/clients. Other plans are enabled by default per Help Center.",
+      "notes": "Resolved documented MCP plan conflict in favor of dedicated setup/FAQ pages; retained both sources and medium confidence. No actual connection tested."
+    },
+    "api": {
+      "styles": [
+        "REST"
+      ],
+      "breadth": "CRUD on boards, board members and supported items such as shapes, sticky notes, text, frames and connectors; selected team/org APIs have enterprise conditions."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Miro hosts https://mcp.miro.com with OAuth 2.1 and dynamic client registration. Dedicated guides support Free teams; Enterprise requires admin enablement.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Prototype path is free, but vendor docs conflict on MCP plan eligibility. Use dedicated setup guidance and verify account eligibility before promising availability.",
+    "evidence": [
+      {
+        "url": "https://developers.miro.com/docs/miro-rest-api-introduction",
+        "title": "Miro REST API introduction",
+        "supports": [
+          "Free API with account/developer team",
+          "Board and item API breadth"
+        ]
+      },
+      {
+        "url": "https://developers.miro.com/docs/create-a-developer-team",
+        "title": "Create Developer team",
+        "supports": [
+          "Development-only sandbox"
+        ]
+      },
+      {
+        "url": "https://developers.miro.com/docs/getting-started-with-oauth",
+        "title": "Get started with OAuth",
+        "supports": [
+          "OAuth app installation and token flow"
+        ]
+      },
+      {
+        "url": "https://developers.miro.com/docs/miro-mcp",
+        "title": "Miro MCP server",
+        "supports": [
+          "Official vendor server",
+          "All-plan availability claim"
+        ]
+      },
+      {
+        "url": "https://developers.miro.com/docs/miro-mcp-server-frequently-asked-questions",
+        "title": "Miro MCP FAQ",
+        "supports": [
+          "Official endpoint and OAuth",
+          "All-plan access and Enterprise admin gate"
+        ]
+      },
+      {
+        "url": "https://help.miro.com/hc/en-us/articles/31625301583890-How-to-enable-Miro-s-MCP-Server-user-guide",
+        "title": "Enable Miro MCP user guide",
+        "supports": [
+          "Free/Starter/Business/Education enabled by default",
+          "Enterprise admin enablement"
+        ]
+      },
+      {
+        "url": "https://developers.miro.com/docs/mcp-server-vs-rest-api",
+        "title": "MCP server versus REST API",
+        "supports": [
+          "Conflicting Enterprise-only MCP plan statement"
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "category": "Productivity & collaboration",
+    "description": "Collaborative design files and design-development context.",
+    "auth_methods": [
+      "Personal access token",
+      "OAuth 2.0",
+      "Plan access token (Organization/Enterprise)"
+    ],
+    "auth_notes": "Use PAT for personal scripts; OAuth for other users. Plan access tokens are organization-managed and only available on Organization/Enterprise. Public OAuth apps require Figma review.",
+    "access": {
+      "credential_path": "free_self_serve",
+      "sandbox": "Use test files/drafts and draft OAuth app. In draft, OAuth testing is limited to app owner and plan admins, not all teammates.",
+      "production": "Public OAuth app must be reviewed before other users authorize; private OAuth app publication does not require Figma review. Resource plan and seat govern API capacity.",
+      "plan_gate": "Starter REST file-content requests can be limited to up to six per month; MCP Starter has up to 20 read tool calls per month. Paid seats/plans raise limits; some write/AI tools have different rules.",
+      "approval_gate": "Public OAuth review; plan-admin controls for plan tokens. All requests remain limited by file access.",
+      "notes": "REST limits and MCP limits are different. REST is not a full arbitrary canvas-editing API; current MCP has broader canvas-write capabilities."
+    },
+    "api": {
+      "styles": [
+        "REST",
+        "Webhooks"
+      ],
+      "breadth": "Read file/layer structures, images, versions and usage data; comments and webhooks, with product/plan-specific capabilities."
+    },
+    "mcp": {
+      "status": "official",
+      "notes": "Scope: operational account data, not documentation-only search. Figma documents its remote MCP server at https://mcp.figma.com/mcp. Rate/access guide explicitly permits limited Starter usage. Some canvas writes outside drafts require a Full seat; AI tools can consume credits.",
+      "scope": "operational"
+    },
+    "verdict": "conditional",
+    "blocker": "Self-use prototype possible, but Starter REST capacity is very small and public OAuth review/paid seat or feature requirements can block practical scale.",
+    "evidence": [
+      {
+        "url": "https://developers.figma.com/docs/rest-api/authentication/",
+        "title": "REST authentication",
+        "supports": [
+          "PAT, OAuth and plan access tokens"
+        ]
+      },
+      {
+        "url": "https://developers.figma.com/docs/rest-api/oauth-apps/",
+        "title": "OAuth apps",
+        "supports": [
+          "Draft testing limits",
+          "Public review and private publication distinction"
+        ]
+      },
+      {
+        "url": "https://developers.figma.com/docs/rest-api/rate-limits/",
+        "title": "REST rate limits",
+        "supports": [
+          "Resource-plan/seat capacity",
+          "Starter file-content limit example"
+        ]
+      },
+      {
+        "url": "https://developers.figma.com/docs/rest-api/",
+        "title": "Figma REST introduction",
+        "supports": [
+          "API resource breadth"
+        ]
+      },
+      {
+        "url": "https://developers.figma.com/docs/figma-mcp-server/",
+        "title": "Figma MCP introduction",
+        "supports": [
+          "Vendor MCP and canvas-write capabilities",
+          "Full-seat condition for writes outside drafts"
+        ]
+      },
+      {
+        "url": "https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/",
+        "title": "Remote MCP server setup",
+        "supports": [
+          "Vendor-hosted endpoint"
+        ]
+      },
+      {
+        "url": "https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/",
+        "title": "MCP rate limits and access",
+        "supports": [
+          "Starter MCP read allowance",
+          "AI credit and paid-seat distinctions"
+        ]
+      }
+    ],
+    "confidence": "high",
+    "checked_at": "2026-11-23T18:45:00+05:30"
+  }
+]
