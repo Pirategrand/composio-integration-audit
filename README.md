@@ -19,12 +19,12 @@ The app set was researcher-selected after the referenced employer list was not v
 
 ## Quick start
 
-Python 3.11+, standard library only. No API key is needed for the included utilities.
+Python 3.11+, standard library only. No API key is needed for the included utilities. Run the commands in this order: the tests read the generated output.
 
 ```sh
-python -m unittest discover -s tests -v
 python src/finalize.py --input data/full/*.json --output output/final --expected-count 100
 python src/build_report.py --dataset output/final/dataset.json --output output/report.html
+python -m unittest discover -s tests -v
 ```
 
 Open `output/report.html` for the single-page interactive case study. It contains the findings, complete searchable matrix, methods, actual corrections and verification limits. Source evidence links open the vendor documentation. `output/final/dataset.json` is the machine-readable result.
