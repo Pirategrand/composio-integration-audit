@@ -1,0 +1,93 @@
+{
+  "apps": 100,
+  "evidence_urls": 407,
+  "citations": 428,
+  "verdicts": {
+    "ready": 38,
+    "conditional": 61,
+    "blocked": 1
+  },
+  "credential_paths": {
+    "free_self_serve": 67,
+    "trial_self_serve": 14,
+    "paid_self_serve": 3,
+    "unknown": 4,
+    "admin_gated": 4,
+    "review_gated": 7,
+    "partner_gated": 1
+  },
+  "mcp": {
+    "official": 95,
+    "not_confirmed": 5
+  },
+  "mcp_scopes": {
+    "operational": 75,
+    "limited_or_preview": 11,
+    "not_confirmed": 5,
+    "read_only_or_limited": 6,
+    "docs_or_developer_only": 3
+  },
+  "auth_support_counts": {
+    "API key": 30,
+    "OAuth": 87,
+    "Token": 38,
+    "Basic": 11,
+    "Other": 7,
+    "Digest": 1,
+    "Service account": 7
+  },
+  "categories": {
+    "CRM & commerce": {
+      "apps": 20,
+      "ready": 10,
+      "conditional": 10,
+      "blocked": 0,
+      "unknown": 0,
+      "free_or_trial": 18,
+      "official_mcp": 19
+    },
+    "Developer & infrastructure": {
+      "apps": 20,
+      "ready": 9,
+      "conditional": 10,
+      "blocked": 1,
+      "unknown": 0,
+      "free_or_trial": 15,
+      "official_mcp": 19
+    },
+    "Finance & business operations": {
+      "apps": 20,
+      "ready": 7,
+      "conditional": 13,
+      "blocked": 0,
+      "unknown": 0,
+      "free_or_trial": 17,
+      "official_mcp": 20
+    },
+    "Marketing & analytics": {
+      "apps": 20,
+      "ready": 6,
+      "conditional": 14,
+      "blocked": 0,
+      "unknown": 0,
+      "free_or_trial": 12,
+      "official_mcp": 17
+    },
+    "Productivity & collaboration": {
+      "apps": 20,
+      "ready": 6,
+      "conditional": 14,
+      "blocked": 0,
+      "unknown": 0,
+      "free_or_trial": 19,
+      "official_mcp": 20
+    }
+  },
+  "confidence": {
+    "high": 75,
+    "medium": 25
+  },
+  "human_verified": 0,
+  "independent_accuracy": null,
+  "auth_denominator_note": "Each app can support multiple authentication families; counts overlap."
+}
