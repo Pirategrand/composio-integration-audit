@@ -1,0 +1,128 @@
+{
+  "reviewer_type": "agent",
+  "method": "Twenty deliberately risk-focused apps spanning all five categories. Not a random or independent human accuracy sample. Each entry checks one material claim, not all fields.",
+  "human_checks_completed": 0,
+  "independent_accuracy": null,
+  "checks": [
+    {
+      "app_id": "miro",
+      "claim_checked": "Dedicated MCP setup/FAQ conflicts with the Enterprise-only comparison page. Keep medium confidence and plan ambiguity.",
+      "source_url": "https://developers.miro.com/docs/miro-mcp-server-frequently-asked-questions",
+      "outcome": "policy_conflict_retained"
+    },
+    {
+      "app_id": "figma",
+      "claim_checked": "Personal/OAuth credentials differ from organization plan tokens; API and MCP quotas must not be merged.",
+      "source_url": "https://developers.figma.com/docs/rest-api/authentication/",
+      "outcome": "scope_distinction_retained"
+    },
+    {
+      "app_id": "gmail",
+      "claim_checked": "Service-account file access does not always need domain-wide delegation; public sensitive/restricted scopes are a separate verification issue.",
+      "source_url": "https://developers.google.com/workspace/guides/create-credentials",
+      "outcome": "scope_distinction_retained"
+    },
+    {
+      "app_id": "coda",
+      "claim_checked": "Free Doc Makers have a limited MCP taste; Editors are read-only. Do not equate token creation with full MCP access.",
+      "source_url": "https://help.coda.io/hc/en-us/articles/44722661982989-Connect-to-the-Coda-MCP",
+      "outcome": "plan_role_distinction_retained"
+    },
+    {
+      "app_id": "hubspot",
+      "claim_checked": "Remote MCP source says read-only CRM standard records, contrary to the draft broad read/write claim. Corrected.",
+      "source_url": "https://developers.hubspot.com/ai-tools/mcp",
+      "outcome": "corrected"
+    },
+    {
+      "app_id": "help-scout",
+      "claim_checked": "Free plan does not grant API entitlement; trial/paid Standard+ is the practical path. Corrected access bucket.",
+      "source_url": "https://docs.helpscout.com/article/1779-connect-your-ai-agent-with-help-scout-to-search-conversations-and-pull-reports",
+      "outcome": "corrected"
+    },
+    {
+      "app_id": "ecwid",
+      "claim_checked": "Vendor-hosted API overview uses older plan names. Paid API gate is preserved with medium confidence; aggregator MCP is not server ownership evidence.",
+      "source_url": "https://raw.githubusercontent.com/Ecwid/ecwid-api-docs/master/includes/_overview.md",
+      "outcome": "uncertainty_retained"
+    },
+    {
+      "app_id": "squarespace",
+      "claim_checked": "Commerce Advanced is a paid-plan API-key gate, not an administrator approval bucket. Corrected.",
+      "source_url": "https://developers.squarespace.com/commerce-apis/authentication-and-permissions",
+      "outcome": "corrected"
+    },
+    {
+      "app_id": "google-ads",
+      "claim_checked": "Current body says developer tokens sunset9Sep2026; Cloud-project access levels replace them. Summary text can be stale.",
+      "source_url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels",
+      "outcome": "current_policy_confirmed"
+    },
+    {
+      "app_id": "mixpanel",
+      "claim_checked": "Export FAQ gates report Query API while current MCP guide describes some Free-account access. Keep conditional, do not promise full Free query support.",
+      "source_url": "https://docs.mixpanel.com/docs/mcp",
+      "outcome": "policy_conflict_retained"
+    },
+    {
+      "app_id": "reddit",
+      "claim_checked": "Responsible Builder Policy requires explicit API approval; legacy registration is not enough.",
+      "source_url": "https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy",
+      "outcome": "current_policy_confirmed"
+    },
+    {
+      "app_id": "tiktok-marketing-api",
+      "claim_checked": "Advertiser authorization is separate from application approval; no business account was connected.",
+      "source_url": "https://business-api.tiktok.com/portal/docs/marketing-api-authorization/v1.3",
+      "outcome": "scope_distinction_retained"
+    },
+    {
+      "app_id": "xero",
+      "claim_checked": "Starter remote MCP is demo-organization-only; real organizations need Core+ except stated exemption.",
+      "source_url": "https://developer.xero.com/faq/remote-mcp",
+      "outcome": "plan_environment_distinction_retained"
+    },
+    {
+      "app_id": "plaid",
+      "claim_checked": "Sandbox is always free. Production trial applies only to eligible US/Canada teams and limited Items; it is not universal production access.",
+      "source_url": "https://plaid.com/docs/account/billing/",
+      "outcome": "plan_environment_distinction_retained"
+    },
+    {
+      "app_id": "calendly",
+      "claim_checked": "Current API help states webhooks and Scheduling API on all plans including Free, with enterprise-only endpoints separately listed.",
+      "source_url": "https://calendly.com/help/calendly-api-overview",
+      "outcome": "current_policy_confirmed"
+    },
+    {
+      "app_id": "recurly",
+      "claim_checked": "Compass MCP is knowledge/coding oriented, not proof of billing transactions.",
+      "source_url": "https://docs.recurly.com/recurly-subscriptions/docs/compass-public-mcp-server",
+      "outcome": "mcp_scope_distinction_retained"
+    },
+    {
+      "app_id": "opsgenie",
+      "claim_checked": "New signups closed4Jun2025; existing access ends5Apr2027. Block new toolkit onboarding despite extant API docs.",
+      "source_url": "https://www.atlassian.com/licensing/opsgenie",
+      "outcome": "lifecycle_block_confirmed"
+    },
+    {
+      "app_id": "newrelic",
+      "claim_checked": "Hosted MCP explicitly excludes Free plans even though ordinary account/API development has a free route.",
+      "source_url": "https://docs.newrelic.com/docs/agentic-ai/mcp/overview/",
+      "outcome": "plan_interface_distinction_retained"
+    },
+    {
+      "app_id": "gitlab",
+      "claim_checked": "REST api-scoped legacy tokens do not imply MCP mcp-scope acceptance.",
+      "source_url": "https://docs.gitlab.com/user/model_context_protocol/mcp_server/",
+      "outcome": "scope_distinction_retained"
+    },
+    {
+      "app_id": "mongodb",
+      "claim_checked": "Admin API manages clusters/users, not stored database documents. Direct API IP-list rules and delegated client rules differ.",
+      "source_url": "https://www.mongodb.com/docs/atlas/configure-api-access/",
+      "outcome": "control_data_plane_distinction_retained"
+    }
+  ]
+}
